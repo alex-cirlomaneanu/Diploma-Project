@@ -1,45 +1,40 @@
 package com.example.homebookexpress.models;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Table;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
+@Table(name = "clients")
 public class Client {
     @Id
-    @SequenceGenerator(
-            name = "client_id_sequence",
-            sequenceName = "client_id_sequence"
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "client_id_sequence"
-    )
     private UUID clientId;
 
     private String firstname;
     private String lastname;
-    private LocalDate dateOfBirth;
     private String email;
+    private String password;
     private String phoneNumber;
+    private LocalDate dateOfBirth;
 
     public Client() {
     }
 
-    public Client(UUID clientId, String firstname, String lastname, LocalDate dateOfBirth, String email, String phoneNumber) {
+    public Client(UUID clientId, String firstname, String lastname, String password, LocalDate dateOfBirth, String email, String phoneNumber) {
         this.clientId = clientId;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.password = password;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
 
-    public Client(String firstname, String lastname, LocalDate dateOfBirth, String email, String phoneNumber) {
+    public Client(String firstname, String lastname, String password,  String phoneNumber, LocalDate dateOfBirth) {
         this.firstname = firstname;
         this.lastname = lastname;
+        this.password = password;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -69,14 +64,6 @@ public class Client {
         this.lastname = lastname;
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -85,11 +72,40 @@ public class Client {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "clientId=" + clientId +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                '}';
     }
 }

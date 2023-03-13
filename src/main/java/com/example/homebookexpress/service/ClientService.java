@@ -37,7 +37,8 @@ public class ClientService {
         return clientRepository.findById(clientID);
     }
 
-    public void addClient(Client client) {
-        clientRepository.save(client);
+    public Client addClient(Client client) {
+        System.out.println(client);
+        return clientRepository.save(client);
     }
 }
