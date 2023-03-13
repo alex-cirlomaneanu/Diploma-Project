@@ -3,13 +3,13 @@ package com.example.homebookexpress.controllers;
 import com.example.homebookexpress.models.Client;
 import com.example.homebookexpress.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
-@RestController
+@Controller
 public class ClientController {
     private final ClientService clientService;
 
@@ -23,8 +23,9 @@ public class ClientController {
         return clientService.addClient(client);
     }
 
-    @GetMapping("/register")
+    @RequestMapping(value = "register", method = {RequestMethod.GET, RequestMethod.POST} )
     public String showRegistartionForm(Model model) {
+        // TODO: 13.03.2023 implement register method using service
         model.addAttribute("client", new Client());
         return "register";
     }

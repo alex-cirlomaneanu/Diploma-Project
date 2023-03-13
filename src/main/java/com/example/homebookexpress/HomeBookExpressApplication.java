@@ -14,11 +14,4 @@ public class HomeBookExpressApplication {
     public static void main(String[] args) {
         SpringApplication.run(HomeBookExpressApplication.class, args);
     }
-
-    @GetMapping("/hello")
-    public List<String> hello() {
-        return List.of("Hi", "Everyone", "I'm", "Yi Long Ma");
-
-    }
-
 }
