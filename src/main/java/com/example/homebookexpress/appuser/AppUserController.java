@@ -16,11 +16,11 @@ public class AppUserController {
         this.appUserService = appUserService;
     }
 
-    @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
-    public AppUser createClient(@ModelAttribute("client") AppUser appUser) {
-        return appUserService.addUser(appUser);
-    }
+//    @PostMapping("/register")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public AppUser createClient(@ModelAttribute("client") AppUser appUser) {
+//        return appUserService.addUser(appUser);
+//    }
 
 //    @RequestMapping(value = "register", method = {RequestMethod.GET, RequestMethod.POST} )
 //    public String showRegistartionForm(Model model) {

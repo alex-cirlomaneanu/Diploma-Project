@@ -26,7 +26,7 @@ public class AuthenticationService {
                 .lastname(request.getLastName())
                 .birthDate(request.getBirthDate())
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(passwordEncoder.encode(request.getPassword()))
                 .role(AppUserRole.USER)
                 .build();
         appUserRepository.save(newUser);

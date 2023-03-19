@@ -18,6 +18,7 @@ import java.util.UUID;
 @Table(name = "clients")
 public class AppUser implements UserDetails {
     @Id
+    @GeneratedValue
     private UUID clientId;
     private String firstname;
     private String lastname;

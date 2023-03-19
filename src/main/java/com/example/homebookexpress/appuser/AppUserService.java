@@ -34,11 +34,6 @@ public class AppUserService implements UserDetailsService {
         return appUserRepository.save(appUser);
     }
 
-    public AppUser findById(UUID id) {
-        return appUserRepository.findAppUserById(id)
-                .orElseThrow(() -> new UserNotFoundException("AppUser not found"));
-    }
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return appUserRepository.findAppUserByEmail(email)
