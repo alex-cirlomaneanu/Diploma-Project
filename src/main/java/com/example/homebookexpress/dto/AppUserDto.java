@@ -8,8 +8,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @EqualsAndHashCode @ToString
 public class AppUserDto {
-    private final String firstName;
-    private final String lastName;
+    private final String firstname;
+    private final String lastname;
     private final LocalDate birthDate;
     private final String phone;
     private final String email;

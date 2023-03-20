@@ -11,21 +11,20 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-// todo token
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
     private final AppUserRepository appUserRepository;
-//    private final TokenRepository tokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-    public AuthenticationResponse register(AppUserDto request) {
+    public AuthenticationResponse register(AppUser request) {
         AppUser newUser = AppUser.builder()
-                .firstname(request.getFirstName())
-                .lastname(request.getLastName())
+                .firstname(request.getFirstname())
+                .lastname(request.getLastname())
                 .birthDate(request.getBirthDate())
                 .email(request.getEmail())
+                .phoneNumber(request.getPhoneNumber())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(AppUserRole.USER)
                 .build();
@@ -35,7 +34,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
 
-    public AuthenticationResponse authenticate(AppUserDto request) {
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -46,8 +45,7 @@ public class AuthenticationService {
         AppUser user = appUserRepository.findAppUserByEmail(request.getEmail())
                 .orElseThrow();
         String jwtToken = jwtService.generateToken(user);
-//        revokeAllUserTokens(user);
-//        saveUserToken(user, jwtToken);
+
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

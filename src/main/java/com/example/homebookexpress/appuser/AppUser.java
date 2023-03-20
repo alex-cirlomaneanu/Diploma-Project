@@ -11,25 +11,60 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "app_users")
 @Getter @Setter @EqualsAndHashCode
 @Builder
 @NoArgsConstructor @AllArgsConstructor
-@Table(name = "clients")
+@Table(name = "app_users")
 public class AppUser implements UserDetails {
     @Id
     @GeneratedValue
     private UUID clientId;
+
+    @Column(
+            name = "firstname",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String firstname;
+
+    @Column(
+            name = "lastname",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String lastname;
+
+    @Column(
+            name = "email",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String email;
+
+    @Column(
+            name = "password",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String password;
+
+    @Column(
+            name = "phoneNumber",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String phoneNumber;
+
+    @Column(
+            name = "birthDate",
+            nullable = false,
+            columnDefinition = "DATE"
+    )
     private LocalDate birthDate;
+
     @Enumerated(EnumType.STRING)
     private AppUserRole role;
-    private Boolean locked = false;
-    private Boolean enabled = false;
 
     public AppUser(String firstname,
                    String lastname,
@@ -38,6 +73,7 @@ public class AppUser implements UserDetails {
                    String phoneNumber,
                    LocalDate birthDate,
                    AppUserRole role) {
+        this.clientId = UUID.randomUUID();
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -70,7 +106,7 @@ public class AppUser implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return !locked;
+        return true;
     }
 
     @Override
@@ -80,6 +116,6 @@ public class AppUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return true;
     }
 }

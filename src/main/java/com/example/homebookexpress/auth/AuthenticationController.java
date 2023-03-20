@@ -1,5 +1,6 @@
 package com.example.homebookexpress.auth;
 
+import com.example.homebookexpress.appuser.AppUser;
 import com.example.homebookexpress.dto.AppUserDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,14 +17,14 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody AppUserDto request
+            @RequestBody AppUser request
     ) {
         return ResponseEntity.ok(authenticationService.register((request)));
     }
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody AppUserDto request
+            @RequestBody AuthenticationRequest request
     ) {
         return ResponseEntity.ok(authenticationService.authenticate((request)));
     }
