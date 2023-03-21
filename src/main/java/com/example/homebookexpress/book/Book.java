@@ -2,12 +2,18 @@ package com.example.homebookexpress.book;
 
 import com.example.homebookexpress.authors.Author;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Entity(name = "books")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "books")
 public class Book {
     @Id
@@ -21,9 +27,9 @@ public class Book {
     )
     private String title;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+//    @ManyToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "author_id", referencedColumnName = "author_id")
-    private Author author;
+    private String author;
 
     @Column(
             name = "genre",
@@ -32,4 +38,10 @@ public class Book {
     )
     private String genre;
 
+    public Book(String title, String author, String genre) {
+        this.bookId = UUID.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+    }
 }
