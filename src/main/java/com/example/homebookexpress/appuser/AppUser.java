@@ -1,5 +1,6 @@
 package com.example.homebookexpress.appuser;
 
+import com.example.homebookexpress.rename.Rental;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,9 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.UUID;
+import java.util.*;
 
 @Entity(name = "app_users")
 @Getter @Setter @EqualsAndHashCode
@@ -19,40 +18,41 @@ import java.util.UUID;
 public class AppUser implements UserDetails {
     @Id
     @GeneratedValue
-    private UUID clientId;
+    @Column(name = "user_id")
+    private UUID userId;
 
     @Column(
             name = "firstname",
             nullable = false,
-            columnDefinition = "TEXT"
+            columnDefinition = "VARCHAR(30)"
     )
     private String firstname;
 
     @Column(
             name = "lastname",
             nullable = false,
-            columnDefinition = "TEXT"
+            columnDefinition = "VARCHAR(30)"
     )
     private String lastname;
 
     @Column(
             name = "email",
             nullable = false,
-            columnDefinition = "TEXT"
+            columnDefinition = "VARCHAR(30)"
     )
     private String email;
 
     @Column(
             name = "password",
             nullable = false,
-            columnDefinition = "TEXT"
+            columnDefinition = "VARCHAR(20)"
     )
     private String password;
 
     @Column(
             name = "phoneNumber",
             nullable = false,
-            columnDefinition = "TEXT"
+            columnDefinition = "VARCHAR(20)"
     )
     private String phoneNumber;
 
@@ -66,6 +66,9 @@ public class AppUser implements UserDetails {
     @Enumerated(EnumType.STRING)
     private AppUserRole role;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Rental> rentals = new ArrayList<>();
+
     public AppUser(String firstname,
                    String lastname,
                    String email,
@@ -73,7 +76,7 @@ public class AppUser implements UserDetails {
                    String phoneNumber,
                    LocalDate birthDate,
                    AppUserRole role) {
-        this.clientId = UUID.randomUUID();
+        this.userId = UUID.randomUUID();
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;

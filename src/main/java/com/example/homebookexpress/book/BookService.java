@@ -2,8 +2,6 @@ package com.example.homebookexpress.book;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.UUID;
 
@@ -24,7 +22,7 @@ public class BookService {
         Book newBook = Book.builder()
                 .title(book.getTitle())
                 .author(book.getAuthor())
-                .genre(book.getGenre())
+                .bookGenre(book.getBookGenre())
                 .build();
         bookRepository.save(book);
         return newBook;

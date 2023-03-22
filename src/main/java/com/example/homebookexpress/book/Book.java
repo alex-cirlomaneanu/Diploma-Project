@@ -1,16 +1,17 @@
 package com.example.homebookexpress.book;
 
 import com.example.homebookexpress.authors.Author;
+import com.example.homebookexpress.bookgenre.BookGenre;
+import com.example.homebookexpress.rename.Rental;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "books")
-@Data
+@Getter @Setter @ToString @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -18,6 +19,7 @@ import java.util.UUID;
 public class Book {
     @Id
     @GeneratedValue
+    @Column(name = "book_id")
     private UUID bookId;
 
     @Column(
@@ -27,21 +29,22 @@ public class Book {
     )
     private String title;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "author_id", referencedColumnName = "author_id")
-    private String author;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id", referencedColumnName = "author_id")
+    private Author author;
 
-    @Column(
-            name = "genre",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
-    private String genre;
 
-    public Book(String title, String author, String genre) {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_genre_id", referencedColumnName = "genre_id")
+    private BookGenre bookGenre;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Rental> rentals = new ArrayList<>();
+
+    public Book(String title, Author author, BookGenre bookGenre) {
         this.bookId = UUID.randomUUID();
         this.title = title;
         this.author = author;
-        this.genre = genre;
+        this.bookGenre = bookGenre;
     }
 }
