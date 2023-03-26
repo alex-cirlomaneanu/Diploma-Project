@@ -2,7 +2,7 @@ package com.example.homebookexpress.book;
 
 import com.example.homebookexpress.authors.Author;
 import com.example.homebookexpress.bookgenre.BookGenre;
-import com.example.homebookexpress.rename.Rental;
+import com.example.homebookexpress.rental.Rental;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +29,12 @@ public class Book {
     )
     private String title;
 
+    @Column(name = "total_copies")
+    private int totalCopies;
+
+    @Column(name = "available_copies")
+    private int availableCopies;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id", referencedColumnName = "author_id")
     private Author author;
@@ -41,10 +47,4 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Rental> rentals = new ArrayList<>();
 
-    public Book(String title, Author author, BookGenre bookGenre) {
-        this.bookId = UUID.randomUUID();
-        this.title = title;
-        this.author = author;
-        this.bookGenre = bookGenre;
-    }
 }

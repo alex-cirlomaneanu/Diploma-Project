@@ -1,6 +1,6 @@
 package com.example.homebookexpress.appuser;
 
-import com.example.homebookexpress.rename.Rental;
+import com.example.homebookexpress.rental.Rental;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
