@@ -24,40 +24,40 @@ public class AppUser implements UserDetails {
     @Column(
             name = "firstname",
             nullable = false,
-            columnDefinition = "VARCHAR(30)"
+            columnDefinition = "VARCHAR(255)"
     )
     private String firstname;
 
     @Column(
             name = "lastname",
             nullable = false,
-            columnDefinition = "VARCHAR(30)"
+            columnDefinition = "VARCHAR(255)"
     )
     private String lastname;
 
     @Column(
             name = "email",
             nullable = false,
-            columnDefinition = "VARCHAR(30)"
+            columnDefinition = "VARCHAR(255)"
     )
     private String email;
 
     @Column(
             name = "password",
             nullable = false,
-            columnDefinition = "VARCHAR(20)"
+            columnDefinition = "VARCHAR(255)"
     )
     private String password;
 
     @Column(
-            name = "phoneNumber",
+            name = "phone_number",
             nullable = false,
-            columnDefinition = "VARCHAR(20)"
+            columnDefinition = "VARCHAR(255)"
     )
     private String phoneNumber;
 
     @Column(
-            name = "birthDate",
+            name = "birth_date",
             nullable = false,
             columnDefinition = "DATE"
     )
@@ -68,23 +68,6 @@ public class AppUser implements UserDetails {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Rental> rentals = new ArrayList<>();
-
-    public AppUser(String firstname,
-                   String lastname,
-                   String email,
-                   String password,
-                   String phoneNumber,
-                   LocalDate birthDate,
-                   AppUserRole role) {
-        this.userId = UUID.randomUUID();
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.birthDate = birthDate;
-        this.role = role;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -20,17 +20,10 @@ public class BookController {
     @PostMapping("/addbook")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Book> addBook(
-            @RequestBody Book book
-    ) {
-        return ResponseEntity.ok(bookService.addBook(book));
+            @RequestBody BookRequest bookRequest
+    ) throws Exception {
+        return ResponseEntity.ok(bookService.addBook(bookRequest));
     }
-
-//    @GetMapping("{book_id}")
-//    public ResponseEntity<Book> getBook(
-//            @RequestBody Book book
-//    ) {
-//        return bookService.getBookByBookId()
-//    }
 
     @GetMapping("/hello")
     public ResponseEntity<String> sayHello() {

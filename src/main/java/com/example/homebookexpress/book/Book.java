@@ -47,4 +47,12 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Rental> rentals = new ArrayList<>();
 
+    public Book(BookRequest bookRequest, Author author, BookGenre genre) {
+        this.bookId = UUID.randomUUID();
+        this.title = bookRequest.getTitle();
+        this.totalCopies = bookRequest.getTotalCopies();
+        this.availableCopies = bookRequest.getTotalCopies();
+        this.author = author;
+        this.bookGenre = genre;
+    }
 }

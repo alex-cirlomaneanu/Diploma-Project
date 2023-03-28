@@ -11,6 +11,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -20,6 +22,7 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     public AuthenticationResponse register(AppUser request) {
         AppUser newUser = AppUser.builder()
+                .userId(UUID.randomUUID())
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .birthDate(request.getBirthDate())
