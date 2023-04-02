@@ -1,7 +1,6 @@
 package com.example.homebookexpress.rental;
 
 import com.example.homebookexpress.appuser.AppUserRepository;
-import com.example.homebookexpress.appuser.AppUserRole;
 import com.example.homebookexpress.book.Book;
 import com.example.homebookexpress.book.BookRepository;
 import com.example.homebookexpress.exception.BookNotAvailableException;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -26,12 +24,14 @@ public class RentalService {
     @Autowired
     private AppUserRepository appUserRepository;
 
-    public Rental rentBook(UUID bookId, UUID userId) {
-        Book book = bookRepository.getBookByBookId(bookId)
-                .orElseThrow(() -> new BookNotFoundException(bookId.toString()));
+    public Rental rentBook(RentRequest rentRequest) {
+        String bookTitle = rentRequest.getBookTitle();
+        String userEmail = rentRequest.getUserEmail();
+        Book book = bookRepository.getBookByTitle(bookTitle)
+                .orElseThrow(() -> new BookNotFoundException(bookTitle));
 
         if (book.getAvailableCopies() <= 0) {
-            throw new BookNotAvailableException(bookId.toString());
+            throw new BookNotAvailableException(bookTitle);
         }
 
         book.setAvailableCopies(book.getAvailableCopies() - 1);
@@ -39,9 +39,9 @@ public class RentalService {
 
         Rental rental = new Rental();
         rental.setBook(book);
-        rental.setUser(appUserRepository.findAppUserByUserId(userId).orElseThrow());
+        rental.setUser(appUserRepository.getAppUserByEmail(userEmail).orElseThrow());
         rental.setRentalDate(LocalDate.now());
-        rental.setReturnDate(LocalDate.now().plusDays(303));
+        rental.setReturnDate(LocalDate.now().plusDays(30));
         rental.setReturnedStatus(false);
 
         return rentalRepository.save(rental);
