@@ -2,6 +2,7 @@ package com.example.homebookexpress.rental;
 
 import com.example.homebookexpress.appuser.AppUser;
 import com.example.homebookexpress.book.Book;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,12 +18,15 @@ import java.util.UUID;
 public class Rental {
     @Id
     @GeneratedValue
+    @Column(name = "rental_id")
     private UUID rentalId;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private AppUser user;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
     private Book book;

@@ -11,17 +11,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.UUID;
+
 @Controller
 @AllArgsConstructor
-@RequestMapping(path = "/api/v1")
+@RequestMapping(path = "/api/v1/rentals")
 public class RentalController {
     @Autowired
     private RentalService rentalService;
 
-    @PostMapping("/rent")
+    @PostMapping("/rent-book")
     @Secured(value = "USER")
     public ResponseEntity<Rental> rentBook(@RequestBody RentRequest rentRequest) {
         Rental rental = rentalService.rentBook(rentRequest);
+        return ResponseEntity.ok(rental);
+    }
+
+    @PostMapping("/return-book")
+    @Secured(value = "USER")
+    public ResponseEntity<Rental> returnBook(@RequestBody RentRequest rentRequest) {
+        Rental rental = rentalService.returnBook(rentRequest);
         return ResponseEntity.ok(rental);
     }
 

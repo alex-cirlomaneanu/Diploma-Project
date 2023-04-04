@@ -17,23 +17,22 @@ public class AppUserService implements UserDetailsService {
 
     private final AppUserRepository appUserRepository;
 
-    public List<AppUser> getUsers() {
-        return appUserRepository.findAll();
-    }
-
-    public Optional<AppUser> getUser(UUID clientID) {
-        return appUserRepository.findById(clientID);
-    }
-
-    public AppUser addUser(AppUser appUser) {
-        System.out.println(appUser);
-        return appUserRepository.save(appUser);
-    }
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return appUserRepository.getAppUserByEmail(email)
                 .orElseThrow(() ->
                         new UserNotFoundException("User not found"));
     }
+
+    public AppUser getAppUserById(UUID userId) {
+        return appUserRepository.getAppUserByUserId(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId.toString()));
+    }
+
+    public AppUser getAppUserByEmail(String userEmail) {
+        return appUserRepository.getAppUserByEmail(userEmail)
+                .orElseThrow(() -> new UserNotFoundException(userEmail));
+    }
+
+//    public void editAppUser(AppUser )
 }
