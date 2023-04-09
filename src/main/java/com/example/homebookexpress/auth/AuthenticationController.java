@@ -1,7 +1,6 @@
 package com.example.homebookexpress.auth;
 
 import com.example.homebookexpress.appuser.AppUser;
-import com.example.homebookexpress.dto.AppUserDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

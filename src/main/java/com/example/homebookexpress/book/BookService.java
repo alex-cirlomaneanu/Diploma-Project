@@ -4,6 +4,7 @@ import com.example.homebookexpress.authors.Author;
 import com.example.homebookexpress.authors.AuthorRepository;
 import com.example.homebookexpress.bookgenre.BookGenre;
 import com.example.homebookexpress.bookgenre.BookGenreRepository;
+import com.example.homebookexpress.exception.BookNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class BookService {
         return bookRepository.getBookByTitle(title).orElseThrow();
     }
 
-    public Book addBook(BookRequest bookRequest) throws Exception {
+    public Book addBook(BookRequest bookRequest) throws BookNotFoundException {
         Author author = authorRepository.getAuthorByAuthorName(bookRequest.getAuthorName())
                 .orElseThrow();
 
@@ -32,6 +33,22 @@ public class BookService {
                 .orElseThrow();
 
         Book book = new Book(bookRequest, author, bookGenre);
+
+        bookRepository.save(book);
+
+        return book;
+    }
+
+    public Book deleteBook(BookRequest bookRequest) throws BookNotFoundException {
+        Book book = bookRepository.getBookByTitle(bookRequest.getTitle()).orElseThrow();
+
+        bookRepository.delete(book);
+
+        return book;
+    }
+
+    public Book updateBook(BookRequest bookRequest) throws BookNotFoundException {
+        Book book = bookRepository.getBookByTitle(bookRequest.getTitle()).orElseThrow();
 
         bookRepository.save(book);
 
