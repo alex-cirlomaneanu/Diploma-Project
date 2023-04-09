@@ -37,5 +37,12 @@ public class AppUserService implements UserDetailsService {
         return appUserRepository.findAll();
     }
 
+    public AppUser deleteAppUser(UUID userId) {
+        AppUser appUser = appUserRepository.getAppUserByUserId(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId.toString()));
 
+        appUserRepository.delete(appUser);
+
+        return appUser;
+    }
 }
