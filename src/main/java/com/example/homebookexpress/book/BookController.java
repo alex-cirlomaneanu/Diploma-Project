@@ -8,6 +8,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @Controller
 @AllArgsConstructor
@@ -21,24 +23,38 @@ public class BookController {
     @Secured(value = "ADMIN")
     public ResponseEntity<Book> addBook(
             @RequestBody BookRequest bookRequest
-    ) throws Exception {
+    ) {
         return ResponseEntity.ok(bookService.addBook(bookRequest));
     }
 
     @DeleteMapping("/deletebook")
     @Secured(value = "ADMIN")
     public ResponseEntity<Book> deleteBook(
-            @RequestBody BookRequest bookRequest
+            @RequestParam("bookId") UUID bookId
     ) throws BookNotFoundException {
-        return ResponseEntity.ok(bookService.deleteBook(bookRequest));
+        return ResponseEntity.ok(bookService.deleteBook(bookId));
     }
 
-    @PostMapping("/getbookbytitle")
+    @GetMapping("/getallbooks")
+    @Secured(value = "ADMIN")
+    public ResponseEntity<Iterable<Book>> getAllBooks() {
+        return ResponseEntity.ok(bookService.getAllBooks());
+    }
+
+    @GetMapping("/getbookbytitle")
     @Secured(value = {"ADMIN", "USER"})
     public ResponseEntity<Book> getBookByTitle(
-            @RequestBody BookRequest bookRequest
+            @RequestParam("bookTitle") String bookTitle
     ) throws BookNotFoundException {
-        return ResponseEntity.ok(bookService.getBookByTitle(bookRequest.getTitle()));
+        return ResponseEntity.ok(bookService.getBookByTitle(bookTitle));
+    }
+
+    @GetMapping("/getbookbyid")
+    @Secured(value = {"ADMIN", "USER"})
+    public ResponseEntity<Book> getBookById(
+            @RequestParam("bookId") UUID bookId
+    ) throws BookNotFoundException {
+        return ResponseEntity.ok(bookService.getBookByBookId(bookId));
     }
 
     @PutMapping("/updatebook")

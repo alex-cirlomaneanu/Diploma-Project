@@ -9,7 +9,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -39,6 +38,8 @@ public class SecurityConfiguration {
                     .requestMatchers(HttpMethod.GET, "/api/v1/book/**").authenticated()
                     .requestMatchers(HttpMethod.POST, "/api/v1/rentals/**").hasAuthority(AppUserRole.USER.name())
                     .requestMatchers(HttpMethod.POST, "/api/v1/book/**").hasAuthority(AppUserRole.ADMIN.name())
+                    .requestMatchers(HttpMethod.PUT, "/api/v1/book/**").hasAuthority(AppUserRole.ADMIN.name())
+                    .requestMatchers(HttpMethod.DELETE, "/api/v1/book/**").hasAuthority(AppUserRole.ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -50,9 +51,4 @@ public class SecurityConfiguration {
 
         return httpSecurity.build();
     }
-
-
-    public void configure(WebSecurity webSecurity) {
-        webSecurity.ignoring().requestMatchers(AUTH_WHITELIST);
-    };
 }

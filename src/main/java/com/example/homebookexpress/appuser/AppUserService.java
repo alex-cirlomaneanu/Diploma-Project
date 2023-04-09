@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -34,5 +33,32 @@ public class AppUserService implements UserDetailsService {
                 .orElseThrow(() -> new UserNotFoundException(userEmail));
     }
 
-//    public void editAppUser(AppUser )
+    public List<AppUser> getAppUsers() {
+        return appUserRepository.findAll();
+    }
+
+    public AppUser deleteAppUser(UUID userId) {
+        AppUser appUser = appUserRepository.getAppUserByUserId(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId.toString()));
+
+        appUserRepository.delete(appUser);
+
+        return appUser;
+    }
+
+    public AppUser updateAppUser(AppUser appUser) {
+        AppUser appUserToUpdate = appUserRepository.getAppUserByUserId(appUser.getUserId())
+                .orElseThrow(() -> new UserNotFoundException(appUser.getUserId().toString()));
+
+        appUserToUpdate.setFirstname(appUser.getFirstname());
+        appUserToUpdate.setLastname(appUser.getLastname());
+        appUserToUpdate.setEmail(appUser.getEmail());
+        appUserToUpdate.setPassword(appUser.getPassword());
+
+        appUserRepository.save(appUserToUpdate);
+
+        return appUserToUpdate;
+    }
+
+
 }
