@@ -8,6 +8,7 @@ import com.example.homebookexpress.exception.BookNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -25,6 +26,10 @@ public class BookService {
         return bookRepository.getBookByTitle(title).orElseThrow();
     }
 
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
     public Book addBook(BookRequest bookRequest) throws BookNotFoundException {
         Author author = authorRepository.getAuthorByAuthorName(bookRequest.getAuthorName())
                 .orElseThrow();
@@ -39,8 +44,8 @@ public class BookService {
         return book;
     }
 
-    public Book deleteBook(BookRequest bookRequest) throws BookNotFoundException {
-        Book book = bookRepository.getBookByTitle(bookRequest.getTitle()).orElseThrow();
+    public Book deleteBook(UUID bookId) throws BookNotFoundException {
+        Book book = bookRepository.getBookByBookId(bookId).orElseThrow();
 
         bookRepository.delete(book);
 
