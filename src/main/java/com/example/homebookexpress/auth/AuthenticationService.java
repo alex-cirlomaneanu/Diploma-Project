@@ -19,7 +19,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-    public AuthenticationResponse register(AppUser request) {
+    public AuthenticationResponse register(RegisterRequest request) {
         AppUser newUser = AppUser.builder()
                 .userId(UUID.randomUUID())
                 .firstname(request.getFirstname())
@@ -51,9 +51,5 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
-    }
-
-    public void logout(String token) {
-//        jwtService.i
     }
 }

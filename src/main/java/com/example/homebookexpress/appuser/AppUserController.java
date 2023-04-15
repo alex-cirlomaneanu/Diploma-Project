@@ -1,5 +1,6 @@
 package com.example.homebookexpress.appuser;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
@@ -11,6 +12,8 @@ import java.util.UUID;
 
 @RestController
 @Controller
+@SecurityRequirement(name = "Bearer Authentication")
+@RequestMapping(path = "/api/v1/appuser")
 public class AppUserController {
     private final AppUserService appUserService;
 
@@ -19,25 +22,24 @@ public class AppUserController {
         this.appUserService = appUserService;
     }
 
-    @GetMapping("/api/v1/appuser/getallusers")
+    @GetMapping("/getallusers")
     @Secured(value = "ADMIN")
     public List<AppUser> getAppUsers() {
         return appUserService.getAppUsers();
     }
 
-    @GetMapping("/api/v1/appuser/getuserbyid")
+    @GetMapping("/getuserbyid")
     public AppUser getAppUserById(@RequestParam("userId") UUID userId) {
         return appUserService.getAppUserById(userId);
     }
 
-    @GetMapping("/api/v1/appuser/getuserbyemail")
+    @GetMapping("/getuserbyemail")
     public AppUser getAppUserByEmail(@RequestParam("userEmail") String userEmail) {
         return appUserService.getAppUserByEmail(userEmail);
     }
 
-    @DeleteMapping("/api/v1/appuser/deleteuser")
+    @DeleteMapping("/deleteuser")
     public AppUser deleteAppUser(@RequestParam("userId") UUID userId) {
         return appUserService.deleteAppUser(userId);
     }
-
 }

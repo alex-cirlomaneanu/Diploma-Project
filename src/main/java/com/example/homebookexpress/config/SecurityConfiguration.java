@@ -40,6 +40,7 @@ public class SecurityConfiguration {
                     .requestMatchers(HttpMethod.POST, "/api/v1/book/**").hasAuthority(AppUserRole.ADMIN.name())
                     .requestMatchers(HttpMethod.PUT, "/api/v1/book/**").hasAuthority(AppUserRole.ADMIN.name())
                     .requestMatchers(HttpMethod.DELETE, "/api/v1/book/**").hasAuthority(AppUserRole.ADMIN.name())
+                    .requestMatchers(HttpMethod.GET,"/api/v1/appuser/getallusers").hasAuthority(AppUserRole.ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()

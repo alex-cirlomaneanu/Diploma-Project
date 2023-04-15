@@ -40,19 +40,19 @@ public class Book {
     private Author author;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "book_genre_id", referencedColumnName = "genre_id")
-    private BookGenre bookGenre;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_id", referencedColumnName = "genre_id")
+    private List<BookGenre> bookGenres;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Rental> rentals = new ArrayList<>();
 
-    public Book(BookRequest bookRequest, Author author, BookGenre genre) {
+    public Book(BookRequest bookRequest, Author author, List<BookGenre> genre) {
         this.bookId = UUID.randomUUID();
         this.title = bookRequest.getTitle();
         this.totalCopies = bookRequest.getTotalCopies();
         this.availableCopies = bookRequest.getTotalCopies();
         this.author = author;
-        this.bookGenre = genre;
+        this.bookGenres = genre;
     }
 }

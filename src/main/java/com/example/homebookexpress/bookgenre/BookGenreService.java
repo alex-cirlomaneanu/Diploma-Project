@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -15,7 +16,8 @@ public class BookGenreService {
                 .orElseThrow();
     }
 
-    public void addBookGenre(BookGenre bookGenre) {
+    public void addBookGenre(String bookGenreName) {
+        BookGenre bookGenre = new BookGenre(UUID.randomUUID(), bookGenreName);
         bookGenreRepository.save(bookGenre);
     }
 }

@@ -1,8 +1,11 @@
 package com.example.homebookexpress.bookgenre;
 
+import com.example.homebookexpress.book.Book;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "book_genre")

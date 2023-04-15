@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,5 +15,5 @@ public class BookRequest {
     private String title;
     private int totalCopies;
     private String authorName;
-    private String genreName;
+    private List<String> genreName;
 }
