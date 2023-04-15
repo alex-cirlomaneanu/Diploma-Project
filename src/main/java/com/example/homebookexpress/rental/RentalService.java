@@ -7,6 +7,7 @@ import com.example.homebookexpress.book.BookRepository;
 import com.example.homebookexpress.exception.BookAlreadyRented;
 import com.example.homebookexpress.exception.BookNotAvailableException;
 import com.example.homebookexpress.exception.BookNotFoundException;
+import com.example.homebookexpress.exception.RentalNotFound;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class RentalService {
         Book book = bookRepository.getBookByTitle(bookTitle)
                 .orElseThrow(() -> new BookNotFoundException(bookTitle));
         AppUser appUser = appUserRepository.getAppUserByEmail(userEmail)
-                .orElseThrow();
+                .orElseThrow(() -> new BookNotFoundException(userEmail));
         Optional<Rental> existingRental = rentalRepository
                 .getRentalByUserAndBookAndReturnedStatus(appUser, book ,false);
 
@@ -65,9 +66,9 @@ public class RentalService {
         Book book = bookRepository.getBookByTitle(bookTitle)
                 .orElseThrow(() -> new BookNotFoundException(bookTitle));
         AppUser appUser = appUserRepository.getAppUserByEmail(userEmail)
-                .orElseThrow();
+                .orElseThrow(() -> new BookNotFoundException(userEmail));
         Rental rental = rentalRepository.getRentalByUserAndBookAndReturnedStatus(appUser, book, false)
-                .orElseThrow();
+                .orElseThrow(() -> new RentalNotFound(userEmail, bookTitle));
 
         book.setAvailableCopies(book.getAvailableCopies() + 1);
         rental.setReturnedStatus(true);

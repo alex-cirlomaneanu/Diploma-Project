@@ -1,5 +1,6 @@
 package com.example.homebookexpress.appuser;
 
+import com.example.homebookexpress.book.Book;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,5 +42,10 @@ public class AppUserController {
     @DeleteMapping("/deleteuser")
     public AppUser deleteAppUser(@RequestParam("userId") UUID userId) {
         return appUserService.deleteAppUser(userId);
+    }
+
+    @GetMapping("/getbookhistory")
+    public List<String > getBookHistory(@RequestParam("userId") UUID userId) {
+        return appUserService.getBookHistory(userId);
     }
 }

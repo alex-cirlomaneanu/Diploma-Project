@@ -1,5 +1,6 @@
 package com.example.homebookexpress.authors;
 
+import com.example.homebookexpress.exception.AuthorNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class AuthorService {
 
     public Author getAuthorByName(String name) {
         return authorRepository.getAuthorByAuthorName(name)
-                .orElseThrow();
+                .orElseThrow(() -> new AuthorNotFoundException(name));
     }
 
 

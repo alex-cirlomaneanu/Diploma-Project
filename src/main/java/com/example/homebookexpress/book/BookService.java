@@ -22,7 +22,7 @@ public class BookService {
 
     public Book getBookByBookId(UUID id) {
         return bookRepository.getBookByBookId(id)
-                .orElseThrow(() -> new BookNotFoundException(id.toString()));
+                .orElseThrow(() -> new BookNotFoundException(id));
     }
 
     public Book getBookByTitle(String title) {
@@ -54,7 +54,7 @@ public class BookService {
 
     public Book deleteBook(UUID bookId) throws BookNotFoundException {
         Book book = bookRepository.getBookByBookId(bookId)
-                .orElseThrow(() -> new BookNotFoundException(bookId.toString()));
+                .orElseThrow(() -> new BookNotFoundException(bookId));
 
         bookRepository.delete(book);
 

@@ -4,6 +4,7 @@ import com.example.homebookexpress.appuser.AppUser;
 import com.example.homebookexpress.appuser.AppUserRepository;
 import com.example.homebookexpress.appuser.AppUserRole;
 import com.example.homebookexpress.config.JwtService;
+import com.example.homebookexpress.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -45,7 +46,7 @@ public class AuthenticationService {
         );
 
         AppUser user = appUserRepository.getAppUserByEmail(request.getEmail())
-                .orElseThrow();
+                .orElseThrow(() -> new UserNotFoundException(request.getEmail()));
         String jwtToken = jwtService.generateToken(user);
 
         return AuthenticationResponse.builder()
