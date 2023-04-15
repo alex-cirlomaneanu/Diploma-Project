@@ -5,7 +5,9 @@ import com.example.homebookexpress.authors.AuthorRepository;
 import com.example.homebookexpress.bookgenre.BookGenre;
 import com.example.homebookexpress.bookgenre.BookGenreRepository;
 import com.example.homebookexpress.exception.BookNotFoundException;
+import com.example.homebookexpress.rental.Rental;
 import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
@@ -55,6 +57,16 @@ public class BookService {
     public Book deleteBook(UUID bookId) throws BookNotFoundException {
         Book book = bookRepository.getBookByBookId(bookId)
                 .orElseThrow(() -> new BookNotFoundException(bookId));
+
+        List<Rental> rentals = book.getRentals();
+        for (Rental rental : rentals) {
+            rental.setBook(null);
+        }
+
+        List<BookGenre> bookGenres = book.getBookGenres();
+        for (BookGenre bookGenre : bookGenres) {
+            bookGenre.getBooks().remove(book);
+        }
 
         bookRepository.delete(book);
 

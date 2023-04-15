@@ -40,11 +40,11 @@ public class Book {
     private Author author;
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "book_id", referencedColumnName = "genre_id")
     private List<BookGenre> bookGenres;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "book", cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
     private List<Rental> rentals = new ArrayList<>();
 
     public Book(BookRequest bookRequest, Author author, List<BookGenre> genre) {

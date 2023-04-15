@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @Controller
 @AllArgsConstructor
@@ -21,5 +23,10 @@ public class BookGenreController {
     @Secured(value = "ADMIN")
     public void addBookGenre(String bookGenreName) {
         bookGenreService.addBookGenre(bookGenreName);
+    }
+
+    @PostMapping("/getallbooksbygenrename")
+    public List<String> getAllBooksByGenreName(String genreName) {
+        return bookGenreService.getAllBooksByGenreName(genreName);
     }
 }

@@ -2,6 +2,7 @@ package com.example.homebookexpress.book;
 
 import com.example.homebookexpress.exception.BookNotFoundException;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -29,6 +30,7 @@ public class BookController {
 
     @DeleteMapping("/deletebook")
     @Secured(value = "ADMIN")
+    @Transactional
     public ResponseEntity<Book> deleteBook(
             @RequestParam("bookId") UUID bookId
     ) throws BookNotFoundException {

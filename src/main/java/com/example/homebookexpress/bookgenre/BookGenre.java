@@ -1,8 +1,10 @@
 package com.example.homebookexpress.bookgenre;
 
 import com.example.homebookexpress.book.Book;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,4 +28,8 @@ public class BookGenre {
             columnDefinition = "varchar(20)"
     )
     private String genreName;
+
+    @ManyToMany(mappedBy = "bookGenres")
+    @JsonIgnore
+    private List<Book> books;
 }
