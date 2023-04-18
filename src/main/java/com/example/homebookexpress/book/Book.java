@@ -35,7 +35,7 @@ public class Book {
     @Column(name = "available_copies")
     private int availableCopies;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "author_id", referencedColumnName = "author_id")
     private Author author;
 
@@ -46,13 +46,4 @@ public class Book {
 
     @OneToMany(mappedBy = "book", cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
     private List<Rental> rentals = new ArrayList<>();
-
-    public Book(BookRequest bookRequest, Author author, List<BookGenre> genre) {
-        this.bookId = UUID.randomUUID();
-        this.title = bookRequest.getTitle();
-        this.totalCopies = bookRequest.getTotalCopies();
-        this.availableCopies = bookRequest.getTotalCopies();
-        this.author = author;
-        this.bookGenres = genre;
-    }
 }

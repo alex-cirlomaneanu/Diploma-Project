@@ -23,4 +23,6 @@ public interface BookGenreRepository extends JpaRepository<BookGenre, UUID> {
     )
     List<String> getAllBooksByGenreName(String genreName);
     List<BookGenre> getBookGenreByGenreNameIn(List<String> bookGenreName);
+
+    Optional<BookGenre> findBookGenreByGenreName(String bookGenreName);
 }

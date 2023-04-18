@@ -23,8 +23,29 @@ public class SecurityConfiguration {
     private static final String[] AUTH_WHITELIST = {
             // -- Swagger UI v3 (OpenAPI)
             "/v3/api-docs/**",
-            "/swagger-ui/**"
+            "/swagger-ui/**",
             // other public endpoints of your API may be appended to this array
+            "/api/v1/auth/register",
+            "/api/v1/auth/authenticate",
+    };
+
+    private static final String[] ADMIN_POST = {
+            "/api/v1/book/addbook",
+            "/api/v1/authors/addauthor",
+            "/api/v1/bookgenre/addbookgenre"
+    };
+
+    private static final String[] ADMIN_DELETE = {
+            "/api/v1/book/deletebook",
+            "/api/v1/authors/deleteauthor",
+            "/api/v1/bookgenre/deletebookgenre",
+            "/api/v1/appuser/deleteuser"
+    };
+
+    private static final String[] ADMIN_PUT = {
+            "/api/v1/book/updatebook",
+            "/api/v1/authors/updateauthor",
+            "/api/v1/bookgenre/updatebookgenre"
     };
     private final AuthenticationProvider authenticationProvider;
     private final Filter jwtAuthFilter;
@@ -35,15 +56,15 @@ public class SecurityConfiguration {
         httpSecurity.csrf()
                 .disable()
                 .authorizeHttpRequests()
-                    .requestMatchers("/api/v1/auth/**").permitAll()
                     .requestMatchers(AUTH_WHITELIST).permitAll()
+                    .requestMatchers("/api/v1/auth/logout").authenticated()
                     .requestMatchers(HttpMethod.GET, "/api/v1/book/**").authenticated()
                     .requestMatchers(HttpMethod.POST, "/api/v1/rentals/**").hasAuthority(AppUserRole.USER.name())
-                    .requestMatchers(HttpMethod.POST, "/api/v1/book/**").hasAuthority(AppUserRole.ADMIN.name())
-                    .requestMatchers(HttpMethod.PUT, "/api/v1/book/**").hasAuthority(AppUserRole.ADMIN.name())
-                    .requestMatchers(HttpMethod.DELETE, "/api/v1/book/**").hasAuthority(AppUserRole.ADMIN.name())
+                    .requestMatchers(HttpMethod.POST, ADMIN_POST).hasAuthority(AppUserRole.ADMIN.name())
+                    .requestMatchers(HttpMethod.PUT, ADMIN_PUT).hasAuthority(AppUserRole.ADMIN.name())
+                    .requestMatchers(HttpMethod.DELETE, ADMIN_DELETE).hasAuthority(AppUserRole.ADMIN.name())
                     .requestMatchers(HttpMethod.GET,"/api/v1/appuser/getallusers").hasAuthority(AppUserRole.ADMIN.name())
-                .anyRequest()
+               .anyRequest()
                 .authenticated()
                 .and()
                 .sessionManagement()
@@ -52,7 +73,7 @@ public class SecurityConfiguration {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout()
-                .logoutUrl("api/v1/auth/logout")
+                .logoutUrl("/api/v1/auth/logout")
                 .addLogoutHandler(logoutService)
                 .logoutSuccessHandler(((request, response, authentication) ->
                         SecurityContextHolder.clearContext()));

@@ -4,7 +4,6 @@ import com.example.homebookexpress.book.Book;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,5 +30,5 @@ public class BookGenre {
 
     @ManyToMany(mappedBy = "bookGenres")
     @JsonIgnore
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
 }

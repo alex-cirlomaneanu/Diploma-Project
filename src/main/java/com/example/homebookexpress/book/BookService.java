@@ -4,13 +4,12 @@ import com.example.homebookexpress.authors.Author;
 import com.example.homebookexpress.authors.AuthorRepository;
 import com.example.homebookexpress.bookgenre.BookGenre;
 import com.example.homebookexpress.bookgenre.BookGenreRepository;
+import com.example.homebookexpress.exception.AuthorNotFoundException;
 import com.example.homebookexpress.exception.BookNotFoundException;
 import com.example.homebookexpress.rental.Rental;
 import lombok.AllArgsConstructor;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -39,15 +38,21 @@ public class BookService {
     public Book addBook(BookRequest bookRequest) throws BookNotFoundException {
         Optional<Author> author;
         author = authorRepository.getAuthorByAuthorName(bookRequest.getAuthorName());
-
         if (author.isEmpty()) {
-            throw new BookNotFoundException(bookRequest.getAuthorName());
+            throw new AuthorNotFoundException(bookRequest.getAuthorName());
         }
+
 
         List<String> bookGenreName = bookRequest.getGenreName();
         List<BookGenre> bookGenre = genreRepository.getBookGenreByGenreNameIn(bookGenreName);
 
-        Book book = new Book(bookRequest, author.get(), bookGenre);
+        Book book = Book.builder()
+                .title(bookRequest.getTitle())
+                .totalCopies(bookRequest.getTotalCopies())
+                .availableCopies(bookRequest.getTotalCopies())
+                .author(author.get())
+                .bookGenres(bookGenre)
+                .build();
 
         bookRepository.save(book);
 
