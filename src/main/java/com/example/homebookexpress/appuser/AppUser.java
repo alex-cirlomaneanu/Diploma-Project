@@ -1,6 +1,7 @@
 package com.example.homebookexpress.appuser;
 
 import com.example.homebookexpress.rental.Rental;
+import com.example.homebookexpress.token.Token;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -66,8 +67,10 @@ public class AppUser implements UserDetails {
     @Enumerated(EnumType.STRING)
     private AppUserRole role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     private List<Rental> rentals = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
