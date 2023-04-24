@@ -29,7 +29,7 @@ public class AppUserController {
         return appUserService.getAppUsers();
     }
 
-    @GetMapping("/getuserbyid")
+    @GetMapping("/userdetalis/{userId}")
     public AppUser getAppUserById(@RequestParam("userId") UUID userId) {
         return appUserService.getAppUserById(userId);
     }
