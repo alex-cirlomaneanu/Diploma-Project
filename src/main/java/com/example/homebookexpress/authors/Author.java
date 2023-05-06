@@ -20,6 +20,7 @@ public class Author {
     @Column(
             name = "author_name",
             nullable = false,
+            unique = true,
             columnDefinition = "TEXT"
     )
     private String authorName;

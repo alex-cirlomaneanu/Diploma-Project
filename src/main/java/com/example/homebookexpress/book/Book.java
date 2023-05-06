@@ -25,14 +25,15 @@ public class Book {
     @Column(
             name = "title",
             nullable = false,
+            unique = true,
             columnDefinition = "TEXT"
     )
     private String title;
 
-    @Column(name = "total_copies")
+    @Column(name = "total_copies", nullable = false)
     private int totalCopies;
 
-    @Column(name = "available_copies")
+    @Column(name = "available_copies", nullable = false)
     private int availableCopies;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})

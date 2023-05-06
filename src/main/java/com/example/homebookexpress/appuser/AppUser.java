@@ -39,6 +39,7 @@ public class AppUser implements UserDetails {
     @Column(
             name = "email",
             nullable = false,
+            unique = true,
             columnDefinition = "VARCHAR(255)"
     )
     private String email;
