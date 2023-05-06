@@ -6,7 +6,7 @@ import {Route, Routes, Link} from 'react-router-dom';
 function App() {
     return (
         <div>
-            <h1>Welcome to HomeBookExpress</h1>
+            <h1>Bun venit pe HomeBookExpress</h1>
             <div>
                 <Link to="/login">
                     <button>Login</button>
