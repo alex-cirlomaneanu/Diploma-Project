@@ -1,26 +1,38 @@
 import './App.css';
-import Login from "./componenets/auth/Login";
-import Register from "./componenets/auth/Register";
-import {Route, Routes, Link} from 'react-router-dom';
+import Login from "./componenets/login/Login";
+import Register from "./componenets/register/Register";
+import NavBar from "./componenets/Navbar/NavBar"
+import Header from "./componenets/Header"
+import Footer from "./componenets/footer/Footer"
+import {Route, Routes, Link, useNavigate} from 'react-router-dom';
+import HomePage from "./componenets/homepage/HomePage";
+import Layout from "./componenets/layout/Layout";
 
 function App() {
+    const navigate = useNavigate();
+
+    const handleLogin = () => {
+        navigate('/login');
+    }
+
+    const handleRegister = () => {
+        navigate('/register');
+    }
+
     return (
-        <div>
-            <h1>Bun venit pe HomeBookExpress</h1>
-            <div>
-                <Link to="/login">
-                    <button>Login</button>
-                </Link>
-                <Link to="/register">
-                    <button>Register</button>
-                </Link>
-            </div>
+        <>
+            <NavBar/>
 
             <Routes>
+                {/*<Layout>*/}
+                {/*<Route path={'/'} element={<Layout/>}/>*/}
+                <Route index element={<HomePage/>}/>
                 <Route path={'/login'} element={<Login/>}/>
                 <Route path={'/register'} element={<Register/>}/>
+                {/*</Layout>*/}
             </Routes>
-        </div>
+            <Footer/>
+        </>
     );
 }
 
