@@ -1,11 +1,12 @@
 import React from "react";
 import "./HomePage.css";
+import WebsiteLayout from "../layout/websitelayout/WebsiteLayout";
 
 const HomePage = () => {
     return (
-        <div className="home-page">
+        <WebsiteLayout className="home-page">
             <h1>Home Page</h1>
-            <main>
+            <>
                 <section>
                     <h2>About</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla commodo mi vel dui posuere, ut suscipit mauris lacinia.</p>
@@ -23,8 +24,8 @@ const HomePage = () => {
                     <p>Email: info@example.com</p>
                     <p>Phone: 123-456-7890</p>
                 </section>
-            </main>
-        </div>
+            </>
+        </WebsiteLayout>
     );
 };
 

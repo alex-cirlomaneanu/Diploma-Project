@@ -31,7 +31,9 @@ form input[type="password"] {
 }
 
 .login-button {
-    width: 50%;
+    min-width: 100px;
+    width: 10%;
+    max-width: 190px;
     padding: 10px;
     background-color: #007bff;
     color: #fff;

@@ -45,9 +45,16 @@
 }
 
 .links li {
+    color: white;
+    text-decoration: none;
     margin-bottom: 10px;
 }
 
+.links li:focus,
+.links li:hover {
+    color: #ff7f50;
+    outline: none;
+}
 .contact-form .text-input {
     width: 100%;
     margin-bottom: 10px;

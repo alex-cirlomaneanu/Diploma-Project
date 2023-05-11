@@ -1,12 +1,11 @@
 import './App.css';
 import Login from "./componenets/login/Login";
 import Register from "./componenets/register/Register";
-import NavBar from "./componenets/Navbar/NavBar"
+import NavBar from "./componenets/layout/navbar/NavBar"
 import Header from "./componenets/Header"
-import Footer from "./componenets/footer/Footer"
+import Footer from "./componenets/layout/footer/Footer"
 import {Route, Routes, Link, useNavigate} from 'react-router-dom';
 import HomePage from "./componenets/homepage/HomePage";
-import Layout from "./componenets/layout/Layout";
 
 function App() {
     const navigate = useNavigate();
@@ -21,7 +20,7 @@ function App() {
 
     return (
         <>
-            <NavBar/>
+            {/*<NavBar/>*/}
 
             <Routes>
                 {/*<Layout>*/}
@@ -31,7 +30,7 @@ function App() {
                 <Route path={'/register'} element={<Register/>}/>
                 {/*</Layout>*/}
             </Routes>
-            <Footer/>
+            {/*<Footer/>*/}
         </>
     );
 }

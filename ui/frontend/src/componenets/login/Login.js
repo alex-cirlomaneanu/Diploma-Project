@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import "./Login.css";
 import axios from 'axios';
+import WebsiteLayout from "../layout/websitelayout/WebsiteLayout";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -23,8 +24,8 @@ function Login() {
     };
 
     return (
-        <div className="login-container">
-            <h2>Login</h2>
+        <WebsiteLayout className="login-container">
+            <h2>Autentificare</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="email" as={Row}>
                     <Form.Label column sm="2">Email</Form.Label>
@@ -36,18 +37,17 @@ function Login() {
                 </Form.Group>
 
                 <Form.Group controlId="password" as={Row}>
-                    <Form.Label column sm="2">Password</Form.Label>
+                    <Form.Label column sm="2">Parola</Form.Label>
                     <br/>
                     <Col sm={"10"}>
                     <Form.Control type="password" value={password} onChange={(event) => setPassword(event.target.value)}
-                    placeholder="Password"/></Col>
+                    placeholder="Parola"/></Col>
                 </Form.Group>
-
                 <Button className="login-button" variant="primary" type="submit">
-                    Login
+                    Conecteaza-te
                 </Button>
             </Form>
-        </div>
+        </WebsiteLayout>
     );
 };
 

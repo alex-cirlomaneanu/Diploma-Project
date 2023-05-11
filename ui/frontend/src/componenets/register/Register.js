@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Col,  } from 'react-bootstrap';
 import "./Register.css";
+import WebsiteLayout from "../layout/websitelayout/WebsiteLayout";
 function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -32,42 +33,48 @@ function Register() {
     };
 
     return (
-        <div className="register-container">
+        <WebsiteLayout className="register-container">
             <h2>Înregistrare</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="email">
                     <Form.Label>Email</Form.Label>
                     <br/>
-                    <Form.Control type={'text'} id={'email'} value={email} onChange={(event) => setEmail(event.target.value)} />
+                    <Form.Control type={'text'} id={'email'} value={email} onChange={(event) => setEmail(event.target.value)}
+                    placeholder={"@email"}/>
                 </Form.Group>
                 <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Parola</Form.Label>
                     <br/>
-                    <Form.Control type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+                    <Form.Control type="password" value={password} onChange={(event) => setPassword(event.target.value)}
+                    placeholder={"********"}/>
                 </Form.Group>
                 <Form.Group controlId="firstname">
-                    <Form.Label>Firstname</Form.Label>
+                    <Form.Label>Prenume</Form.Label>
                     <br/>
-                    <Form.Control type="text" value={firstname} onChange={(event) => setFirstname(event.target.value)} />
+                    <Form.Control type="text" value={firstname} onChange={(event) => setFirstname(event.target.value)}
+                    placeholder={"Ion"}/>
                 </Form.Group>
                 <Form.Group controlId="lastname">
-                    <Form.Label>Lastname</Form.Label>
+                    <Form.Label>Nume de familie</Form.Label>
                     <br/>
-                    <Form.Control type="text" value={lastname} onChange={(event) => setLastname(event.target.value)} />
+                    <Form.Control type="text" value={lastname} onChange={(event) => setLastname(event.target.value)}
+                    placeholder={"Popescu"}/>
                 </Form.Group>
                 <Form.Group controlId="phoneNumber">
-                    <Form.Label>Phone Number</Form.Label>
+                    <Form.Label>Număr de telefon</Form.Label>
                     <br/>
-                    <Form.Control type="text" value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
+                    <Form.Control type="text" value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)}
+                    placeholder={"07123123123"}/>
                 </Form.Group>
                 <Form.Group controlId="birthDate">
-                    <Form.Label>Birth Date</Form.Label>
+                    <Form.Label>Data nașterii</Form.Label>
                     <br/>
-                    <Form.Control type="date" value={birthDate} onChange={(event) => setBirthDate(event.target.value)} />
+                    <Form.Control type="date" value={birthDate} onChange={(event) => setBirthDate(event.target.value)}
+                    placeholder={"01-01-1970"}/>
                 </Form.Group>
                 <Button className="register-button" variant="primary" type="submit">Înregistreză-te</Button>
             </Form>
-        </div>
+        </WebsiteLayout>
     );
 
 }
