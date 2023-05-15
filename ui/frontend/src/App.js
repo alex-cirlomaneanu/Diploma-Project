@@ -1,37 +1,27 @@
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import WebsiteLayout from './components/layout/websitelayout/WebsiteLayout';
+import HomePage from './components/homepage/HomePage';
+import Login from './components/auth/login/Login';
+import Register from './components/auth/register/Register';
+import Logout from './components/auth/logout/Logout';
+import { AuthProvider } from './utils/auth';
+
 import './App.css';
-import Login from "./componenets/login/Login";
-import Register from "./componenets/register/Register";
-import NavBar from "./componenets/layout/navbar/NavBar"
-import Header from "./componenets/Header"
-import Footer from "./componenets/layout/footer/Footer"
-import {Route, Routes, Link, useNavigate} from 'react-router-dom';
-import HomePage from "./componenets/homepage/HomePage";
+import AppUser from "./components/appuser/AppUser";
 
 function App() {
-    const navigate = useNavigate();
-
-    const handleLogin = () => {
-        navigate('/login');
-    }
-
-    const handleRegister = () => {
-        navigate('/register');
-    }
-
     return (
-        <>
-            {/*<NavBar/>*/}
-
+        <AuthProvider>
             <Routes>
-                {/*<Layout>*/}
-                {/*<Route path={'/'} element={<Layout/>}/>*/}
-                <Route index element={<HomePage/>}/>
-                <Route path={'/login'} element={<Login/>}/>
-                <Route path={'/register'} element={<Register/>}/>
-                {/*</Layout>*/}
+                <Route path="/" element={<WebsiteLayout><HomePage /></WebsiteLayout>} />
+                <Route path="/login" element={<WebsiteLayout><Login /></WebsiteLayout>} />
+                <Route path="/register" element={<WebsiteLayout><Register /></WebsiteLayout>} />
+                <Route path="/profile" element={<WebsiteLayout><AppUser /></WebsiteLayout>} />
+                <Route path="/logout" element={<WebsiteLayout><Logout/></WebsiteLayout>} />
+                <Route path={'*'} element={<WebsiteLayout><h1>Page not found</h1></WebsiteLayout>} />
             </Routes>
-            {/*<Footer/>*/}
-        </>
+        </AuthProvider>
     );
 }
 

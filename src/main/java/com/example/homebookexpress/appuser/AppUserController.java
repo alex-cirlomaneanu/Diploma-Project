@@ -15,6 +15,7 @@ import java.util.UUID;
 @Controller
 @SecurityRequirement(name = "Bearer Authentication")
 @RequestMapping(path = "/api/v1/appuser")
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
 public class AppUserController {
     private final AppUserService appUserService;
 

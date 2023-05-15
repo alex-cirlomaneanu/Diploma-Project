@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import {useNavigate} from "react-router";
+
 import axios from 'axios';
 import { Form, Button, Col,  } from 'react-bootstrap';
 import "./Register.css";
-import WebsiteLayout from "../layout/websitelayout/WebsiteLayout";
+import WebsiteLayout from "../../layout/websitelayout/WebsiteLayout";
+
+
 function Register() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstname, setFirstname] = useState('');
@@ -27,13 +32,14 @@ function Register() {
             const response = await axios.post('http://localhost:8080/api/v1/auth/register', user);
             console.log(response.data);
             localStorage.setItem('token', response.data.token);
+            navigate('/login');
         } catch (error) {
             console.error(error);
         }
     };
 
     return (
-        <WebsiteLayout className="register-container">
+        <div className="register-container">
             <h2>Înregistrare</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="email">
@@ -74,7 +80,7 @@ function Register() {
                 </Form.Group>
                 <Button className="register-button" variant="primary" type="submit">Înregistreză-te</Button>
             </Form>
-        </WebsiteLayout>
+        </div>
     );
 
 }

@@ -4,7 +4,7 @@ import WebsiteLayout from "../layout/websitelayout/WebsiteLayout";
 
 const HomePage = () => {
     return (
-        <WebsiteLayout className="home-page">
+        <div className="home-page">
             <h1>Home Page</h1>
             <>
                 <section>
@@ -25,7 +25,7 @@ const HomePage = () => {
                     <p>Phone: 123-456-7890</p>
                 </section>
             </>
-        </WebsiteLayout>
+        </div>
     );
 };
 
