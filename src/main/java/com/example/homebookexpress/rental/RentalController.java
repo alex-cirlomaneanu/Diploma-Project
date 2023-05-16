@@ -8,10 +8,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -20,6 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @RequestMapping(path = "/api/v1/rentals")
 @SecurityRequirement(name = "Bearer Authentication")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RentalController {
     @Autowired
     private RentalService rentalService;

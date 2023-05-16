@@ -1,9 +1,7 @@
 package com.example.homebookexpress.appuser;
 
-import com.example.homebookexpress.book.Book;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +13,7 @@ import java.util.UUID;
 @Controller
 @SecurityRequirement(name = "Bearer Authentication")
 @RequestMapping(path = "/api/v1/appuser")
-@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AppUserController {
     private final AppUserService appUserService;
 
@@ -30,13 +28,14 @@ public class AppUserController {
         return appUserService.getAppUsers();
     }
 
-    @GetMapping("/userdetalis/{userId}")
-    public AppUser getAppUserById(@RequestParam("userId") UUID userId) {
-        return appUserService.getAppUserById(userId);
-    }
+//    @GetMapping("/userdetalis/{userId}")
+//    public AppUser getAppUserById(@PathVariable @RequestParam("userId") UUID userId) {
+//        return appUserService.getAppUserById(userId);
+//    }
 
-    @GetMapping("/getuserbyemail")
-    public AppUser getAppUserByEmail(@RequestParam("userEmail") String userEmail) {
+    @GetMapping("/userdetalis/{userEmail}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public AppUser getAppUserByEmail(@PathVariable @RequestParam("userEmail") String userEmail) {
         return appUserService.getAppUserByEmail(userEmail);
     }
 

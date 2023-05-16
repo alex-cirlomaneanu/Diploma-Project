@@ -1,30 +1,31 @@
-import React, { useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
+import {AuthContext} from "../../utils/auth";
 
 function AppUser () {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [firstname, setFirstname] = useState('');
-    const [lastname, setLastname] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    // const [address, setAddress] = useState('');
-    const [birthDate, setBirthDate] = useState('');
-    const user = {
-        email,
-        password,
-        firstname,
-        lastname,
-        phoneNumber,
-        // address,
-        birthDate
-    };
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const response = await axios.post('http://localhost:8080/api/v1/app-user/getuserbyemail/', email);
-        const user = response.data;
-        console.log(response.data);
+    const [user, setUser] = useState({});
+    let userEmail = localStorage.getItem('userEmail');
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const url = 'http://localhost:8080/api/v1/appuser/userdetalis/{userEmail}?userEmail=' + userEmail;
+                const response = await axios.get(url,
+                    {
+                        headers: {
+                            "Authorization": "Bearer " + localStorage.getItem('token')
+                        }
+                    }
+                );
+                setUser(response.data);
+                console.log(user);
+            } catch (error) {
+                console.error(error);
+            }
         }
+
+        fetchData().then(r => console.log(r));
+    }, []);
+
 
     return (
         <div>

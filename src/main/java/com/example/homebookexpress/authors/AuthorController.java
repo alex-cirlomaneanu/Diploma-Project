@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping(path = "/api/v1/author")
 @SecurityRequirement(name = "Bearer Authentication")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AuthorController {
     private final AuthorService authorService;
     @GetMapping("/getallauthors")

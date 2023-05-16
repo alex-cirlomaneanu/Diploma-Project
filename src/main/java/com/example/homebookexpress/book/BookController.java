@@ -16,6 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @RequestMapping(path = "/api/v1/book")
 @SecurityRequirement(name = "Bearer Authentication")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class BookController {
     private final BookService bookService;
 

@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping(path = "/api/v1/bookgenre")
 @SecurityRequirement(name = "Bearer Authentication")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class BookGenreController {
     private final BookGenreService bookGenreService;
 
