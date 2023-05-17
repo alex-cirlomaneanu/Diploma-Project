@@ -16,6 +16,7 @@ h2 {
 form {
     display: flex;
     flex-direction: column;
+    margin: auto;
 }
 
 form label {
@@ -23,11 +24,12 @@ form label {
 }
 
 form input[type="text"],
-form input[type="password"]{
+form input[type="password"] {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    margin-left: 20px;
 }
 
 form input[type="date"] {
@@ -52,4 +54,13 @@ form input[type="date"] {
 
 button[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+.password-strength {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    white-space: pre-line;
+    /*border: 1px solid #ccc;*/
+    /*border-radius: 4px;*/
 }

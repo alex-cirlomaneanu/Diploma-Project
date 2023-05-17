@@ -9,6 +9,8 @@ import WebsiteLayout from "../../layout/websitelayout/WebsiteLayout";
 
 function Register() {
     const navigate = useNavigate();
+    const [passwordStrength, setPasswordStrength] = useState('');
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstname, setFirstname] = useState('');
@@ -38,6 +40,34 @@ function Register() {
         }
     };
 
+    const handlePassword = (event) => {
+        const password = event.target.value;
+        setPassword(password);
+        const strength = {
+            length: 0,
+            hasNumber: false,
+            hasLowerCase: false,
+            hasUpperCase: false
+        }
+
+        strength.length = password.length >= 8 ? 1 : 0;
+        strength.hasNumber = password.match(/[0-9]/) ? 1 : 0;
+        strength.hasLowerCase = password.match(/[a-z]/) ? 1 : 0;
+        strength.hasUpperCase = password.match(/[A-Z]/) ? 1 : 0;
+
+        if (strength.length + strength.hasNumber + strength.hasLowerCase + strength.hasUpperCase === 4) {
+            setPasswordStrength("Parola puternica");
+        } else if (strength.length === 0) {
+            setPasswordStrength("Parola prea scurta");
+        } else if (strength.hasNumber === 0) {
+            setPasswordStrength("Parola trebuie sa contina cel putin \n o cifra");
+        } else if (strength.hasUpperCase === 0) {
+            setPasswordStrength("Parola trebuie sa contina cel putin \n o litera mare");
+        } else {
+            setPasswordStrength("Parola trebuie sa contina cel putin \n o litera mica");
+        }
+    }
+
     return (
         <div className="register-container">
             <h2>Înregistrare</h2>
@@ -51,8 +81,12 @@ function Register() {
                 <Form.Group controlId="password">
                     <Form.Label>Parola</Form.Label>
                     <br/>
-                    <Form.Control type="password" value={password} onChange={(event) => setPassword(event.target.value)}
-                    placeholder={"********"}/>
+                    <Form.Control type="password" value={password} onChange={(event) => { handlePassword(event)}}
+                                  placeholder={"********"}/>
+                    <br/>
+                    {password &&
+                        <Form.Text className="password-strength">{passwordStrength}</Form.Text>
+                    }
                 </Form.Group>
                 <Form.Group controlId="firstname">
                     <Form.Label>Prenume</Form.Label>
