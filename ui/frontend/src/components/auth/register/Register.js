@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import {useNavigate} from "react-router";
 
 import axios from 'axios';
 import { Form, Button, Col,  } from 'react-bootstrap';
 import "./Register.css";
 import WebsiteLayout from "../../layout/websitelayout/WebsiteLayout";
+import {AuthContext} from "../../../utils/auth";
 
 
 function Register() {
     const navigate = useNavigate();
     const [passwordStrength, setPasswordStrength] = useState('');
+    const authContext = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,6 +20,7 @@ function Register() {
     const [phoneNumber, setPhoneNumber] = useState('');
     // const [address, setAddress] = useState('');
     const [birthDate, setBirthDate] = useState('');
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -66,6 +69,10 @@ function Register() {
         } else {
             setPasswordStrength("Parola trebuie sa contina cel putin \n o litera mica");
         }
+    }
+
+    if (authContext.authenticated) {
+        navigate('/');
     }
 
     return (

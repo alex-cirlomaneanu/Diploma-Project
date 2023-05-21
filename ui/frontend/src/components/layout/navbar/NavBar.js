@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import {Nav, Navbar} from "react-bootstrap";
 import {AuthContext} from "../../../utils/auth";
 import "./Navbar.css";
+import Logout from "../../auth/logout/Logout";
 
 const NavBar = () => {
     const {authenticated, logout} = useContext(AuthContext);
@@ -14,7 +15,7 @@ const NavBar = () => {
                         authenticated? (
                             <>
                                 <Nav.Link href="/profile" >Profil</Nav.Link>
-                                <Nav.Link href="/logout">Logout</Nav.Link>
+                                <Nav.Link onClick={logout}>Logout</Nav.Link>
                             </>
                         ) : (
                             <>

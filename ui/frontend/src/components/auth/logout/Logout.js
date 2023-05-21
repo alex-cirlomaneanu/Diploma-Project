@@ -15,7 +15,6 @@ function Logout() {
                         Authorization: 'Bearer ' + localStorage.getItem('token')
                     }
                 });
-            logout.logout();
             localStorage.removeItem('token');
             navigate('/');
         } catch (error) {

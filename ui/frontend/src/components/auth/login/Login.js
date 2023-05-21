@@ -20,9 +20,8 @@ function Login() {
                 password
             }
             const response = await axios.post('http://localhost:8080/api/v1/auth/authenticate', user);
-            authContext.login();
+            authContext.login(email);
             localStorage.setItem('userEmail', email);
-            console.log(authContext);
             localStorage.setItem('token', response.data.token);
             navigate('/');
         } catch (error) {
@@ -33,6 +32,10 @@ function Login() {
 
     const handleCloseError = () => {
         setError('');
+    }
+
+    if (authContext.authenticated) {
+        navigate('/');
     }
 
     return (

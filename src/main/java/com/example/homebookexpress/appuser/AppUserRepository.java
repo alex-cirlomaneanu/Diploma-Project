@@ -28,4 +28,5 @@ public interface AppUserRepository extends JpaRepository<AppUser, UUID> {
     )
     List<String> getBookHistoryByUserId(UUID userId);
 
+    AppUser getUserNameByEmail(String email);
 }

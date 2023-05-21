@@ -50,4 +50,8 @@ public class AppUserService implements UserDetailsService {
     public List<String> getBookHistory(UUID userId) {
         return appUserRepository.getBookHistoryByUserId(userId);
     }
+
+    public String getUserNameByUserEmail(String userEmail) {
+        return appUserRepository.getUserNameByEmail(userEmail).getFirstname();
+    }
 }

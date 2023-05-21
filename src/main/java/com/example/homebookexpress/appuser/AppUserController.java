@@ -28,13 +28,12 @@ public class AppUserController {
         return appUserService.getAppUsers();
     }
 
-//    @GetMapping("/userdetalis/{userId}")
-//    public AppUser getAppUserById(@PathVariable @RequestParam("userId") UUID userId) {
-//        return appUserService.getAppUserById(userId);
-//    }
+    @GetMapping("/getusernamebyuseremail")
+    public String getUserNameByUserEmail(@RequestParam("userEmail") String userEmail) {
+        return appUserService.getUserNameByUserEmail(userEmail);
+    }
 
     @GetMapping("/userdetalis/{userEmail}")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public AppUser getAppUserByEmail(@PathVariable @RequestParam("userEmail") String userEmail) {
         return appUserService.getAppUserByEmail(userEmail);
     }
