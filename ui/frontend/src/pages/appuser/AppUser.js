@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
-import {AuthContext} from "../../utils/auth";
+import {AuthContext} from "../../components/auth/auth";
 
 function AppUser () {
     const [user, setUser] = useState({});

@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class BookRequest {
     private String title;
+    private String bookImage;
     private int totalCopies;
     private String authorName;
     private List<String> genreName;

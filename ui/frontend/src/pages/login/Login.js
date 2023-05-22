@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import {useNavigate} from "react-router";
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import {AuthContext, AuthProvider} from "../../../utils/auth";
+import {AuthContext, AuthProvider} from "../../components/auth/auth";
 import "./Login.css";
 import axios from 'axios';
 

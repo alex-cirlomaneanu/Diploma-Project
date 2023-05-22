@@ -8,18 +8,19 @@
 }
 
 .navbar-brand {
-    color: #343a40;
+    color: white;
     font-size: 24px;
     text-decoration: none;
 }
 
 .nav-link {
-    color: #343a40;
+    color: #ffffff;
     font-size: 18px;
     text-decoration: none;
     margin-left: 20px;
 }
 
 .nav-link:hover {
-    text-decoration: underline;
+    /*text-decoration: underline;*/
+    color: coral;
 }

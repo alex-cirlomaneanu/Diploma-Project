@@ -1,8 +1,7 @@
 import React, {useContext} from 'react';
 import {Nav, Navbar} from "react-bootstrap";
-import {AuthContext} from "../../../utils/auth";
+import {AuthContext} from "../../auth/auth";
 import "./Navbar.css";
-import Logout from "../../auth/logout/Logout";
 
 const NavBar = () => {
     const {authenticated, logout} = useContext(AuthContext);
@@ -14,11 +13,14 @@ const NavBar = () => {
                     {
                         authenticated? (
                             <>
+                                <Nav.Link href="/books">Cărți</Nav.Link>
                                 <Nav.Link href="/profile" >Profil</Nav.Link>
+                                <Nav.Link href="/about">Despre noi</Nav.Link>
                                 <Nav.Link onClick={logout}>Logout</Nav.Link>
                             </>
                         ) : (
                             <>
+                                <Nav.Link href="/about">Despre noi</Nav.Link>
                                 <Nav.Link href="/login">Login</Nav.Link>
                                 <Nav.Link href="/register">Register</Nav.Link>
                             </>

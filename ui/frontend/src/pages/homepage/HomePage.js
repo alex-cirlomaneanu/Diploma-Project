@@ -1,14 +1,14 @@
 import React, {useState, useEffect, useContext} from "react";
 import "./HomePage.css";
 import axios from "axios";
-import {AuthContext} from "../../utils/auth";
+import {AuthContext} from "../../components/auth/auth";
 import {Image} from "react-bootstrap";
 
 const HomePage = () => {
     const userEmail = localStorage.getItem('userEmail');
     const [firstname, setFirstname] = React.useState('');
     const authContext = useContext(AuthContext);
-    console.log(authContext);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -20,13 +20,14 @@ const HomePage = () => {
                         },
                         params: {userEmail}
                     });
-                console.log(response.data);
                 setFirstname(response.data);
             } catch (error) {
                 console.error(error);
             }
         }
-        fetchData().then(r => console.log(r));
+        if (authContext.authenticated) {
+            let data = fetchData().then(() => console.log(data));
+        }
     });
 
     function Greeting() {

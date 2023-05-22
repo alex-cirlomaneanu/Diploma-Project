@@ -48,6 +48,7 @@ public class BookService {
 
         Book book = Book.builder()
                 .title(bookRequest.getTitle())
+                .bookImage(bookRequest.getBookImage())
                 .totalCopies(bookRequest.getTotalCopies())
                 .availableCopies(bookRequest.getTotalCopies())
                 .author(author.get())

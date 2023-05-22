@@ -4,8 +4,8 @@ import {useNavigate} from "react-router";
 import axios from 'axios';
 import { Form, Button, Col,  } from 'react-bootstrap';
 import "./Register.css";
-import WebsiteLayout from "../../layout/websitelayout/WebsiteLayout";
-import {AuthContext} from "../../../utils/auth";
+import WebsiteLayout from "../../components/layout/websitelayout/WebsiteLayout";
+import {AuthContext} from "../../components/auth/auth";
 
 
 function Register() {

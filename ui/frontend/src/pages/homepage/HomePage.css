@@ -4,11 +4,12 @@
 }
 
 .greeting {
+    /*background-color: #ffffff;*/
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -100%);
-    min-width: 100px;
+    max-width: 300px;
     /*color: white;*/
 }
 
@@ -25,4 +26,19 @@
     position: absolute;
     transform: translate(-50%, -50%);
     scale: 25%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .greeting {
+        font-size: 18px;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .greeting {
+        font-size: 16px;
+        max-width: 150px;
+    }
 }

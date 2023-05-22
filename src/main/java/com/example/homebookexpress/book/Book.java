@@ -29,6 +29,12 @@ public class Book {
             columnDefinition = "TEXT"
     )
     private String title;
+    
+    @Column(
+            name = "book_image",
+            columnDefinition = "TEXT"
+    )
+    private String bookImage;
 
     @Column(name = "total_copies", nullable = false)
     private int totalCopies;
