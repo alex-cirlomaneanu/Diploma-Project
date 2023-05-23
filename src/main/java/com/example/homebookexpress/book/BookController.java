@@ -52,10 +52,10 @@ public class BookController {
         return ResponseEntity.ok(bookService.getBookByTitle(bookTitle));
     }
 
-    @GetMapping("/getbookbyid")
+    @GetMapping("/getbookbyid/{bookId}")
     @Secured(value = {"ADMIN", "USER"})
     public ResponseEntity<Book> getBookById(
-            @RequestParam("bookId") UUID bookId
+            @PathVariable @RequestParam("bookId") UUID bookId
     ) throws BookNotFoundException {
         return ResponseEntity.ok(bookService.getBookByBookId(bookId));
     }
@@ -66,5 +66,12 @@ public class BookController {
             @RequestBody BookRequest bookRequest
     ) throws BookNotFoundException {
         return ResponseEntity.ok(bookService.updateBook(bookRequest));
+    }
+
+    @GetMapping("/getbooksbytitlelike")
+    public ResponseEntity<Iterable> getBooksByTitleLike(
+            @RequestParam("bookTitle") String bookTitle
+    ) {
+        return ResponseEntity.ok(bookService.getBooksByTitleLike(bookTitle));
     }
 }

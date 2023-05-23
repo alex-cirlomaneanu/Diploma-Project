@@ -2,7 +2,9 @@ import React, {useState, useEffect, useContext} from "react";
 import axios from "axios";
 import {AuthContext} from "../../components/auth/auth";
 import {Col, Card, Pagination, Row, PageItem} from "react-bootstrap";
+import PaginationBar from "../../components/pagination/pagination";
 import "./Books.css";
+import {Link} from "react-router-dom";
 
 const Books = () => {
     const [books, setBooks] = useState([]);
@@ -31,7 +33,6 @@ const Books = () => {
             fetchData().then(r => console.log(r));
     }, []);
 
-    console.log(books[0]);
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     }
@@ -46,6 +47,7 @@ const Books = () => {
             <Row>
             {currentBooks.map((book, index) => (
                 <Col key={index} xs={12} sm={6} md={4} lg={3}>
+                    <Link className={"text-decoration-none"} to={`/books/${book.bookId}`}>
                     <Card className="book-card">
                         {book.bookImage === null ? (
                             <Card.Img variant="top" src="/book-cover.jpg" />
@@ -56,36 +58,20 @@ const Books = () => {
                             <Card.Title className={"text-danger"}>{book.title}</Card.Title>
                             <Card.Text>
                                 <p>Autor: {book.author.authorName}</p>
-                                {/*{book.bookGenres.map((genre, index) => (*/}
-                                {/*    <span key={index}> | {genre.genreName}</span>*/}
-                                {/*))}*/}
                                 <p>Număr cărți disponibile: {book.availableCopies}</p>
                             </Card.Text>
                         </Card.Body>
                     </Card>
+                    </Link>
                 </Col>
             ))}
             </Row>
-            <Pagination className="book-pagination">
-                <Pagination.Prev
-                    disabled={currentPage === 1}
-                    onClick={() => handlePageChange(currentPage - 1)}
-                />
-                {[...Array(Math.ceil(books.length / booksPerPage)).keys()].map((pageNumber) => (
-                    <PageItem
-                        className="book-page-item"
-                        key={pageNumber + 1}
-                        active={pageNumber + 1 === currentPage}
-                        onClick={() => handlePageChange(pageNumber + 1)}
-                    >
-                        {pageNumber + 1}
-                    </PageItem>
-                ))}
-                <Pagination.Next
-                    disabled={currentPage === Math.ceil(books.length / booksPerPage)}
-                    onClick={() => handlePageChange(currentPage + 1)}
-                />
-            </Pagination>
+            <PaginationBar
+                elementsPerPage={booksPerPage}
+                currentPage={currentPage}
+                handlePageChange={handlePageChange}
+                elements={books}
+            />
         </div>
     );
 }

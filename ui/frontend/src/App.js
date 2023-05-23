@@ -9,6 +9,8 @@ import Register from "./pages/register/Register";
 import AppUser from "./pages/appuser/AppUser";
 import Books from "./pages/books/Books";
 import AboutUs from "./pages/aboutus/AboutUs";
+import BookPage from "./pages/bookpage/BookPage";
+import SearchResults from "./pages/searchresults/SearchResults";
 
 
 function Logout() {
@@ -29,7 +31,9 @@ function App() {
                 <Route path="/profile" element={<WebsiteLayout><AppUser /></WebsiteLayout>} />
                 <Route path="/logout" element={<WebsiteLayout><Logout/></WebsiteLayout>} />
                 <Route path="/books" element={<WebsiteLayout><Books /></WebsiteLayout>} />
+                <Route path={"books/:bookId"} element={<WebsiteLayout><BookPage /></WebsiteLayout>} />
                 <Route path="/about" element={<WebsiteLayout><AboutUs /></WebsiteLayout>} />
+                <Route path="/searchresults/:searchTerm" element={<WebsiteLayout><SearchResults /></WebsiteLayout>} />
                 <Route path={'*'} element={<WebsiteLayout><h1>Page not found</h1></WebsiteLayout>} />
             </Routes>
         </AuthProvider>

@@ -87,4 +87,8 @@ public class BookService {
 
         return book;
     }
+
+    public List<Book> getBooksByTitleLike(String title) {
+        return bookRepository.getBooksByTitleLike(title);
+    }
 }
