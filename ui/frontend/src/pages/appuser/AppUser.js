@@ -5,6 +5,12 @@ import {AuthContext} from "../../components/auth/auth";
 function AppUser () {
     const [user, setUser] = useState({});
     let userEmail = localStorage.getItem('userEmail');
+    const authContext = useContext(AuthContext);
+
+    if (!authContext.authenticated) {
+        authContext.navigate("/login");
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -27,6 +33,7 @@ function AppUser () {
     }, []);
 
 
+    console.log(authContext);
     return (
         <div>
             <h1>Profil</h1>

@@ -11,16 +11,14 @@ import Books from "./pages/books/Books";
 import AboutUs from "./pages/aboutus/AboutUs";
 import BookPage from "./pages/bookpage/BookPage";
 import SearchResults from "./pages/searchresults/SearchResults";
+import Admin from "./pages/admin/Admin";
+import AllBooks from "./pages/admin/allbooks/AllBooks";
+import AllUsers from "./pages/admin/allusers/AllUsers";
 
 
 function Logout() {
     return null;
 }
-
-function About() {
-    return null;
-}
-
 function App() {
     return (
         <AuthProvider>
@@ -34,6 +32,9 @@ function App() {
                 <Route path={"books/:bookId"} element={<WebsiteLayout><BookPage /></WebsiteLayout>} />
                 <Route path="/about" element={<WebsiteLayout><AboutUs /></WebsiteLayout>} />
                 <Route path="/searchresults/:searchTerm" element={<WebsiteLayout><SearchResults /></WebsiteLayout>} />
+                <Route path="/admin" element={<WebsiteLayout><Admin /></WebsiteLayout>} />
+                <Route path="/admin/allbooks" element={<WebsiteLayout><AllBooks /></WebsiteLayout>} />
+                <Route path="/admin/allusers" element={<WebsiteLayout><AllUsers /></WebsiteLayout>} />
                 <Route path={'*'} element={<WebsiteLayout><h1>Page not found</h1></WebsiteLayout>} />
             </Routes>
         </AuthProvider>

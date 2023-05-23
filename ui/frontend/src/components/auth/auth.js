@@ -7,6 +7,7 @@ export const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
     const [authenticated, setAuthenticated] = useState(false);
     const [userEmail, setUserEmail] = useState('');
+    const [admin, setAdmin] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,6 +21,10 @@ export const AuthProvider = ({ children }) => {
         // Perform authentication logic, e.g., validate credentials
         // If authentication is successful, set authenticated state to true
         // I want to use Login.js to perform authentication logic
+        if (email === "alex@admin.com") {
+            setAdmin(true);
+            localStorage.setItem('admin', true);
+        }
         setAuthenticated(true);
         setUserEmail(email);
     };
@@ -44,7 +49,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ authenticated, login, logout, setUserEmail, userEmail, navigate }}>
+        <AuthContext.Provider value={{ authenticated, admin, login, logout, setUserEmail, userEmail, navigate }}>
             {children}
         </AuthContext.Provider>
     );

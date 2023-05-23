@@ -1,13 +1,18 @@
-import React, {useState, useEffect, useContext} from "react";
-import axios from "axios";
+import React, {useState, useContext} from "react";
+import fetchBooks from "../../components/fetchdata/fetchBooks";
 import {AuthContext} from "../../components/auth/auth";
-import {Col, Card, Pagination, Row, PageItem} from "react-bootstrap";
+import {Col, Card, Row} from "react-bootstrap";
 import PaginationBar from "../../components/pagination/pagination";
 import "./Books.css";
 import {Link} from "react-router-dom";
 
+/**
+ * This component displays all the books in the database.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Books = () => {
-    const [books, setBooks] = useState([]);
+    const books = fetchBooks();
     const authContext = useContext(AuthContext)
     const [currentPage, setCurrentPage] = useState(1);
     const [booksPerPage] = useState(12);
@@ -15,23 +20,6 @@ const Books = () => {
     if (!authContext.authenticated) {
         authContext.navigate("/login");
     }
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("http://localhost:8080/api/v1/book/getallbooks",
-                    {
-                        headers: {
-                            Authorization: "Bearer " + localStorage.getItem('token')
-                        }
-                    });
-                setBooks(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-            fetchData().then(r => console.log(r));
-    }, []);
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);

@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
-import {Button, Form, Image, Nav, Navbar} from "react-bootstrap";
+import {Image, Nav, Navbar} from "react-bootstrap";
 import {AuthContext} from "../../auth/auth";
 import "./Navbar.css";
 import Search from "../../search/search";
 
 const NavBar = () => {
-    const {authenticated, logout} = useContext(AuthContext);
+    const {authenticated, logout, email} = useContext(AuthContext);
 
     return (
            <Navbar bg="dark" variant="dark">
@@ -18,6 +18,9 @@ const NavBar = () => {
                         authenticated? (
                             <>
                                 <Search />
+                                {localStorage.getItem("userEmail") === "alex@admin.com"? (
+                                    <Nav.Link href="/admin">Admin</Nav.Link>
+                                ) : null}
                                 <Nav.Link href="/books">Cărți</Nav.Link>
                                 <Nav.Link href="/profile" >Profil</Nav.Link>
                                 <Nav.Link href="/about">Despre noi</Nav.Link>

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import {Button, Form, InputGroup} from "react-bootstrap";
 import axios from "axios";
 import {AuthContext} from "../auth/auth";
@@ -8,6 +8,10 @@ const Search = () => {
     const authContext = useContext(AuthContext);
 
     const handleSearch = async (event) => {
+        if (searchTerm === "") {
+            event.preventDefault();
+            return;
+        }
         event.preventDefault();
         console.log(searchTerm);
         try {
