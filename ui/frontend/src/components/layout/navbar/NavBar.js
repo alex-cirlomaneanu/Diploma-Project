@@ -8,7 +8,7 @@ const NavBar = () => {
     const {authenticated, logout, email} = useContext(AuthContext);
 
     return (
-           <Navbar bg="dark" variant="dark">
+           <Navbar bg="dark" variant="light">
                 <Navbar.Brand href="/">
                     <Image src="/logo3.png" width="70.4" height="40" className="d-inline-block align-top" alt="HomeBookExpress logo" />
                     HomeBookExpress

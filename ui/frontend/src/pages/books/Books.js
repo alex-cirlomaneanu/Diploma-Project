@@ -40,7 +40,7 @@ const Books = () => {
                         {book.bookImage === null ? (
                             <Card.Img variant="top" src="/book-cover.jpg" />
                             ) : (
-                                <Card.Img variant="top" src={book.image} />
+                                <Card.Img variant="top" src={book.bookImage} />
                         )}
                         <Card.Body>
                             <Card.Title className={"text-danger"}>{book.title}</Card.Title>

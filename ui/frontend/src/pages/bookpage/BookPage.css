@@ -1,0 +1,90 @@
+.parent {
+    display: grid;
+    grid-template-columns:0.5fr repeat(2, 1fr) 0.5fr;
+    grid-template-rows: 0fr repeat(4, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+}
+
+.div1 {
+    grid-area: 2 / 2 / 5 / 3;
+
+}
+.div2 {
+    grid-area: 2 / 3 / 5 / 4;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+}
+.div3 { grid-area: 5 / 2 / 6 / 4; }
+
+.book-page {
+    padding: 20px;
+}
+
+.book-page h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.book-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 590px;
+
+}
+
+.book-image img{
+    max-width: 400px;
+}
+
+.book-details {
+    height: auto;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-details p {
+    margin-bottom: 10px;
+}
+
+.book-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.book-details ul li {
+    margin-bottom: 5px;
+}
+
+.book-recommendations {
+    margin-top: 20px;
+}
+
+.book-recommendations p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.book-recommendations ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.book-recommendations ul li {
+    margin-bottom: 5px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    align-self: stretch;
+}
