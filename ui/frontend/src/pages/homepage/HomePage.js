@@ -32,16 +32,39 @@ const HomePage = () => {
 
     function Greeting() {
         if (authContext.authenticated) {
-            return <h1 className="greeting">Bine ai revenit, {firstname}</h1>
+            return (
+                <div>
+                    <h1 className="greeting">Bine ai revenit, {firstname}</h1>
+                    <Image className={"logo"} src="/logo1.jpg" alt={"logo"}/>
+                </div>
+            )
         } else {
-            return <h1 className="greeting">Bine ai venit</h1>
+            return (
+                <div>
+                    <h1 className="greeting">Bine ai venit</h1>
+                    <br/>
+                    <p className="description">Aici vei gasi o multime de carti, de la cele mai cunoscute pana la cele
+                        mai noi.</p>
+                    <p className="description">Intra in contul tau sau creeaza-ti unul pentru a putea comanda cartile
+                        dorite.</p>
+                    <p className="description">Daca nu stii ce sa citesti, poti sa arunci o privire la cartile
+                        recomandate.</p>
+                    <p className={"description"}><Image className={"logo"} src="/logo3.jpg" alt={"logo"}/></p>
+                    <p className={"description"}> Cartile populare </p>
+                </div>
+            )
         }
     }
 
     return (
-        <div className={"home-page"}>
-            <Image className={"bookshelf"} src="/bookshelf.jpg" alt={"bookshelf"} fluid/>
-            <>{Greeting()}</>
+        <div className="home-page">
+            <div className="bookshelf">
+                <Image src="/top-view-books-arrangement.jpg" alt={"bookshelf"} fluid/>
+            </div>
+            <div className="div2">
+                <br/>
+                <>{Greeting()}</>
+            </div>
         </div>
     );
 };

@@ -1,6 +1,12 @@
+.col-card {
+    padding: 0;
+    /*transform: scale(0.8);*/
+    margin: auto 0;
+}
+
 .book-card {
     width: 90%;
-    height: 90%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -9,6 +15,8 @@
     overflow: hidden;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: transparent;
 }
 
 .book-card:hover {
@@ -18,6 +26,25 @@
 
 .book-card img {
     width: 100%;
-    height: 75%;
+    height: 100%;
     object-fit: cover;
+    max-height: 300px;
+}
+
+.book-card .card {
+    background-color: transparent;
+    opacity: .4;
+
+}
+
+.book-card .card-title {
+    color: #c24d2c;
+    text-shadow: 1cap 1cap 1cap #1a2639;
+}
+
+.book-card .card-body {
+    background-color: transparent;
+    margin: auto;
+    height: 180px;
+    color: #1a2639;
 }

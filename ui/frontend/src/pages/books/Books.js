@@ -5,6 +5,8 @@ import {Col, Card, Row} from "react-bootstrap";
 import PaginationBar from "../../components/pagination/pagination";
 import "./Books.css";
 import {Link} from "react-router-dom";
+import BookFilter from "../../components/filter/BookFilter";
+import BookCard from "../../components/bookcards/bookcards";
 
 /**
  * This component displays all the books in the database.
@@ -32,27 +34,13 @@ const Books = () => {
     return (
         <div className="book-table">
             <h1>Cărțile disponibile</h1>
-            <Row>
-            {currentBooks.map((book, index) => (
-                <Col key={index} xs={12} sm={6} md={4} lg={3}>
-                    <Link className={"text-decoration-none"} to={`/books/${book.bookId}`}>
-                    <Card className="book-card">
-                        {book.bookImage === null ? (
-                            <Card.Img variant="top" src="/book-cover.jpg" />
-                            ) : (
-                                <Card.Img variant="top" src={book.bookImage} />
-                        )}
-                        <Card.Body>
-                            <Card.Title className={"text-danger"}>{book.title}</Card.Title>
-                            <Card.Text>
-                                <p>Autor: {book.author.authorName}</p>
-                                <p>Număr cărți disponibile: {book.availableCopies}</p>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                    </Link>
-                </Col>
-            ))}
+            <BookFilter books={books} />
+            <Row className={"d-flex"}>
+                <Row>
+                    {currentBooks.map((book, index) => (
+                        <BookCard book={book} key={index}/>
+                    ))}
+                </Row>
             </Row>
             <PaginationBar
                 elementsPerPage={booksPerPage}

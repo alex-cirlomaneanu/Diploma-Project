@@ -32,6 +32,7 @@ const SearchResults = () => {
                     ))}
                 </Row>
             </div>
+            <br/>
             <PaginationBar
                 elementsPerPage={12}
                 elements={books}
