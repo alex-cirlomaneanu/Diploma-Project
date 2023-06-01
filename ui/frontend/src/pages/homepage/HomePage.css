@@ -1,8 +1,8 @@
 .home-page {
     position: relative;
     display: grid;
-    grid-template-columns: 0.5fr 1fr 2fr 1fr 0.5fr;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: 0.5fr 0.75fr 2fr 0.75fr 0.5fr;
+    grid-template-rows: repeat(4, 1fr) 0.5fr;
     grid-column-gap: 0;
     grid-row-gap: 0;
 }
@@ -19,19 +19,25 @@
     border-radius: 10px;
 }
 
-.div2 {
-    grid-area: 4 / 3 / 6 / 4;
+.info-div {
+    grid-area: 2 / 3 / 5 / 4;
     background-color: white;
     border-radius: 15px;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
 }
 
-.div3 {
-    grid-area: 7 / 3 / 10 / 4;
-    background-color: white;
+.popular-books {
+    grid-area: 5 / 3 / 7 / 4;
+    background-color: transparent;
+    border-radius: 15px;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
 }
-.div4 { grid-area: 10 / 3 / 13 / 4; }
-.div5 { grid-area: 4 / 2 / 13 / 3; }
-.div6 { grid-area: 4 / 4 / 13 / 5; }
 
 .greeting {
     grid-area: 1 / 1 / 2 / 2;
@@ -55,3 +61,29 @@
     width: 100%;
     scale: 50%;
 }
+
+.explore {
+    grid-area: 5 / 2 / 8 / 5;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    place-items: center;
+}
+
+.explore img {
+    width: 5%;
+    height: fit-content;
+    border-radius: 10px;
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.explore a {
+    text-decoration: none;
+    color: black;
+}
+

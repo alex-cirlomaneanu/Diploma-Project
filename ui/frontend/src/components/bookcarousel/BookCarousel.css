@@ -1,0 +1,44 @@
+.book-card-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border: none;
+}
+
+.book-card-carousel img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.book-carousel-body {
+    background-color: transparent;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.book-card-carousel-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.book-card-carousel-text {
+    font-size: 12px;
+}
+
+.book-card-carousel-text p {
+    margin-bottom: 5px;
+}
+
+.carousel-control-prev {
+    left: -75px; /* Adjust the desired horizontal position */
+}
+
+.carousel-control-next {
+    right: -75px; /* Adjust the desired horizontal position */
+}
