@@ -15,4 +15,7 @@ public interface BookRepository extends JpaRepository<Book, UUID> {
 
     @Query("SELECT b FROM books b WHERE b.title ILIKE %?1%")
     List<Book> getBooksByTitleLike(String title);
+
+    @Query("SELECT b FROM books b LEFT JOIN rental r ON b.bookId = r.book.bookId GROUP BY b.bookId ORDER BY COUNT(r.rentalId) DESC limit 12")
+    List<Book> getPopularBooks();
 }

@@ -91,4 +91,8 @@ public class BookService {
     public List<Book> getBooksByTitleLike(String title) {
         return bookRepository.getBooksByTitleLike(title);
     }
+
+    public List<Book> getPopularBooks() {
+        return bookRepository.getPopularBooks();
+    }
 }

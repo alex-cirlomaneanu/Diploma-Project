@@ -4,13 +4,13 @@ import axios from "axios";
 import {AuthContext} from "../../components/auth/auth";
 import {Image} from "react-bootstrap";
 import BookCarousel from "../../components/bookcarousel/BookCarousel";
-import fetchBooks from "../../components/fetchdata/fetchBooks";
+import fetchPopularBooks from "../../components/fetchdata/fetchPopularBooks";
 
 const HomePage = () => {
     const userEmail = localStorage.getItem('userEmail');
     const [firstname, setFirstname] = React.useState('');
     const authContext = useContext(AuthContext);
-    const books = fetchBooks();
+    const books =  fetchPopularBooks();
 
 
     useEffect(() => {
@@ -50,6 +50,28 @@ const HomePage = () => {
         }
     }
 
+    function Explore() {
+        if (authContext.authenticated) {
+            return (
+                <div className="explore">
+                    <a href={"/books"}>
+                        <h3>Nu te-ai hotărât? Explorează cărțile aici</h3>
+                        <img src="/explore.png" alt={"explore"} />
+                    </a>
+                </div>
+            )
+        } else {
+            return (
+                <div className="explore">
+                    <a href={"/login"}>
+                        <h3>Nu te-ai hotărât? Explorează cărțile aici</h3>
+                        <img src="/explore.png" alt={"explore"} />
+                    </a>
+                </div>
+            )
+        }
+    }
+
     return (
         <div className="home-page">
             <div className="bookshelf">
@@ -71,12 +93,7 @@ const HomePage = () => {
                     <BookCarousel books={books}/>
                 </div>
             </div>
-            <div className="explore">
-                <a href={"/books"}>
-                    <h3>Nu te-ai hotărât? Explorează cărțile aici</h3>
-                    <img src="/explore.png" alt={"explore"} />
-                </a>
-            </div>
+            <>{Explore()}</>
         </div>
     );
 };

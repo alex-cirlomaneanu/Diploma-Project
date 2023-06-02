@@ -32,6 +32,7 @@ public class SecurityConfiguration {
             // other public endpoints of your API may be appended to this array
             "/api/v1/auth/register",
             "/api/v1/auth/authenticate",
+            "/api/v1/getpopularbooks"
     };
 
     private static final String[] ADMIN_POST = {

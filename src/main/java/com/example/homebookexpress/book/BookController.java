@@ -39,7 +39,6 @@ public class BookController {
     }
 
     @GetMapping("/getallbooks")
-    @Secured(value = "ADMIN")
     public ResponseEntity<Iterable<Book>> getAllBooks() {
         return ResponseEntity.ok(bookService.getAllBooks());
     }

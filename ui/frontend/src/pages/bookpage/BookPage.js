@@ -40,6 +40,10 @@ const BookPage = () => {
         let r = fetchData();
     }, []);
 
+    const handleRental = async () => {
+        
+    }
+
     return (
         <div className="book-page">
             <div className="parent">
@@ -95,7 +99,7 @@ const BookPage = () => {
                                 <Card.Text>
 
                                     {
-                                        book.availableCopies != 0 ? <button className="btn btn-primary">Împrumută</button> : ""
+                                        book.availableCopies != 0 ? <button className="btn btn-primary" onClick={handleRental}>Împrumută</button> : ""
                                     }
                                 </Card.Text>
                             </Card.Text>
