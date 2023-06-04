@@ -1,6 +1,7 @@
 import React from 'react';
 import { Carousel, Card, Row, Col } from 'react-bootstrap';
 import './BookCarousel.css';
+import {Link} from "react-router-dom";
 
 const BookCarousel = ({ books }) => {
     const bookChunks = chunkArray(books, 3); // Split books into chunks of 3
@@ -12,19 +13,21 @@ const BookCarousel = ({ books }) => {
                     <Row>
                         {chunk.map((book, innerIndex) => (
                             <Col key={innerIndex} sm={4}>
-                                <Card className="book-card-carousel bg-transparent">
-                                    {book.bookImage === null ? (
-                                        <Card.Img variant="top" src="/book-cover.jpg" />
-                                    ) : (
-                                        <Card.Img variant="top" src={book.bookImage} />
-                                    )}
-                                    <Card.Body className="book-card-carousel-body">
-                                        <Card.Title className="book-card-carousel-title">{book.title}</Card.Title>
-                                        <Card.Text className="book-card-carousel-text">
-                                            <p>Autor: {book.author.authorName}</p>
-                                        </Card.Text>
-                                    </Card.Body>
-                                </Card>
+                                <Link className="link-to-book" to={`/books/${book.bookId}`}>
+                                    <Card className="book-card-carousel bg-transparent">
+                                        {book.bookImage === null ? (
+                                            <Card.Img variant="top" src="/book-cover.jpg" />
+                                        ) : (
+                                            <Card.Img variant="top" src={book.bookImage} />
+                                        )}
+                                        <Card.Body className="book-card-carousel-body">
+                                            <Card.Title className="book-card-carousel-title">{book.title}</Card.Title>
+                                            <Card.Text className="book-card-carousel-text">
+                                                <p>Autor: {book.author.authorName}</p>
+                                            </Card.Text>
+                                        </Card.Body>
+                                    </Card>
+                                </Link>
                             </Col>
                         ))}
                     </Row>

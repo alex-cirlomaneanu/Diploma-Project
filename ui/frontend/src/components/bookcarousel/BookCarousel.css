@@ -42,3 +42,8 @@
 .carousel-control-next {
     right: -75px; /* Adjust the desired horizontal position */
 }
+
+.link-to-book {
+    text-decoration: none;
+    color: #3e4a61;
+}

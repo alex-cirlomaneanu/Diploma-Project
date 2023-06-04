@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Form, Button, Col,  } from 'react-bootstrap';
 import "./Register.css";
 import WebsiteLayout from "../../components/layout/websitelayout/WebsiteLayout";
-import {AuthContext} from "../../components/auth/auth";
+import {AuthContext} from "../../components/auth/Auth";
 
 
 function Register() {

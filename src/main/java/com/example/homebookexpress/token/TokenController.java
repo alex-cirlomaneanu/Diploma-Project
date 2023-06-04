@@ -1,4 +1,4 @@
-package com.example.homebookexpress.book;
+package com.example.homebookexpress.token;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/api/v1")
 @SecurityRequirement(name = "Bearer Authentication")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class PopularBookController {
+public class TokenController {
+    private final TokenService tokenService;
 
-    private BookService bookService;
-
-    @GetMapping("/getpopularbooks")
-    public ResponseEntity<Iterable> getPopularBooks() {
-        return ResponseEntity.ok(bookService.getPopularBooks());
+    @GetMapping("/getemailbytoken")
+    public ResponseEntity<String> getEmailByToken(String token) {
+        return ResponseEntity.ok(tokenService.getEmailByToken(token));
     }
-
 }

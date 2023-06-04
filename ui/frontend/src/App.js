@@ -3,7 +3,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import WebsiteLayout from './components/layout/websitelayout/WebsiteLayout';
 import HomePage from "./pages/homepage/HomePage";
-import {AuthProvider} from "./components/auth/auth";
+import {AuthProvider} from "./components/auth/Auth";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import AppUser from "./pages/appuser/AppUser";

@@ -70,6 +70,7 @@ public class SecurityConfiguration {
                     .requestMatchers(HttpMethod.PUT, ADMIN_PUT).hasAuthority(AppUserRole.ADMIN.name())
                     .requestMatchers(HttpMethod.DELETE, ADMIN_DELETE).hasAuthority(AppUserRole.ADMIN.name())
                     .requestMatchers(HttpMethod.GET,"/api/v1/appuser/getallusers").hasAuthority(AppUserRole.ADMIN.name())
+                    .requestMatchers(HttpMethod.GET,"/api/v1/getemailbytoken").authenticated()
                .anyRequest()
                 .authenticated()
                 .and()

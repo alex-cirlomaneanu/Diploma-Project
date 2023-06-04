@@ -25,5 +25,10 @@ public interface TokenRepository extends JpaRepository<Token, UUID> {
 
     Optional<Token> findByToken(String token);
 
+    @Query(
+            "SELECT u.email from tokens t, app_users u " +
+            "where t.user.userId = u.userId and " +
+            "t.token = ?1"
+    )
     String findEmailByToken(String token);
 }

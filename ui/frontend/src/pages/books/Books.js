@@ -1,12 +1,12 @@
 import React, {useState, useContext} from "react";
 import fetchBooks from "../../components/fetchdata/fetchBooks";
-import {AuthContext} from "../../components/auth/auth";
+import {AuthContext} from "../../components/auth/Auth";
 import {Col, Card, Row} from "react-bootstrap";
-import PaginationBar from "../../components/pagination/pagination";
+import PaginationBar from "../../components/pagination/Pagination";
 import "./Books.css";
 import {Link} from "react-router-dom";
 import BookFilter from "../../components/filter/BookFilter";
-import BookCard from "../../components/bookcards/bookcards";
+import BookCard from "../../components/bookcards/BookCards";
 
 /**
  * This component displays all the books in the database.
@@ -33,8 +33,7 @@ const Books = () => {
 
     return (
         <div className="book-table">
-            <h1>Cărțile disponibile</h1>
-            <BookFilter books={books} />
+            <h1  className="book-results">Cărțile disponibile</h1>
             <Row className={"d-flex"}>
                 <Row>
                     {currentBooks.map((book, index) => (

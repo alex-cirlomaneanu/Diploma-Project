@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {Card, Col, Row} from "react-bootstrap";
-import "./bookcards.css";
+import "./BookCards.css";
 
 const BookCard = ({book, index}) => {
     return (

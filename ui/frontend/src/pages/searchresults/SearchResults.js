@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {useLocation} from "react-router";
-import BookCard from "../../components/bookcards/bookcards";
+import BookCard from "../../components/bookcards/BookCards";
 import {Row} from "react-bootstrap";
-import PaginationBar from "../../components/pagination/pagination";
+import PaginationBar from "../../components/pagination/Pagination"
 
 const SearchResults = () => {
     const location = useLocation();
@@ -23,15 +23,19 @@ const SearchResults = () => {
     }, [location]);
     
     return (
-        <div>
-            <h1>Rezultatele căutării pentru: {term}</h1>
-            <div className="book-table">
-                <Row>
-                    {currentBooks.map((book, index) => (
-                        <BookCard book={book} key={index}/>
-                    ))}
-                </Row>
-            </div>
+        <div  className="book-table">
+            <h1 className="book-results">Rezultatele căutării pentru: {term}</h1>
+            {
+                books.length === 0 ? (
+                    <h3>Nu s-au găsit cărți</h3>
+                ) : (
+                        <Row>
+                            {currentBooks.map((book, index) => (
+                                <BookCard book={book} key={index}/>
+                            ))}
+                        </Row>
+                )
+            }
             <br/>
             <PaginationBar
                 elementsPerPage={12}

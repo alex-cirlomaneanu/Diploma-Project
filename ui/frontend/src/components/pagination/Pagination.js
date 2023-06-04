@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {PageItem, Pagination} from "react-bootstrap";
-import "./pagination.css";
+import "./Pagination.css";
 
 const PaginationBar = ({elements, elementsPerPage, currentPage, handlePageChange}) => {
     return (

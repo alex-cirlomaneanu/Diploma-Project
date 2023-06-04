@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Button, Form, InputGroup, Table} from "react-bootstrap";
 import fetchBooks from "../../../components/fetchdata/fetchBooks";
-import PaginationBar from "../../../components/pagination/pagination";
+import PaginationBar from "../../../components/pagination/Pagination";
 import axios from "axios";
 import DeleteConfirmationModal from "../../../components/modals/DeleteConfirmationModal";
 

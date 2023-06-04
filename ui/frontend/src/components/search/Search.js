@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import {Button, Form, InputGroup} from "react-bootstrap";
 import axios from "axios";
-import {AuthContext} from "../auth/auth";
+import {AuthContext} from "../auth/Auth";
 
 const Search = () => {
     const [searchTerm, setSearch] = useState("");

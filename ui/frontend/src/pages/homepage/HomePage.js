@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import "./HomePage.css";
 import axios from "axios";
-import {AuthContext} from "../../components/auth/auth";
+import {AuthContext} from "../../components/auth/Auth";
 import {Image} from "react-bootstrap";
 import BookCarousel from "../../components/bookcarousel/BookCarousel";
 import fetchPopularBooks from "../../components/fetchdata/fetchPopularBooks";

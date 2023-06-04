@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import {Image, Nav, Navbar} from "react-bootstrap";
-import {AuthContext} from "../../auth/auth";
+import {AuthContext} from "../../auth/Auth";
 import "./Navbar.css";
-import Search from "../../search/search";
+import Search from "../../search/Search";
 
 const NavBar = () => {
     const {authenticated, logout, email} = useContext(AuthContext);
