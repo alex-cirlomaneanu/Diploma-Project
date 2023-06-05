@@ -1,11 +1,9 @@
 import React, {useState, useContext} from "react";
-import fetchBooks from "../../components/fetchdata/fetchBooks";
+import fetchBooks from "../../api/fetchdata/fetchBooks";
 import {AuthContext} from "../../components/auth/Auth";
-import {Col, Card, Row} from "react-bootstrap";
+import {Row} from "react-bootstrap";
 import PaginationBar from "../../components/pagination/Pagination";
 import "./Books.css";
-import {Link} from "react-router-dom";
-import BookFilter from "../../components/filter/BookFilter";
 import BookCard from "../../components/bookcards/BookCards";
 
 /**
@@ -35,11 +33,11 @@ const Books = () => {
         <div className="book-table">
             <h1  className="book-results">Cărțile disponibile</h1>
             <Row className={"d-flex"}>
-                <Row>
+                {/*<Row>*/}
                     {currentBooks.map((book, index) => (
                         <BookCard book={book} key={index}/>
                     ))}
-                </Row>
+                {/*</Row>*/}
             </Row>
             <PaginationBar
                 elementsPerPage={booksPerPage}

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, Table} from "react-bootstrap";
-import fetchUsers from "../../../components/fetchdata/fetchUsers";
+import fetchUsers from "../../../api/fetchdata/fetchUsers";
 import getDate from "../../../components/calendardate/calendardate";
 import PaginationBar from "../../../components/pagination/Pagination";
 import axios from "axios";

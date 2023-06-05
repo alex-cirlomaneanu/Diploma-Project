@@ -1,11 +1,9 @@
 import React, {useState, useEffect, useContext} from "react";
 import axios from "axios";
 import {AuthContext} from "../../components/auth/Auth";
-import {Col, Card, Pagination, Row, PageItem} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import {useParams} from "react-router";
 import "./BookPage.css";
-import handleRental from "../../components/rental/RentBook";
-import getEmail from "../../components/fetchdata/getEmail";
 import BookPageImage from "../../components/bookpageimage/BookPageImage";
 import BookPageDetails from "../../components/bookpagedetails/BookPageDetails";
 
@@ -17,7 +15,6 @@ const BookPage = () => {
     const bookGenres = Array.isArray(book.bookGenres)
         ? book.bookGenres.map(genre => genre.genreName).join(", ")
         : "";
-    const userEmail = getEmail(localStorage.getItem('token'));
 
     if (!authContext.authenticated) {
         authContext.navigate("/login");
@@ -48,7 +45,7 @@ const BookPage = () => {
         <div>
             <div className="book-page">
                 <BookPageImage book={book}/>
-                <BookPageDetails book={book} userEmail={userEmail} handleRental={handleRental}/>
+                <BookPageDetails book={book} />
                 <div className="div3">
                     <Card>
                         <Card.Body>

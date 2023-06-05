@@ -4,7 +4,7 @@ import com.example.homebookexpress.appuser.AppUser;
 import com.example.homebookexpress.appuser.AppUserRepository;
 import com.example.homebookexpress.book.Book;
 import com.example.homebookexpress.book.BookRepository;
-import com.example.homebookexpress.exception.BookAlreadyRented;
+import com.example.homebookexpress.exception.BookAlreadyRentedException;
 import com.example.homebookexpress.exception.BookNotAvailableException;
 import com.example.homebookexpress.exception.BookNotFoundException;
 import com.example.homebookexpress.exception.RentalNotFound;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -40,7 +39,7 @@ public class RentalService {
                 .getRentalByUserAndBookAndReturnedStatus(appUser, book ,false);
 
         if (existingRental.isPresent()) {
-            throw new BookAlreadyRented(userEmail, bookTitle);
+            throw new BookAlreadyRentedException(userEmail, bookTitle);
         }
 
         if (book.getAvailableCopies() <= 0) {
@@ -73,6 +72,15 @@ public class RentalService {
         book.setAvailableCopies(book.getAvailableCopies() + 1);
         rental.setReturnedStatus(true);
         return rentalRepository.save(rental);
+    }
+
+    public Rental getRentalByUserEmailAndBookTitle(String userEmail, String bookTitle) {
+        Optional rental = rentalRepository.getRentalByUserEmailAndBookTitle(userEmail, bookTitle);
+        if (rental.isEmpty()) {
+            throw new RentalNotFound(userEmail, bookTitle);
+        } else {
+            return (Rental) rental.get();
+        }
     }
 }
 

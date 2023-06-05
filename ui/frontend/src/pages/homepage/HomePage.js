@@ -1,10 +1,10 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useEffect, useContext} from "react";
 import "./HomePage.css";
 import axios from "axios";
 import {AuthContext} from "../../components/auth/Auth";
 import {Image} from "react-bootstrap";
 import BookCarousel from "../../components/bookcarousel/BookCarousel";
-import fetchPopularBooks from "../../components/fetchdata/fetchPopularBooks";
+import fetchPopularBooks from "../../api/fetchdata/fetchPopularBooks";
 
 const HomePage = () => {
     const userEmail = localStorage.getItem('userEmail');

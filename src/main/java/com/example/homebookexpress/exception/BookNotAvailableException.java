@@ -2,6 +2,6 @@ package com.example.homebookexpress.exception;
 
 public class BookNotAvailableException extends RuntimeException{
     public BookNotAvailableException(String bookTitle) {
-        super(bookTitle + " not available");
+        super(" Cartea " + bookTitle + " nu este disponibilă");
     }
 }

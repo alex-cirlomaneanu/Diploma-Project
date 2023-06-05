@@ -1,9 +1,10 @@
-import React from "react";
-import { Card } from "react-bootstrap";
+import React, {useState} from "react";
+import {Button, Card} from "react-bootstrap";
+import RentalHandler from "../rental/RentBook";
 
-const BookPageDetails = ({ book, userEmail, handleRental }) => {
+const BookPageDetails = ({ book }) => {
     const authorName = book.author?.authorName;
-
+    const [, setShow] = useState(false);
     return (
         <div className="book-details-container">
             <Card className="book-details-card">
@@ -43,13 +44,14 @@ const BookPageDetails = ({ book, userEmail, handleRental }) => {
                             <p>Cartea nu a fost împrumutată încă</p>
                         )}
                         <Card.Text>
-                            {book.availableCopies !== 0 && (
-                                <button
-                                    className="btn btn-primary"
-                                    onClick={() => handleRental(book.title, userEmail)}
-                                >
-                                    Împrumută
-                                </button>
+                            {book.availableCopies === 0 ?
+                                (
+                                    <Button variant="outline-danger">
+                                        Cartea nu poate fi împrumutată
+                                    </Button>
+                                ) :
+                                (
+                                <RentalHandler bookTitle={book.title} />
                             )}
                         </Card.Text>
                     </Card.Text>

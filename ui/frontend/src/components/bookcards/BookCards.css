@@ -4,6 +4,10 @@
     margin: auto 0;
 }
 
+.card-container {
+    /*width: 270px; !* Adjust the height as needed *!*/
+}
+
 .book-card {
     width: 90%;
     height: 100%;
