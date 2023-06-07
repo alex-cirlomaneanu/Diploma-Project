@@ -28,4 +28,13 @@ public interface RentalRepository extends JpaRepository<Rental, UUID> {
                     "AND r.returnedStatus = false"
     )
     Optional<Rental> getRentalByUserEmailAndBookTitle(String userEmail, String bookTitle);
+
+    @Query(
+            "SELECT b from " +
+                    "rental r, books b, app_users u " +
+                    "WHERE r.book.bookId = b.bookId " +
+                    "AND r.user.userId = u.userId " +
+                    "AND u.email = ?1 "
+    )
+    List<Book> getRentalsByUserEmail(String userEmail);
 }

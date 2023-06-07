@@ -47,11 +47,29 @@ public class AppUserService implements UserDetailsService {
         return appUser;
     }
 
-    public List<String> getBookHistory(UUID userId) {
+    public List<Book> getBookHistory(UUID userId) {
         return appUserRepository.getBookHistoryByUserId(userId);
     }
 
     public String getUserNameByUserEmail(String userEmail) {
         return appUserRepository.getUserNameByEmail(userEmail).getFirstname();
     }
+
+    public AppUser editAppUser(EditUserDTO editUserDTO) {
+        UUID userId = editUserDTO.getUserId();
+
+        AppUser appUser = appUserRepository.getAppUserByUserId(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
+
+        // Update the user information
+        appUser.setFirstname(editUserDTO.getFirstname());
+        appUser.setLastname(editUserDTO.getLastname());
+        appUser.setEmail(editUserDTO.getEmail());
+        appUser.setPhoneNumber(editUserDTO.getPhoneNumber());
+        appUser.setBirthDate(editUserDTO.getBirthDate());
+
+        // Save the updated user
+        return appUserRepository.save(appUser);
+    }
+
 }

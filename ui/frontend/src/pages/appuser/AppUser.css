@@ -1,0 +1,33 @@
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+}
+
+.personal-info {
+    grid-area: 1 / 1 / 5 / 2;
+    margin-left: 100px;
+}
+
+.book-history {
+    margin-left: 100px;
+    margin-right: 100px;
+    grid-area: 1 / 2 / 5 / 5;
+    max-width: 880px;
+    height: 500px;
+}
+
+.buttons {
+    grid-area: 1 / 5 / 5 / 6;
+    display: flex;
+    flex-direction: column;
+    /*justify-content: space-evenly;*/
+    align-items: center;
+}
+
+.buttons button {
+    margin-top: 10px;
+    width: 200px;
+}

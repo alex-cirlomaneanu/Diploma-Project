@@ -1,6 +1,9 @@
 const getDate = (date) => {
-    const localDate = new Date(date[0], date[1], date[2]);
-    return new Intl.DateTimeFormat('ro-RO', {dateStyle: 'medium'}).format(localDate);
+    const date1 = new Date(date);
+    const day = date1.getDate();
+    const month = date1.getMonth();
+    const year = date1.getFullYear();
+    return `${day}-${month}-${year}`;
 }
 
 export default getDate;

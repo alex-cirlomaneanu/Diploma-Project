@@ -5,11 +5,14 @@
     text-align: center;
     padding: 10px;
     border: none;
+    max-height: 450px;
+    min-height: 300px;
+    justify-content: space-between;
 }
 
 .book-card-carousel img {
     width: 100%;
-    height: auto;
+    max-height: 390px;
     object-fit: cover;
 }
 

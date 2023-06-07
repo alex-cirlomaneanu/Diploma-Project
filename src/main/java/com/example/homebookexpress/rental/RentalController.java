@@ -24,7 +24,6 @@ import java.util.UUID;
 @SecurityRequirement(name = "Bearer Authentication")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RentalController {
-    @Autowired
     private RentalService rentalService;
 
     @PostMapping("/rent-book")
@@ -56,6 +55,15 @@ public class RentalController {
         try {
             Rental rental = rentalService.getRentalByUserEmailAndBookTitle(userEmail, bookTitle);
             return ResponseEntity.ok(rental);
+        } catch (RentalNotFound e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/get-rentals-by-user")
+    public ResponseEntity<?> getRentalsByUser(@RequestParam String userEmail) {
+        try {
+            return ResponseEntity.ok(rentalService.getRentalsByUserEmail(userEmail));
         } catch (RentalNotFound e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -81,6 +82,10 @@ public class RentalService {
         } else {
             return (Rental) rental.get();
         }
+    }
+
+    public List<Book> getRentalsByUserEmail(String userEmail) {
+        return rentalRepository.getRentalsByUserEmail(userEmail);
     }
 }
 

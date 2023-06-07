@@ -6,6 +6,10 @@
 
 .card-container {
     /*width: 270px; !* Adjust the height as needed *!*/
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .book-card {

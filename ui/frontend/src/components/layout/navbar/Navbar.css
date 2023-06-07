@@ -18,6 +18,9 @@
     font-size: 18px;
     text-decoration: none;
     margin-left: 20px;
+    /*border-radius: 10px;*/
+    /*border: white 1px solid;*/
+    text-align: center;
 }
 
 .nav-link:hover {

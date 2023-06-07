@@ -19,14 +19,14 @@ public interface AppUserRepository extends JpaRepository<AppUser, UUID> {
 
     @Query(
             value = """
-                SELECT b.title
+                SELECT b.*
                 FROM homebook.books b, homebook.rental r
                 WHERE r.book_id = b.book_id
                 AND r.user_id = ?1
             """,
             nativeQuery = true
     )
-    List<String> getBookHistoryByUserId(UUID userId);
+    List<Book> getBookHistoryByUserId(UUID userId);
 
     AppUser getUserNameByEmail(String email);
 }

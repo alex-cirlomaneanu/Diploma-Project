@@ -79,47 +79,46 @@ function Register() {
         <div className="register-container">
             <h2>Înregistrare</h2>
             <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="email">
+                <Form.Group controlId="email" className={"custom-form-group"}>
                     <Form.Label>Email</Form.Label>
                     <br/>
                     <Form.Control type={'text'} id={'email'} value={email} onChange={(event) => setEmail(event.target.value)}
                     placeholder={"@email"}/>
                 </Form.Group>
-                <Form.Group controlId="password">
+                <Form.Group controlId="password" className={"custom-form-group"}>
                     <Form.Label>Parola</Form.Label>
                     <br/>
                     <Form.Control type="password" value={password} onChange={(event) => { handlePassword(event)}}
                                   placeholder={"********"}/>
-                    <br/>
-                    {password &&
-                        <Form.Text className="password-strength">{passwordStrength}</Form.Text>
-                    }
                 </Form.Group>
-                <Form.Group controlId="firstname">
+                <Form.Group controlId="firstname" className={"custom-form-group"}>
                     <Form.Label>Prenume</Form.Label>
                     <br/>
                     <Form.Control type="text" value={firstname} onChange={(event) => setFirstname(event.target.value)}
                     placeholder={"Ion"}/>
                 </Form.Group>
-                <Form.Group controlId="lastname">
+                <Form.Group controlId="lastname" className={"custom-form-group"}>
                     <Form.Label>Nume de familie</Form.Label>
                     <br/>
                     <Form.Control type="text" value={lastname} onChange={(event) => setLastname(event.target.value)}
                     placeholder={"Popescu"}/>
                 </Form.Group>
-                <Form.Group controlId="phoneNumber">
+                <Form.Group controlId="phoneNumber" className={"custom-form-group"}>
                     <Form.Label>Număr de telefon</Form.Label>
                     <br/>
                     <Form.Control type="text" value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)}
                     placeholder={"07123123123"}/>
                 </Form.Group>
-                <Form.Group controlId="birthDate">
+                <Form.Group controlId="birthDate" className={"custom-form-group"}>
                     <Form.Label>Data nașterii</Form.Label>
                     <br/>
                     <Form.Control type="date" value={birthDate} onChange={(event) => setBirthDate(event.target.value)}
                     placeholder={"01-01-1970"}/>
                 </Form.Group>
                 <Button className="register-button" variant="primary" type="submit">Înregistreză-te</Button>
+                {password &&
+                    <Form.Text className="password-strength">{passwordStrength}</Form.Text>
+                }
             </Form>
         </div>
     );
