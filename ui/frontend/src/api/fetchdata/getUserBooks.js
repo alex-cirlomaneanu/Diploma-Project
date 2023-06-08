@@ -16,7 +16,6 @@ const useFetchUserBooks = (userEmail) => {
                     }
                 );
                 setBooks(response.data);
-                console.log(books);
             } catch (error) {
                 console.error(error);
             }

@@ -45,7 +45,6 @@ public class SecurityConfiguration {
             "/api/v1/book/deletebook",
             "/api/v1/authors/deleteauthor",
             "/api/v1/bookgenre/deletebookgenre",
-            "/api/v1/appuser/deleteuser"
     };
 
     private static final String[] ADMIN_PUT = {

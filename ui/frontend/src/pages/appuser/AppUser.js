@@ -9,6 +9,7 @@ import getUserData from "../../api/fetchdata/getUserData";
 import getUserBooks from "../../api/fetchdata/getUserBooks";
 import EditProfileModal from "../../components/editprofilemodal/EditProfileModal";
 import getDate from "../../components/calendardate/calendardate";
+import DeleteProfileModal from "../../components/deleteprofilemodal/DeleteProfileModal";
 
 function AppUser() {
     const authContext = useContext(AuthContext);
@@ -21,19 +22,19 @@ function AppUser() {
     const handleCloseEditModal = () => setShowEditModal(false);
     const handleShowEditModal = () => setShowEditModal(true);
 
-    const handleCloseDeleteModal = () => setShowDeleteModal(false);
+    const handleCloseDeleteModal = () => {
+        setShowDeleteModal(false);
+    };
     const handleShowDeleteModal = () => setShowDeleteModal(true);
 
     const handleCloseChangePasswordModal = () => setShowChangePasswordModal(false);
     const handleShowChangePasswordModal = () => setShowChangePasswordModal(true);
 
 
-    console.log(userBooks);
     if (!authContext.authenticated) {
         authContext.navigate("/login");
     }
 
-    console.log(user);
     return (
         <div className={"profile"}>
             <div className="personal-info">
@@ -41,6 +42,12 @@ function AppUser() {
                     show={showEditModal}
                     handleClose={handleCloseEditModal}
                     user={user}
+                />
+                <DeleteProfileModal
+                    show={showDeleteModal}
+                    handleClose={handleCloseDeleteModal}
+                    authContext={authContext}
+                    userId={user.userId}
                 />
                 <h1>Profil</h1>
                 <br/>
@@ -58,9 +65,15 @@ function AppUser() {
             <div className={"book-history"}>
                 <h1>Istoric comenzi</h1>
                 <br/>
-                <div className="book-caorusel-container">
-                    <BookCarousel books={userBooks}/>
-                </div>
+                {
+                    (userBooks.length === 0) ? (
+                        <p>Nu ai comandat nicio carte încă.</p>
+                        ) : (
+                        <div className="book-caorusel-container">
+                            <BookCarousel books={userBooks}/>
+                        </div>
+                    )
+                }
             </div>
             <div className={"buttons"}>
                 <h1>Acțiuni profil</h1>
@@ -71,7 +84,7 @@ function AppUser() {
                 <br/>
                 <Button variant="secondary" onClick={() => authContext.navigate("/userbooks")}>Comenzile mele</Button>
                 <br/>
-                <Button variant="danger" onClick={() => authContext.navigate("/deleteprofile")}>Șterge profil</Button>
+                <Button variant="danger" onClick={() => handleShowDeleteModal()}>Șterge profil</Button>
             </div>
         </div>
     );

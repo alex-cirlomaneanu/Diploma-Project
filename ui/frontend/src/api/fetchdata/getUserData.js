@@ -16,7 +16,6 @@ const useFetchUser = (userEmail) => {
                     }
                 );
                 setUser(response.data);
-                console.log(user);
             } catch (error) {
                 console.error(error);
             }

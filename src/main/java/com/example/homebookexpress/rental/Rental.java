@@ -30,8 +30,7 @@ public class Rental {
     private AppUser user;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "book_id")
     private Book book;
 

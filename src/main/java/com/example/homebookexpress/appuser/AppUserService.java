@@ -2,6 +2,7 @@ package com.example.homebookexpress.appuser;
 
 import com.example.homebookexpress.book.Book;
 import com.example.homebookexpress.exception.UserNotFoundException;
+import com.example.homebookexpress.rental.Rental;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -41,6 +42,14 @@ public class AppUserService implements UserDetailsService {
     public AppUser deleteAppUser(UUID userId) {
         AppUser appUser = appUserRepository.getAppUserByUserId(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
+        // Delete associated rental records
+        List<Rental> rentals = appUser.getRentals();
+        for (Rental rental : rentals) {
+            rental.setUser(null); // Remove the association with the user
+        }
+        appUserRepository.save(appUser); // Save the changes to update the rental associations
+
+        appUserRepository.delete(appUser); // Delete the user
 
         appUserRepository.delete(appUser);
 

@@ -67,17 +67,6 @@ const EditProfileModal = ({ show, handleClose, user }) => {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="email">
-                        <Form.Label>Email</Form.Label>
-                        <br/>
-                        <Form.Control
-                            type="text"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                        />
-                    </Form.Group>
-
                     <Form.Group controlId="phoneNumber">
                         <Form.Label>Număr de telefon</Form.Label>
                         <br/>
