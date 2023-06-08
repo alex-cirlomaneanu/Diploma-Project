@@ -21,7 +21,7 @@ const useFetchUser = (userEmail) => {
             }
         }
 
-        fetchData().then(r => console.log(r));
+        fetchData().then(r => r);
     }, []);
     return user;
 }

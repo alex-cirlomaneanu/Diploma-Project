@@ -21,7 +21,7 @@ const useFetchUserBooks = (userEmail) => {
             }
         }
 
-        fetchData().then(r => console.log(r));
+        fetchData().then(r => r);
     }, []);
     return books;
 }

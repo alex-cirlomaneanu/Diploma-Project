@@ -6,7 +6,7 @@ import HomePage from "./pages/homepage/HomePage";
 import {AuthProvider} from "./components/auth/Auth";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import AppUser from "./pages/appuser/AppUser";
+import Profile from "./pages/profile/Profile";
 import Books from "./pages/books/Books";
 import AboutUs from "./pages/aboutus/AboutUs";
 import BookPage from "./pages/bookpage/BookPage";
@@ -14,6 +14,7 @@ import SearchResults from "./pages/searchresults/SearchResults";
 import Admin from "./pages/admin/Admin";
 import AllBooks from "./pages/admin/allbooks/AllBooks";
 import AllUsers from "./pages/admin/allusers/AllUsers";
+import UserRentals from "./components/userrentalsmodal/UserRentals";
 
 
 function Logout() {
@@ -26,7 +27,7 @@ function App() {
                 <Route path="/" element={<WebsiteLayout><HomePage /></WebsiteLayout>} />
                 <Route path="/login" element={<WebsiteLayout><Login /></WebsiteLayout>} />
                 <Route path="/register" element={<WebsiteLayout><Register /></WebsiteLayout>} />
-                <Route path="/profile" element={<WebsiteLayout><AppUser /></WebsiteLayout>} />
+                <Route path="/profile" element={<WebsiteLayout><Profile /></WebsiteLayout>} />
                 <Route path="/logout" element={<WebsiteLayout><Logout/></WebsiteLayout>} />
                 <Route path="/books" element={<WebsiteLayout><Books /></WebsiteLayout>} />
                 <Route path={"books/:bookId"} element={<WebsiteLayout><BookPage /></WebsiteLayout>} />

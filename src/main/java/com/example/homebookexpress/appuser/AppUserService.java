@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -79,6 +80,21 @@ public class AppUserService implements UserDetailsService {
 
         // Save the updated user
         return appUserRepository.save(appUser);
+    }
+
+    public List<RentalDTO> getUserRentals(UUID userId) {
+        List<RentalProjection> rentalProjections = appUserRepository.getRentalsByUserId(userId);
+        List<RentalDTO> rentalDTOS = new ArrayList<>();
+
+        for (RentalProjection rentalProjection : rentalProjections) {
+            RentalDTO rentalDTO = new RentalDTO();
+            rentalDTO.setTitle(rentalProjection.getTitle());
+            rentalDTO.setRentalDate(rentalProjection.getRentalDate());
+            rentalDTO.setReturnDate(rentalProjection.getReturnDate());
+            rentalDTOS.add(rentalDTO);
+        }
+
+        return rentalDTOS;
     }
 
 }

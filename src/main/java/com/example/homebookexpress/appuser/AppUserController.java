@@ -1,6 +1,7 @@
 package com.example.homebookexpress.appuser;
 
 import com.example.homebookexpress.book.Book;
+import com.example.homebookexpress.rental.Rental;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -52,5 +53,10 @@ public class AppUserController {
     @PutMapping("/edituser")
     public AppUser editAppUser(@RequestBody EditUserDTO editUserDTO) {
         return appUserService.editAppUser(editUserDTO);
+    }
+
+    @GetMapping("/getuserentals")
+    public List<RentalDTO> getUserRentals(@RequestParam("userId") UUID userId) {
+        return appUserService.getUserRentals(userId);
     }
 }

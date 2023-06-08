@@ -1,0 +1,19 @@
+.modal-content {
+    align-items: center;
+    width: 700px;
+    max-height: 800px;
+    background-color: #fff;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.thead {
+    width: 700px;
+    max-height: 800px;
+}
+
+

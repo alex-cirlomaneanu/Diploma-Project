@@ -6,7 +6,6 @@ import deleteUserData from "../../api/fetchdata/deleteUserData";
 
 const DeleteProfileModal = ({ show, handleClose, authContext, userId }) => {
     const [operationIsSuccessfull, setOperationIsSuccessfull] = useState(false);
-    console.log(userId);
     useEffect(() => {
         if (operationIsSuccessfull) {
             authContext.navigate("/");
