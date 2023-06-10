@@ -10,4 +10,5 @@ public class RentalDTO {
     private String title;
     private LocalDate rentalDate;
     private LocalDate returnDate;
+    private Boolean status;
 }

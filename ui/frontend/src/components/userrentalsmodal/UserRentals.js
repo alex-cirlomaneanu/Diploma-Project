@@ -1,19 +1,50 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Table, Button, Modal} from "react-bootstrap";
 import getUserRentals from "../../api/fetchdata/getUserRentals";
 import PaginationBar from "../pagination/Pagination";
 import "./UserRentals.css";
+import getDate from "../calendardate/calendardate";
+import axios from "axios";
 
 const UserRentals = ({ show, handleClose, userId} ) => {
     const rentals = getUserRentals(userId);
     const [currentPage, setCurrentPage] = useState(1);
-    const [rentalsPerPage] = useState(10);
+    const [rentalsPerPage] = useState(7);
     const indexOfLastRental = currentPage * rentalsPerPage;
     const indexOfFirstRental = indexOfLastRental - rentalsPerPage;
     const currentRentals = rentals.slice(indexOfFirstRental, indexOfLastRental);
+    const [isOperationSuccessful, setIsOperationSuccessful] = useState(false);
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
+    }
+
+
+    useEffect(() => {
+        if (isOperationSuccessful) {
+            window.location.reload();
+        }
+    }, [isOperationSuccessful]);
+    
+    const handleReturn = async (rental) => {
+        try {
+            const url = "http://localhost:8080/api/v1/rentals/return-book";
+            const response = await axios.post(
+                url,
+                {
+                    bookTitle: rental.title,
+                    userEmail: localStorage.getItem("userEmail"),
+                },
+                {
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                }
+            );
+            setIsOperationSuccessful(true);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
@@ -28,14 +59,37 @@ const UserRentals = ({ show, handleClose, userId} ) => {
                             <th>Titlul cartii</th>
                             <th>Data imprumutului</th>
                             <th>Data returnarii</th>
+                            <th>Statut</th>
                         </tr>
                         </thead>
                         <tbody>
                         {currentRentals.map((rental) => (
                             <tr key={rental.rentalId}>
                                 <td>{rental.title}</td>
-                                <td>{rental.rentalDate}</td>
-                                <td>{rental.returnDate}</td>
+                                <td>{getDate(rental.rentalDate)}</td>
+                                <td>{getDate(rental.returnDate)}</td>
+                                <>{rental.status ?
+                                    (
+                                        <>
+                                            <td>
+                                                    Returnata
+                                            </td>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <td>
+                                                <Button variant="danger" disabled>
+                                                    Prelungeste
+                                                </Button>
+                                            </td>
+                                            <td>
+                                                <Button variant="success" onClick={() => handleReturn(rental)}>
+                                                    Returneaza
+                                                </Button>
+                                            </td>
+                                        </>
+                                    )
+                                }</>
                             </tr>
                         ))}
                         </tbody>

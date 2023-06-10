@@ -1,6 +1,15 @@
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    max-width: 1000px;
+    max-height: 800px;
+}
+
 .modal-content {
     align-items: center;
-    width: 700px;
+    width: 900px;
+    max-width: 1000px;
     max-height: 800px;
     background-color: #fff;
 }

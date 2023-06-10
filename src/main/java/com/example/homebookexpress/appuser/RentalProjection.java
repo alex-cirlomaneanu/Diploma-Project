@@ -6,4 +6,5 @@ public interface RentalProjection {
     String getTitle();
     LocalDate getRentalDate();
     LocalDate getReturnDate();
+    Boolean getStatus();
 }

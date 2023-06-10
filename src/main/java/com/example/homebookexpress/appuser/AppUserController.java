@@ -5,6 +5,8 @@ import com.example.homebookexpress.rental.Rental;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,5 +60,11 @@ public class AppUserController {
     @GetMapping("/getuserentals")
     public List<RentalDTO> getUserRentals(@RequestParam("userId") UUID userId) {
         return appUserService.getUserRentals(userId);
+    }
+
+    @PostMapping("/changepassword")
+    public void changePassword(@RequestParam("userId") UUID userId, @RequestParam("newPassword") String newPassword) {
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        appUserService.changePassword(userId, passwordEncoder.encode(newPassword));
     }
 }

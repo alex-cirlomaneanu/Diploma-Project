@@ -91,10 +91,15 @@ public class AppUserService implements UserDetailsService {
             rentalDTO.setTitle(rentalProjection.getTitle());
             rentalDTO.setRentalDate(rentalProjection.getRentalDate());
             rentalDTO.setReturnDate(rentalProjection.getReturnDate());
+            rentalDTO.setStatus(rentalProjection.getStatus());
             rentalDTOS.add(rentalDTO);
         }
 
         return rentalDTOS;
+    }
+
+    public void changePassword(UUID userId, String newPassword) {
+        appUserRepository.changePassword(userId, newPassword);
     }
 
 }
