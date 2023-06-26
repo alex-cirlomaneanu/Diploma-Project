@@ -2,8 +2,8 @@ import {useState, useEffect} from "react";
 import axios from "axios";
 
 /**
- * Fetches all authors from the database.
- * @returns {Array} An array of authors.
+ * Fetches all popular books from the database.
+ * @returns {Array} An array of popular books.
  */
 const useFetchAuthors = () => {
     const [authors, setAuthors] = useState([]);

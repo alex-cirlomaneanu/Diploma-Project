@@ -1,11 +1,10 @@
 import React, {useState, useEffect, useContext} from "react";
 import axios from "axios";
 import {AuthContext} from "../../components/auth/Auth";
-import {Card} from "react-bootstrap";
 import {useParams} from "react-router";
 import "./BookPage.css";
-import BookPageImage from "../../components/bookpageimage/BookPageImage";
-import BookPageDetails from "../../components/bookpagedetails/BookPageDetails";
+import BookPageImage from "../../components/bookpage/bookpageimage/BookPageImage";
+import BookPageDetails from "../../components/bookpage/bookpagedetails/BookPageDetails";
 
 const BookPage = () => {
     const params = useParams();
@@ -14,7 +13,8 @@ const BookPage = () => {
     const authorName = book.author != null ? book.author.authorName : "";
     const bookGenres = Array.isArray(book.bookGenres)
         ? book.bookGenres.map(genre => genre.genreName).join(", ")
-        : "";
+        : ""
+    const [similarBooks, setSimilarBooks] = useState([]);
 
     if (!authContext.authenticated) {
         authContext.navigate("/login");
@@ -45,17 +45,7 @@ const BookPage = () => {
         <div>
             <div className="book-page">
                 <BookPageImage book={book}/>
-                <BookPageDetails book={book} />
-                <div className="div3">
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Recomandări</Card.Title>
-                            <Card.Text>
-                                <p>Recomandări</p>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </div>
+                <BookPageDetails book={book}  />
             </div>
         </div>
     );

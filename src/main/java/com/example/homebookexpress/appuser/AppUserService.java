@@ -16,7 +16,6 @@ import java.util.UUID;
 @Service
 @AllArgsConstructor
 public class AppUserService implements UserDetailsService {
-
     private final AppUserRepository appUserRepository;
 
     @Override
@@ -24,11 +23,6 @@ public class AppUserService implements UserDetailsService {
         return appUserRepository.getAppUserByEmail(userEmail)
                 .orElseThrow(() ->
                         new UserNotFoundException(userEmail));
-    }
-
-    public AppUser getAppUserById(UUID userId) {
-        return appUserRepository.getAppUserByUserId(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
     }
 
     public AppUser getAppUserByEmail(String userEmail) {
@@ -43,14 +37,11 @@ public class AppUserService implements UserDetailsService {
     public AppUser deleteAppUser(UUID userId) {
         AppUser appUser = appUserRepository.getAppUserByUserId(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
-        // Delete associated rental records
         List<Rental> rentals = appUser.getRentals();
         for (Rental rental : rentals) {
-            rental.setUser(null); // Remove the association with the user
+            rental.setUser(null);
         }
-        appUserRepository.save(appUser); // Save the changes to update the rental associations
-
-        appUserRepository.delete(appUser); // Delete the user
+        appUserRepository.save(appUser);
 
         appUserRepository.delete(appUser);
 
@@ -77,6 +68,8 @@ public class AppUserService implements UserDetailsService {
         appUser.setEmail(editUserDTO.getEmail());
         appUser.setPhoneNumber(editUserDTO.getPhoneNumber());
         appUser.setBirthDate(editUserDTO.getBirthDate());
+        appUser.setAddress(editUserDTO.getAddress());
+        appUser.setBankAccount(editUserDTO.getBankAccount());
 
         // Save the updated user
         return appUserRepository.save(appUser);

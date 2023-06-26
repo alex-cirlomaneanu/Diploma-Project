@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.util.UUID;
 
-@Entity
+@Entity(name = "authors")
 @Getter @Setter @ToString @EqualsAndHashCode
 @Builder
 @AllArgsConstructor

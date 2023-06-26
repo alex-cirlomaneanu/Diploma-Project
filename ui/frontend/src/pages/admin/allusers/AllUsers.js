@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import {Button, Table} from "react-bootstrap";
-import fetchUsers from "../../../api/fetchdata/fetchUsers";
-import getDate from "../../../components/calendardate/calendardate";
-import PaginationBar from "../../../components/pagination/Pagination";
+import fetchUsers from "../../../api/fetchdata/appuser/fetchUsers";
+import getDate from "../../../api/calendardate/calendardate";
+import PaginationBar from "../../../components/general/pagination/Pagination";
 import axios from "axios";
-import DeleteConfirmationModal from "../../../components/modals/DeleteConfirmationModal";
+import DeleteConfirmationModal from "../../../components/adminmodals/DeleteConfirmationModal";
 
 /**
  * This component displays all the users in the database in a table.

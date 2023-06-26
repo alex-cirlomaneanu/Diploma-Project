@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Button, Modal} from "react-bootstrap";
-import getEmail from "../../api/fetchdata/getEmail";
+import getEmail from "../../api/fetchdata/appuser/getEmail";
 import getRental from "../../api/fetchdata/getRental";
 
 const RentalHandler = ({ bookTitle }) => {

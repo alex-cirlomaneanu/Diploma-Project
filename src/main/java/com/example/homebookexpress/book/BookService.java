@@ -8,6 +8,8 @@ import com.example.homebookexpress.exception.AuthorNotFoundException;
 import com.example.homebookexpress.exception.BookNotFoundException;
 import com.example.homebookexpress.rental.Rental;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -94,5 +96,14 @@ public class BookService {
 
     public List<Book> getPopularBooks() {
         return bookRepository.getPopularBooks();
+    }
+
+    public List<Book> findSimilarBooks(UUID bookId) {
+        Pageable pageable = PageRequest.of(0, 10);
+        return bookRepository.findSimilarBooks(bookId, pageable);
+    }
+
+    public List<Book> getPopularBooksByGenre(String genreName) {
+        return bookRepository.getPopularBooksByGenre(genreName);
     }
 }

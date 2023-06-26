@@ -3,8 +3,8 @@ import "./HomePage.css";
 import axios from "axios";
 import {AuthContext} from "../../components/auth/Auth";
 import {Image} from "react-bootstrap";
-import BookCarousel from "../../components/bookcarousel/BookCarousel";
-import fetchPopularBooks from "../../api/fetchdata/fetchPopularBooks";
+import BookCarousel from "../../components/bookpage/bookcarousel/BookCarousel";
+import fetchPopularBooks from "../../api/fetchdata/books/fetchPopularBooks";
 
 const HomePage = () => {
     const userEmail = localStorage.getItem('userEmail');
@@ -75,7 +75,7 @@ const HomePage = () => {
     return (
         <div className="home-page">
             <div className="bookshelf">
-                <Image src="/top-view-books-arrangement.jpg" alt={"bookshelf"} fluid/>
+                <Image src="/bookshelf2.avif" alt={"bookshelf"} fluid layout={"responsive"}/>
             </div>
             <div className="info-div">
                 <br/>

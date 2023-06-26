@@ -73,4 +73,12 @@ public class BookController {
     ) {
         return ResponseEntity.ok(bookService.getBooksByTitleLike(bookTitle));
     }
+
+    @GetMapping("/findsimilarbooks")
+    @Secured(value = {"ADMIN", "USER"})
+    public ResponseEntity<Iterable> findSimilarBooks(
+            @RequestParam("bookId") UUID bookId
+    ) throws BookNotFoundException {
+        return ResponseEntity.ok(bookService.findSimilarBooks(bookId));
+    }
 }

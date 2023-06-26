@@ -1,10 +1,10 @@
 import React, {useState, useContext} from "react";
-import fetchBooks from "../../api/fetchdata/fetchBooks";
+import fetchBooks from "../../api/fetchdata/books/fetchBooks";
 import {AuthContext} from "../../components/auth/Auth";
 import {Row} from "react-bootstrap";
-import PaginationBar from "../../components/pagination/Pagination";
+import PaginationBar from "../../components/general/pagination/Pagination";
 import "./Books.css";
-import BookCard from "../../components/bookcards/BookCards";
+import BookCard from "../../components/bookpage/bookcards/BookCards";
 
 /**
  * This component displays all the books in the database.

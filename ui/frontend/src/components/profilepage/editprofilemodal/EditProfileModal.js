@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Modal, Button, Form} from "react-bootstrap";
 import "./EditProfileModal.css";
-import getDate from "../calendardate/calendardate";
-import editUserData from "../../api/fetchdata/editUserData";
+import getDate from "../../../api/calendardate/calendardate";
+import editUserData from "../../../api/fetchdata/appuser/editUserData";
 
 const EditProfileModal = ({ show, handleClose, user }) => {
     const [formData, setFormData] = useState({});

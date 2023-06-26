@@ -45,4 +45,8 @@ public class BookGenreService {
         return bookGenreRepository.findBookGenreByGenreName(bookGenreName)
                 .orElseThrow(() -> new BookGenreNotFound(bookGenreName));
     }
+
+    public List<BookGenre> getAllBookGenres() {
+        return bookGenreRepository.findAll();
+    }
 }

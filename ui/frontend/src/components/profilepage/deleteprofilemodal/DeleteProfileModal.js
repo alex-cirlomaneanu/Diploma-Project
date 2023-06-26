@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Modal, Button, Form} from "react-bootstrap";
 import "./DeleteProfileModal.css";
-import getDate from "../calendardate/calendardate";
-import deleteUserData from "../../api/fetchdata/deleteUserData";
+import getDate from "../../../api/calendardate/calendardate";
+import deleteUserData from "../../../api/fetchdata/appuser/deleteUserData";
 
 const DeleteProfileModal = ({ show, handleClose, authContext, userId }) => {
     const [operationIsSuccessfull, setOperationIsSuccessfull] = useState(false);

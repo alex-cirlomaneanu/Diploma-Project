@@ -1,5 +1,6 @@
 package com.example.homebookexpress.authors;
 
+import com.example.homebookexpress.book.Book;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
@@ -11,7 +12,7 @@ import java.util.List;
 @RestController
 @Controller
 @AllArgsConstructor
-@RequestMapping(path = "/api/v1/author")
+@RequestMapping(path = "/api/v1/authors")
 @SecurityRequirement(name = "Bearer Authentication")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AuthorController {
@@ -23,18 +24,18 @@ public class AuthorController {
 
     @PostMapping("/addauthor")
     @Secured(value = "ADMIN")
-    public void addAuthor(String authorName) {
+    public void addAuthor(@RequestParam("authorName") String authorName) {
         authorService.addAuthor(authorName);
     }
 
     @DeleteMapping("/deleteauthor")
     @Secured(value = "ADMIN")
-    public void deleteAuthor(String authorName) {
+    public void deleteAuthor(@RequestParam("authorName") String authorName) {
         authorService.deleteAuthor(authorName);
     }
 
-    @PostMapping("/getallbooksbyauthorname")
-    public List<String> getAllBooksByAuthorName(String name) {
+    @GetMapping("/getallbooksbyauthorname")
+    public List<Book> getAllBooksByAuthorName(@RequestParam("authorName") String name) {
         return authorService.getAllBooksByAuthorName(name);
     }
 

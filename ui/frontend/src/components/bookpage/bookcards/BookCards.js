@@ -10,9 +10,9 @@ const BookCard = ({book, index}) => {
                     <Link className={"text-decoration-none"} to={`/books/${book.bookId}`}>
                         <Card className="book-card bg-transparent border-1" style={{ height: "100%"}}>
                             {book.bookImage === null ? (
-                                <Card.Img variant="top" src="/book-cover.jpg" />
+                                <Card.Img variant="top" src="/book-cover.avif" alt={book.title}/>
                             ) : (
-                               <Card.Img variant="top" src={book.bookImage} />
+                               <Card.Img variant="top" src={book.bookImage} alt={book.title}/>
                             )}
                             <Card.Body className={"card-body"}>
                                 <Card.Title className={"card-title"}>{book.title}</Card.Title>

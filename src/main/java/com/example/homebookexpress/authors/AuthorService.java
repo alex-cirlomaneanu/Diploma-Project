@@ -1,5 +1,6 @@
 package com.example.homebookexpress.authors;
 
+import com.example.homebookexpress.book.Book;
 import com.example.homebookexpress.exception.AuthorNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class AuthorService {
         authorRepository.delete(author);
     }
 
-    public List<String> getAllBooksByAuthorName(String name) {
+    public List<Book> getAllBooksByAuthorName(String name) {
         return authorRepository.getAllBooksByAuthorName(name);
     }
 

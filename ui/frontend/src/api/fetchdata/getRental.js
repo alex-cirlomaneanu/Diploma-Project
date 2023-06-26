@@ -21,7 +21,6 @@ const useFetchRental = (bookTitle, userEmail) => {
 
                 setRental(response.data);
             } catch (error) {
-                console.log(error.response)
             }
         }
         if (bookTitle && userEmail) {

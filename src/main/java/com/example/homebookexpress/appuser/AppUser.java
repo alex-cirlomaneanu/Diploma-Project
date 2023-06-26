@@ -65,6 +65,20 @@ public class AppUser implements UserDetails {
     )
     private LocalDate birthDate;
 
+    @Column(
+            name = "address",
+            nullable = false,
+            columnDefinition = "VARCHAR(255)"
+    )
+    private String address;
+
+    @Column(
+            name = "bank_account",
+            nullable = false,
+            columnDefinition = "VARCHAR(255)"
+    )
+    private String bankAccount;
+
     @Enumerated(EnumType.STRING)
     private AppUserRole role;
 

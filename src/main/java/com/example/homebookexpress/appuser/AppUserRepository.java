@@ -3,11 +3,8 @@ package com.example.homebookexpress.appuser;
 
 import com.example.homebookexpress.book.Book;
 import com.example.homebookexpress.exception.UserNotFoundException;
-import com.example.homebookexpress.rental.Rental;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,26 +13,22 @@ import java.util.UUID;
 
 @Repository
 public interface AppUserRepository extends JpaRepository<AppUser, UUID> {
-
     Optional<AppUser> getAppUserByEmail(String email);
 
     Optional<AppUser> getAppUserByUserId(UUID userId);
 
-    @Query(
-            value = """
+    @Query(value = """
                 SELECT b.*
                 FROM homebook.books b, homebook.rental r
                 WHERE r.book_id = b.book_id
                 AND r.user_id = ?1
             """,
-            nativeQuery = true
-    )
+            nativeQuery = true)
     List<Book> getBookHistoryByUserId(UUID userId);
 
     AppUser getUserNameByEmail(String email);
 
-    @Query(
-            value = """
+    @Query(value = """
                 SELECT b.title, r.rental_date as rentalDate,
                 r.return_date as returnDate, r.returned_status as status
                 FROM homebook.rental r, homebook.app_users u, homebook.books b
@@ -44,8 +37,7 @@ public interface AppUserRepository extends JpaRepository<AppUser, UUID> {
                 AND r.user_id = ?
                 ORDER BY r.rental_date DESC, r.returned_status ASC
             """,
-            nativeQuery = true
-    )
+            nativeQuery = true)
     List<RentalProjection> getRentalsByUserId(UUID userId);
 
     default void changePassword(UUID userId, String newPassword) {

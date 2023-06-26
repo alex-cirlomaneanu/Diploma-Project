@@ -7,7 +7,7 @@ const BookPageImage = ({ book }) => {
             <Card className="book-image-card">
                 <Card.Body>
                     {book.bookImage === null ? (
-                        <img src="/book-cover.jpg" alt={book.title} />
+                        <img src="/book-cover.avif" alt={book.title} />
                     ) : (
                         <img src={book.bookImage} alt={book.title} />
                     )}

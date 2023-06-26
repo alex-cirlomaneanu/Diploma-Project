@@ -3,15 +3,15 @@ import axios from 'axios';
 import {AuthContext} from "../../components/auth/Auth";
 import './Profile.css';
 import {Button} from "react-bootstrap";
-import BookCarousel from "../../components/bookcarousel/BookCarousel";
-import getEmail from "../../api/fetchdata/getEmail";
-import getUserData from "../../api/fetchdata/getUserData";
-import getUserBooks from "../../api/fetchdata/getUserBooks";
-import EditProfileModal from "../../components/editprofilemodal/EditProfileModal";
-import getDate from "../../components/calendardate/calendardate";
-import DeleteProfileModal from "../../components/deleteprofilemodal/DeleteProfileModal";
-import UserRentals from "../../components/userrentalsmodal/UserRentals";
-import ChangePasswordModal from "../../components/changepasswordmodal/ChangePasswordModal";
+import BookCarousel from "../../components/bookpage/bookcarousel/BookCarousel";
+import getEmail from "../../api/fetchdata/appuser/getEmail";
+import getUserData from "../../api/fetchdata/appuser/getUserData";
+import getUserBooks from "../../api/fetchdata/appuser/getUserBooks";
+import EditProfileModal from "../../components/profilepage/editprofilemodal/EditProfileModal";
+import getDate from "../../api/calendardate/calendardate";
+import DeleteProfileModal from "../../components/profilepage/deleteprofilemodal/DeleteProfileModal";
+import UserRentals from "../../components/profilepage/userrentalsmodal/UserRentals";
+import ChangePasswordModal from "../../components/profilepage/changepasswordmodal/ChangePasswordModal";
 
 function Profile() {
     const authContext = useContext(AuthContext);
@@ -68,11 +68,11 @@ function Profile() {
                 {/*<h2>Informații personale</h2>*/}
                 <p>Prenume: {user.firstname}</p>
                 <p>Nume: {user.lastname}</p>
-                <p>Email: {user.email}</p>
+                <p>Email: alexandru.ion@gmail.com</p>
                 <p>Număr de telefon: {user.phoneNumber}</p>
                 <p>Data nașterii: {getDate(user.birthDate)}</p>
                 {/*<h1>Adresa</h1>*/}
-                <p>Adresă de livrare: ---</p>
+                <p>Adresă de livrare: Bucuresti, Splaiul Independetei, 290</p>
                 {/*<h2>Comenzi</h2>*/}
                 {/*<p>Comenzi: {user.orders}</p>*/}
             </div>

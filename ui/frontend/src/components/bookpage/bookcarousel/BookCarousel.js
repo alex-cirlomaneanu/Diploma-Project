@@ -16,9 +16,9 @@ const BookCarousel = ({ books }) => {
                                 <Link className="link-to-book" to={`/books/${book.bookId}`}>
                                     <Card className="book-card-carousel bg-transparent">
                                         {book.bookImage === null ? (
-                                            <Card.Img variant="top" src="/book-cover.jpg" />
+                                            <Card.Img variant="top" src="/book-cover.avif" alt={book.title}/>
                                         ) : (
-                                            <Card.Img variant="top" src={book.bookImage} />
+                                            <Card.Img variant="top" src={book.bookImage} alt={book.title}/>
                                         )}
                                         <Card.Body className="book-card-carousel-body">
                                             <Card.Title className="book-card-carousel-title">{book.title}</Card.Title>

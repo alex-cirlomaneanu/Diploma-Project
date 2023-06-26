@@ -32,11 +32,6 @@ public class AppUserController {
         return appUserService.getAppUsers();
     }
 
-    @GetMapping("/getusernamebyuseremail")
-    public String getUserNameByUserEmail(@RequestParam("userEmail") String userEmail) {
-        return appUserService.getUserNameByUserEmail(userEmail);
-    }
-
     @GetMapping("/userdetalis/{userEmail}")
     public AppUser getAppUserByEmail(@PathVariable @RequestParam("userEmail") String userEmail) {
         return appUserService.getAppUserByEmail(userEmail);
@@ -57,14 +52,19 @@ public class AppUserController {
         return appUserService.editAppUser(editUserDTO);
     }
 
-    @GetMapping("/getuserentals")
-    public List<RentalDTO> getUserRentals(@RequestParam("userId") UUID userId) {
-        return appUserService.getUserRentals(userId);
-    }
-
     @PostMapping("/changepassword")
     public void changePassword(@RequestParam("userId") UUID userId, @RequestParam("newPassword") String newPassword) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         appUserService.changePassword(userId, passwordEncoder.encode(newPassword));
+    }
+
+    @GetMapping("/getusernamebyuseremail")
+    public String getUserNameByUserEmail(@RequestParam("userEmail") String userEmail) {
+        return appUserService.getUserNameByUserEmail(userEmail);
+    }
+
+    @GetMapping("/getuserentals")
+    public List<RentalDTO> getUserRentals(@RequestParam("userId") UUID userId) {
+        return appUserService.getUserRentals(userId);
     }
 }

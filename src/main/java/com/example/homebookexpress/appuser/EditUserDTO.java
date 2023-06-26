@@ -14,4 +14,6 @@ public class EditUserDTO {
     private String lastname;
     private String phoneNumber;
     private LocalDate birthDate;
+    private String address;
+    private String bankAccount;
 }

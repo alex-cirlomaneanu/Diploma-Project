@@ -24,4 +24,9 @@ public class PopularBookController {
         return ResponseEntity.ok(bookService.getPopularBooks());
     }
 
+    @GetMapping("/getpopularbooksbygenre")
+    public ResponseEntity<Iterable> getPopularBooksByGenre(String genreName) {
+        return ResponseEntity.ok(bookService.getPopularBooksByGenre(genreName));
+    }
+
 }

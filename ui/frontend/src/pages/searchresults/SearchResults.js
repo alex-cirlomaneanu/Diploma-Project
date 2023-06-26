@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {useLocation} from "react-router";
-import BookCard from "../../components/bookcards/BookCards";
+import BookCard from "../../components/bookpage/bookcards/BookCards";
 import {Col, Row} from "react-bootstrap";
-import PaginationBar from "../../components/pagination/Pagination"
+import PaginationBar from "../../components/general/pagination/Pagination"
 
 const SearchResults = () => {
     const location = useLocation();

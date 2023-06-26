@@ -32,6 +32,8 @@ public class AuthenticationService {
                 .phoneNumber(request.getPhoneNumber())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(AppUserRole.USER)
+                .address(request.getAddress())
+                .bankAccount(request.getBankAccount())
                 .build();
         appUserRepository.save(newUser);
         String jwtToken = jwtService.generateToken(newUser);

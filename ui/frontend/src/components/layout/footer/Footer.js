@@ -14,8 +14,8 @@ function Footer() {
                         <span><i className="fas fa-envelope"></i> &nbsp; </span>
                     </div>
                     <div className="socials">
-                        <a href="src/components/layout/footer#"><i className="fab fa-facebook"></i></a>
-                        <a href="src/components/layout/footer#"><i className="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/"><i className="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/"><i className="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div className="footer-section links">
@@ -25,7 +25,7 @@ function Footer() {
                         <a href="src/components/layout/footer#"><li>Evenimente</li></a>
                         <a href="src/components/layout/footer#"><li>Termeni și condiții</li></a>
                         <a href="src/components/layout/footer#"><li>Politica de confidențialitate</li></a>
-                        <a href="src/components/layout/footer#"><li>Despre noi</li></a>
+                        <a href="/about"><li>Despre noi</li></a>
                         <a href="src/components/layout/footer#"><li>Contact</li></a>
                     </ul>
                 </div>

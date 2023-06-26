@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import { Table, Button, Modal} from "react-bootstrap";
-import getUserRentals from "../../api/fetchdata/getUserRentals";
-import PaginationBar from "../pagination/Pagination";
+import getUserRentals from "../../../api/fetchdata/appuser/getUserRentals";
+import PaginationBar from "../../general/pagination/Pagination";
 import "./UserRentals.css";
-import getDate from "../calendardate/calendardate";
+import getDate from "../../../api/calendardate/calendardate";
 import axios from "axios";
 
 const UserRentals = ({ show, handleClose, userId} ) => {
@@ -50,16 +50,16 @@ const UserRentals = ({ show, handleClose, userId} ) => {
     return (
             <Modal show={show} onHide={handleClose} >
                 <Modal.Header closeButton>
-                    <Modal.Title>Cartile inchiriate de tine</Modal.Title>
+                    <Modal.Title>Cărțile închiriate de tine</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="user-rentals-modal">
                     <Table striped bordered hover>
                         <thead>
                         <tr>
-                            <th>Titlul cartii</th>
-                            <th>Data imprumutului</th>
-                            <th>Data returnarii</th>
-                            <th>Statut</th>
+                            <th>Titlul cărții</th>
+                            <th>Data împrumutului</th>
+                            <th>Data returnării</th>
+                            <th>Statut / Acțiuni împrumut</th>
                         </tr>
                         </thead>
                         <tbody>

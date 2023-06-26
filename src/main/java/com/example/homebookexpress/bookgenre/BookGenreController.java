@@ -23,7 +23,7 @@ public class BookGenreController {
         bookGenreService.addBookGenre(bookGenreName);
     }
 
-    @PostMapping("/getallbooksbygenrename")
+    @GetMapping("/getallbooksbygenrename")
     public List<String> getAllBooksByGenreName(String genreName) {
         return bookGenreService.getAllBooksByGenreName(genreName);
     }
@@ -43,5 +43,10 @@ public class BookGenreController {
     @GetMapping("/getbookgenrebygenrename")
     public BookGenre getBookGenreByGenreName(String bookGenreName) {
         return bookGenreService.getBookGenreByGenreName(bookGenreName);
+    }
+
+    @GetMapping("/getallbookgenres")
+    public List<BookGenre> getAllBookGenres() {
+        return bookGenreService.getAllBookGenres();
     }
 }

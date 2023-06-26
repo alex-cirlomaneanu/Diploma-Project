@@ -13,6 +13,10 @@
     text-decoration: none;
 }
 
+.navbar-brand:hover {
+    color: coral;
+}
+
 .nav-link {
     color: #ffffff;
     font-size: 18px;

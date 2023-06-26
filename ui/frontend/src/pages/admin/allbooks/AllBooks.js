@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {Button, Form, InputGroup, Table} from "react-bootstrap";
-import fetchBooks from "../../../api/fetchdata/fetchBooks";
-import PaginationBar from "../../../components/pagination/Pagination";
+import fetchBooks from "../../../api/fetchdata/books/fetchBooks";
+import PaginationBar from "../../../components/general/pagination/Pagination";
 import axios from "axios";
-import DeleteConfirmationModal from "../../../components/modals/DeleteConfirmationModal";
+import DeleteConfirmationModal from "../../../components/adminmodals/DeleteConfirmationModal";
 
 /**
  * This component displays all the books in the database in a table.
@@ -89,22 +89,22 @@ const AllBooks = () => {
                 onCancel={handleCancelDelete}
             />
 
-            <Form onSubmit className="mb-3">
-                <InputGroup>
-                    <Form.Control
-                        type="search"
-                        placeholder="Caută o carte"
-                        value={searchTerm}
-                        onChange={(event) => setSearchTerm(event.target.value)}
-                    />
-                    <Button variant="outline-primary" type="submit">
-                        Caută
-                    </Button>
-                    <Button variant="outline-secondary" onClick={handleReset} >
-                        Reset
-                    </Button>
-                </InputGroup>
-            </Form>
+            {/*<Form onSubmit className="mb-3">*/}
+            {/*    <InputGroup>*/}
+            {/*        <Form.Control*/}
+            {/*            type="search"*/}
+            {/*            placeholder="Caută o carte"*/}
+            {/*            value={searchTerm}*/}
+            {/*            onChange={(event) => setSearchTerm(event.target.value)}*/}
+            {/*        />*/}
+            {/*        <Button variant="outline-primary" type="submit">*/}
+            {/*            Caută*/}
+            {/*        </Button>*/}
+            {/*        <Button variant="outline-secondary" onClick={handleReset} >*/}
+            {/*            Reset*/}
+            {/*        </Button>*/}
+            {/*    </InputGroup>*/}
+            {/*</Form>*/}
 
             <Table striped bordered hover>
                 <thead>
