@@ -31,7 +31,8 @@ const NavBar = () => {
                                                 title={"Cărți"}
                                             >
                                                     <NavDropdown.Item href="/books">Toate cărțile</NavDropdown.Item>
-                                                    <NavDropdown.Item href="/books/authors">Cele mai populare cărți</NavDropdown.Item>
+                                                    <NavDropdown.Item href="/books/popularbooks">Cele mai populare cărți</NavDropdown.Item>
+                                                    <NavDropdown.Item href="/genres">Toate genurile</NavDropdown.Item>
                                             </NavDropdown>
                                         </Nav>
                                         <Nav.Link href="/profile" >Profil</Nav.Link>

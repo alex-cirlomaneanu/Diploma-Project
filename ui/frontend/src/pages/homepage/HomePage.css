@@ -62,9 +62,10 @@
     height: 172px;
 }
 
-.logo {
+.logo-home {
     width: 100%;
     scale: 50%;
+    height: 250px;
 }
 
 .explore {

@@ -49,7 +49,7 @@ const BookPageDetails = ({ book }) => {
                                 <ul>
                                     {book.bookGenres.map((genre) => (
                                         <li key={genre.genreId}>
-                                            <b>{genre.genreName}</b>
+                                            <a href={`/genres/${genre.genreName}`}><b>{genre.genreName}</b></a>
                                         </li>
                                     ))}
                                 </ul>

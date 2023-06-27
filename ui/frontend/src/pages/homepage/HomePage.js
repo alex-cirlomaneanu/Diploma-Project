@@ -87,7 +87,8 @@ const HomePage = () => {
                     dorite.</p>
                 <p className="description">Daca nu stii ce sa citesti, poti sa arunci o privire la cartile
                     recomandate.</p>
-                <p className={"description"}><Image className={"logo"} src="/logo3.jpg" alt={"logo"}/></p>
+                <br/>
+                <p className={"description"}><Image className={"logo-home"} src="/logo3.jpg" alt={"logo"}/></p>
                 <p className={"description"}> Cartile populare </p>
                 <div className="popular-books">
                     <BookCarousel books={books}/>

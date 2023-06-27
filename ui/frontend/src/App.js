@@ -16,6 +16,8 @@ import AllBooks from "./pages/admin/allbooks/AllBooks";
 import AllUsers from "./pages/admin/allusers/AllUsers";
 import Genres from "./pages/genres/Genres";
 import Authors from "./pages/popular books/PopularBooks";
+import PopularBooks from "./pages/popular books/PopularBooks";
+import GenrePage from "./pages/genrepage/GenrePage";
 
 
 function Logout() {
@@ -33,8 +35,9 @@ function App() {
                    <Route path="/logout" element={<WebsiteLayout><Logout/></WebsiteLayout>} />
                    <Route path="/books" element={<WebsiteLayout><Books /></WebsiteLayout>} />
                    <Route path={"books/:bookId"} element={<WebsiteLayout><BookPage /></WebsiteLayout>} />
-                   <Route path="/books/authors" element={<WebsiteLayout><Authors /></WebsiteLayout>} />
-                   <Route path="/books/genres" element={<WebsiteLayout><Genres /></WebsiteLayout>} />
+                   <Route path="/books/popularbooks" element={<WebsiteLayout><PopularBooks /></WebsiteLayout>} />
+                   <Route path="/genres" element={<WebsiteLayout><Genres /></WebsiteLayout>} />
+                   <Route path="/genres/:genreName" element={<WebsiteLayout><GenrePage /></WebsiteLayout>} />
                    <Route path="/about" element={<WebsiteLayout><AboutUs /></WebsiteLayout>} />
                    <Route path="/searchresults/:searchTerm" element={<WebsiteLayout><SearchResults /></WebsiteLayout>} />
                    <Route path="/admin" element={<WebsiteLayout><Admin /></WebsiteLayout>} />
