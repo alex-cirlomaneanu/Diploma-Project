@@ -1,5 +1,6 @@
 package com.example.homebookexpress.bookgenre;
 
+import com.example.homebookexpress.book.Book;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
@@ -24,7 +25,7 @@ public class BookGenreController {
     }
 
     @GetMapping("/getallbooksbygenrename")
-    public List<String> getAllBooksByGenreName(String genreName) {
+    public List<Book> getAllBooksByGenreName(String genreName) {
         return bookGenreService.getAllBooksByGenreName(genreName);
     }
 

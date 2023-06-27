@@ -1,5 +1,6 @@
 package com.example.homebookexpress.bookgenre;
 
+import com.example.homebookexpress.book.Book;
 import com.example.homebookexpress.exception.BookGenreNotFound;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class BookGenreService {
         bookGenreRepository.save(bookGenre);
     }
 
-    public List<String> getAllBooksByGenreName(String genreName) {
+    public List<Book> getAllBooksByGenreName(String genreName) {
         return bookGenreRepository.getAllBooksByGenreName(genreName);
     }
 
