@@ -15,9 +15,10 @@ import Admin from "./pages/admin/Admin";
 import AllBooks from "./pages/admin/allbooks/AllBooks";
 import AllUsers from "./pages/admin/allusers/AllUsers";
 import Genres from "./pages/genres/Genres";
-import Authors from "./pages/popular books/PopularBooks";
 import PopularBooks from "./pages/popular books/PopularBooks";
+import Authors from "./pages/authors/Authors";
 import GenrePage from "./pages/genrepage/GenrePage";
+import AuthorPage from "./pages/authorpage/AuthorPage";
 
 
 function Logout() {
@@ -38,6 +39,8 @@ function App() {
                    <Route path="/books/popularbooks" element={<WebsiteLayout><PopularBooks /></WebsiteLayout>} />
                    <Route path="/genres" element={<WebsiteLayout><Genres /></WebsiteLayout>} />
                    <Route path="/genres/:genreName" element={<WebsiteLayout><GenrePage /></WebsiteLayout>} />
+                   <Route path="/authors" element={<WebsiteLayout><Authors /></WebsiteLayout>} />
+                   <Route path="/authors/:authorName" element={<WebsiteLayout><AuthorPage /></WebsiteLayout>} />
                    <Route path="/about" element={<WebsiteLayout><AboutUs /></WebsiteLayout>} />
                    <Route path="/searchresults/:searchTerm" element={<WebsiteLayout><SearchResults /></WebsiteLayout>} />
                    <Route path="/admin" element={<WebsiteLayout><Admin /></WebsiteLayout>} />

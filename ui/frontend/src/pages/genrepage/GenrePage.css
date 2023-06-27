@@ -1,0 +1,15 @@
+.genre-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.genre-page li {
+    cursor: pointer;
+}
+
+.genre-page li:hover {
+    background-color: #f1f1f1;
+    color: #0056b3;
+}

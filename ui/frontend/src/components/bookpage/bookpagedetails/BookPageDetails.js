@@ -40,7 +40,7 @@ const BookPageDetails = ({ book }) => {
                     <br />
                     <Card.Text>
                         <p>
-                            Autor: <b>{authorName}</b>
+                            Autor: <a href={`/authors/${authorName}`}><b>{authorName}</b></a>
                         </p>
                         <br />
                         <p>

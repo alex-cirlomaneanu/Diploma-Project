@@ -83,6 +83,9 @@ const PopularBooks = () => {
                                             <a className="dropdown-item" href={`/books/${book.bookId}`}>{book.title} - {book.author.authorName}</a>
                                         </li>
                                     ))}
+                                    <li>
+                                        <a href={`/books`}><b>Vezi toate cărțile</b></a>
+                                    </li>
                                 </ul>
                             </div>
                         )

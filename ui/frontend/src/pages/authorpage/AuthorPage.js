@@ -1,17 +1,17 @@
 import React, {useState, useContext} from "react";
-import "./GenrePage.css";
 import {useParams} from "react-router";
-import fetchBookByGenre from "../../api/fetchdata/books/fetchBookByGenre";
+import fetchBookByAuthor from "../../api/fetchdata/books/fetchBookByAuthor";
+import "./AuthorPage.css"
 
-const GenrePage = () => {
+const AuthorPage = () => {
     const params = useParams();
-    const genreName = params.genreName;
-    const books = fetchBookByGenre(genreName);
+    const authorName = params.authorName;
+    const books = fetchBookByAuthor(authorName);
     console.log(books)
 
     return (
-        <div className={"genre-page"}>
-            <h1>{genreName}</h1>
+        <div className={"author-page"}>
+            <h1>{authorName}</h1>
             <ul>
                 {books.map(book => (
                     <li key={book.bookId}>
@@ -26,4 +26,4 @@ const GenrePage = () => {
     );
 }
 
-export default GenrePage;
+export default AuthorPage;

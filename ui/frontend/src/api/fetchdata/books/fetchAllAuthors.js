@@ -5,17 +5,19 @@ import axios from "axios";
  * Fetches all popular books from the database.
  * @returns {Array} An array of popular books.
  */
-const useFetchAuthors = () => {
+const useFetchAllAuthors = () => {
     const [authors, setAuthors] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/api/v1/author/getallauthors", {
-                    headers: {
-                        Authorization: "Bearer " + localStorage.getItem('token')
-                    }
-                });
+                const url = `http://localhost:8080/api/v1/authors/getallauthors`;
+                const response = await axios.get(url,
+                    {
+                        headers: {
+                            Authorization: "Bearer " + localStorage.getItem("token")
+                        }
+                    });
                 setAuthors(response.data);
             } catch (error) {
                 console.error(error);
@@ -26,6 +28,6 @@ const useFetchAuthors = () => {
     }, []);
 
     return authors;
-};
+}
 
-export default useFetchAuthors();
+export default useFetchAllAuthors;
