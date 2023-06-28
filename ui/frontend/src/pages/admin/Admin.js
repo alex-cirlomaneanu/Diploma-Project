@@ -8,9 +8,9 @@ const Admin = () => {
             <h1>Admin</h1>
             <Button className="admin-button" href="/admin/allusers">Utilizatori</Button>
             <Button className="admin-button" href="/admin/allbooks">Cărți</Button>
-            <Button className="admin-button" href="/admin">Genuri</Button>
-            <Button className="admin-button" href="/admin">Autori</Button>
-            <Button className="admin-button" href="/admin">Împrumuturi</Button>
+            <Button className="admin-button" href="/admin/allgenres">Genuri</Button>
+            <Button className="admin-button" href="/admin/allauthors">Autori</Button>
+            <Button className="admin-button" href="/admin/allrentals">Împrumuturi</Button>
         </div>
     )
 }

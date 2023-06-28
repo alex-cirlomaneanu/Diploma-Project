@@ -1,10 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react';
-import axios from 'axios';
 import {AuthContext} from "../../components/auth/Auth";
 import './Profile.css';
 import {Button} from "react-bootstrap";
 import BookCarousel from "../../components/bookpage/bookcarousel/BookCarousel";
-import getEmail from "../../api/fetchdata/appuser/getEmail";
 import getUserData from "../../api/fetchdata/appuser/getUserData";
 import getUserBooks from "../../api/fetchdata/appuser/getUserBooks";
 import EditProfileModal from "../../components/profilepage/editprofilemodal/EditProfileModal";

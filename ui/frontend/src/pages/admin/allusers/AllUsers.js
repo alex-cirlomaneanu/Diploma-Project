@@ -5,6 +5,7 @@ import getDate from "../../../api/calendardate/calendardate";
 import PaginationBar from "../../../components/general/pagination/Pagination";
 import axios from "axios";
 import DeleteConfirmationModal from "../../../components/adminmodals/DeleteConfirmationModal";
+import EditProfileModal from "../../../components/profilepage/editprofilemodal/EditProfileModal";
 
 /**
  * This component displays all the users in the database in a table.
@@ -27,6 +28,11 @@ const AllUsers = () => {
     }
 
     const handleDelete = (user) => {
+        setShowModal(true);
+        setUserToDelete(user);
+    }
+
+    const handleEdit = (user) => {
         setShowModal(true);
         setUserToDelete(user);
     }
@@ -63,6 +69,11 @@ const AllUsers = () => {
                 onDelete={handleConfirmDelete}
                 onCancel={handleCancelDelete}
             />
+            <EditProfileModal
+                show={showModal}
+                user={userToDelete}
+                handleClose={handleCancelDelete}
+            />
             <Table striped bordered hover>
                 <thead>
                 <tr>
@@ -89,7 +100,7 @@ const AllUsers = () => {
                         <td>{getDate(user.birthDate)}</td>
                         <td>{user.rentals.length}</td>
                         <td>
-                            <Button variant="primary">Editează</Button>
+                            <Button variant="primary" onClick={() => handleEdit(user)}>Editează</Button>
                             <Button variant="danger" onClick={() => handleDelete(user)}>Șterge</Button>
                         </td>
                     </tr>

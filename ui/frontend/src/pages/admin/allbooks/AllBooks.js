@@ -4,6 +4,7 @@ import fetchBooks from "../../../api/fetchdata/books/fetchBooks";
 import PaginationBar from "../../../components/general/pagination/Pagination";
 import axios from "axios";
 import DeleteConfirmationModal from "../../../components/adminmodals/DeleteConfirmationModal";
+import EditBookModal from "../../../components/adminmodals/EditBookModal";
 
 /**
  * This component displays all the books in the database in a table.
@@ -16,11 +17,7 @@ const AllBooks = () => {
     const books = fetchBooks();
     const [currentPage, setCurrentPage] = useState(1);
     const [booksPerPage] = useState(12);
-    const [searchTerm, setSearchTerm] = useState("");
 
-    const handleReset = async () => {
-        setSearchTerm("");
-    };
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     }
@@ -29,30 +26,19 @@ const AllBooks = () => {
     const indexOfFirstBook = indexOfLastBook - booksPerPage;
     const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
 
-    const handleEdit = (book) => {
-        console.log("Edit book: ", book);
-        async function editBook() {
-            const response = await axios.put(`http://localhost:8080/api/v1/books/updatebook`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                },
-                body: JSON.stringify(book),
-            });
-            const data = await response.json();
-            console.log("Edit book response: ", data);
-        }
-        editBook().then(r => console.log("Edit book response: ", r));
-    }
+    const [showEditModal, setShowEditModal] = useState(false);
+    const handleCloseEditModal = () => setShowEditModal(false);
+    const handleShowEditModal = () => setShowEditModal(true);
+    const [bookToEdit, setBookToEdit] = useState(null);
 
-
-    const [showModal, setShowModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [deleteBookId, setDeleteBookId] = useState(null);
+
 
     const handleDelete = (book) => {
         console.log("Delete book: ", book);
         setDeleteBookId(book.bookId);
-        setShowModal(true);
+        setShowDeleteModal(true);
     };
 
     const handleConfirmDelete = () => {
@@ -72,40 +58,40 @@ const AllBooks = () => {
         } catch (error) {
             console.error(error);
         }
-        setShowModal(false);
+        setShowDeleteModal(false);
     }
 
     const handleCancelDelete = () => {
         setDeleteBookId(null);
-        setShowModal(false);
+        setShowDeleteModal(false);
     }
 
+    function handleEdit(book) {
+        handleShowEditModal();
+        setBookToEdit(book);
+        console.log("Edit book: ", bookToEdit);
+    }
+
+    console.log(showEditModal);
     return (
         <div>
             <h1>Toate cărțile</h1>
             <DeleteConfirmationModal
-                show={showModal}
+                show={showDeleteModal}
                 onDelete={handleConfirmDelete}
                 onCancel={handleCancelDelete}
             />
-
-            {/*<Form onSubmit className="mb-3">*/}
-            {/*    <InputGroup>*/}
-            {/*        <Form.Control*/}
-            {/*            type="search"*/}
-            {/*            placeholder="Caută o carte"*/}
-            {/*            value={searchTerm}*/}
-            {/*            onChange={(event) => setSearchTerm(event.target.value)}*/}
-            {/*        />*/}
-            {/*        <Button variant="outline-primary" type="submit">*/}
-            {/*            Caută*/}
-            {/*        </Button>*/}
-            {/*        <Button variant="outline-secondary" onClick={handleReset} >*/}
-            {/*            Reset*/}
-            {/*        </Button>*/}
-            {/*    </InputGroup>*/}
-            {/*</Form>*/}
-
+            <EditBookModal
+                show={showEditModal}
+                book={bookToEdit}
+                handleClose={handleCloseEditModal}
+            />
+            <Button
+                variant="primary"
+                onClick={() => handleShowEditModal()}
+            >
+                Adauga carte
+            </Button>
             <Table striped bordered hover>
                 <thead>
                 <tr>
@@ -116,6 +102,7 @@ const AllBooks = () => {
                     <th>Exemplare disponibile</th>
                     <th>Exemplare totale</th>
                     <th>Imprumuturi</th>
+                    <th>Acțiuni</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -133,7 +120,7 @@ const AllBooks = () => {
                         <td>
                             <Button variant="primary" onClick={() => handleEdit(book)}>
                                 Editare
-                            </Button>{' '}
+                            </Button>
                             <Button variant="danger" onClick={() => handleDelete(book)}>
                                 Ștergere
                             </Button>

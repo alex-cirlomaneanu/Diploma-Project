@@ -1,9 +1,10 @@
 import axios from "axios";
 
-const editUserData = (formData) => {
+const editBookData = (formData) => {
+    console.log("Edit book data: ", formData);
     let response = {};
     try {
-        const url =`http://localhost:8080/api/v1/appuser/edituser`;
+        const url =`http://localhost:8080/api/v1/book/updatebook`;
         response =
             axios.put(
                 url,
@@ -20,4 +21,4 @@ const editUserData = (formData) => {
     return response;
 }
 
-export default editUserData;``
+export default editBookData;``

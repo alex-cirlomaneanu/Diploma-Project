@@ -6,9 +6,10 @@ import editUserData from "../../../api/fetchdata/appuser/editUserData";
 
 const EditProfileModal = ({ show, handleClose, user }) => {
     const [formData, setFormData] = useState({});
-    const [operationIsSuccessfull, setOperationIsSuccessfull] = useState(false);
+    const [operationIsSuccessful, setOperationIsSuccessful] = useState(false);
 
     useEffect(() => {
+        if (!user) return;
         setFormData({
             userId: user.userId,
             firstname: user.firstname,
@@ -18,10 +19,10 @@ const EditProfileModal = ({ show, handleClose, user }) => {
             birthDate: user.birthDate,
         });
 
-        if (operationIsSuccessfull) {
+        if (operationIsSuccessful) {
             window.location.reload();
         }
-    }, [user, operationIsSuccessfull]);
+    }, [user, operationIsSuccessful]);
 
 
     const handleChange = (e) => {
@@ -34,7 +35,7 @@ const EditProfileModal = ({ show, handleClose, user }) => {
     const handleSubmit = () => {
         editUserData(formData);
         handleClose();
-        setOperationIsSuccessfull(true);
+        setOperationIsSuccessful(true);
     }
 
     return (

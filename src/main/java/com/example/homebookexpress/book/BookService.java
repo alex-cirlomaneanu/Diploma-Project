@@ -82,8 +82,13 @@ public class BookService {
     }
 
     public Book updateBook(BookRequest bookRequest) throws BookNotFoundException {
-        Book book = bookRepository.getBookByTitle(bookRequest.getTitle())
-                .orElseThrow(() -> new BookNotFoundException(bookRequest.getTitle()));
+        Book book = bookRepository.getBookByBookId(bookRequest.getBookId())
+                .orElseThrow(() -> new BookNotFoundException(bookRequest.getBookId()));
+        book.setTitle(bookRequest.getTitle());
+        book.setTotalCopies(bookRequest.getTotalCopies());
+        book.setAuthor(authorRepository.getAuthorByAuthorName(bookRequest.getAuthorName())
+                .orElseThrow(() -> new AuthorNotFoundException(bookRequest.getAuthorName())));
+        book.setBookGenres(genreRepository.getBookGenreByGenreNameIn(bookRequest.getGenreName()));
 
         bookRepository.save(book);
 

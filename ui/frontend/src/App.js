@@ -12,6 +12,7 @@ import AboutUs from "./pages/aboutus/AboutUs";
 import BookPage from "./pages/bookpage/BookPage";
 import SearchResults from "./pages/searchresults/SearchResults";
 import Admin from "./pages/admin/Admin";
+import AllAuthors from "./pages/admin/allauthors/AllAuthors";
 import AllBooks from "./pages/admin/allbooks/AllBooks";
 import AllUsers from "./pages/admin/allusers/AllUsers";
 import Genres from "./pages/genres/Genres";
@@ -19,6 +20,7 @@ import PopularBooks from "./pages/popular books/PopularBooks";
 import Authors from "./pages/authors/Authors";
 import GenrePage from "./pages/genrepage/GenrePage";
 import AuthorPage from "./pages/authorpage/AuthorPage";
+import AllGenres from "./pages/admin/allgenres/AllGenres";
 
 
 function Logout() {
@@ -46,6 +48,9 @@ function App() {
                    <Route path="/admin" element={<WebsiteLayout><Admin /></WebsiteLayout>} />
                    <Route path="/admin/allbooks" element={<WebsiteLayout><AllBooks /></WebsiteLayout>} />
                    <Route path="/admin/allusers" element={<WebsiteLayout><AllUsers /></WebsiteLayout>} />
+                   <Route path="/admin/allauthors" element={<WebsiteLayout><AllAuthors /></WebsiteLayout>} />
+                 <Route path="/admin/allrentals" element={<WebsiteLayout><h1>Împrumuturi</h1></WebsiteLayout>} />
+                    <Route path="/admin/allgenres" element={<WebsiteLayout><AllGenres /></WebsiteLayout>} />
                    <Route path={'*'} element={<WebsiteLayout><h1>Page not found</h1></WebsiteLayout>} />
                </>
             </Routes>
