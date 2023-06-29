@@ -35,7 +35,7 @@ public interface AppUserRepository extends JpaRepository<AppUser, UUID> {
                 WHERE r.user_id = u.user_id
                 AND r.book_id = b.book_id
                 AND r.user_id = ?
-                ORDER BY r.rental_date DESC, r.returned_status ASC
+                ORDER BY r.return_date DESC, r.returned_status ASC
             """,
             nativeQuery = true)
     List<RentalProjection> getRentalsByUserId(UUID userId);

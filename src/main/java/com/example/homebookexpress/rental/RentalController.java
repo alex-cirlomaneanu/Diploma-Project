@@ -50,6 +50,12 @@ public class RentalController {
         return ResponseEntity.ok(rental);
     }
 
+    @PostMapping("/extend-rental")
+    public ResponseEntity<Rental> extendRental(@RequestBody RentRequest rentRequest) {
+        Rental rental = rentalService.extendRental(rentRequest);
+        return ResponseEntity.ok(rental);
+    }
+
     @GetMapping("/get-rental")
     public ResponseEntity<?> getRental(@RequestParam String userEmail, @RequestParam String bookTitle) {
         try {

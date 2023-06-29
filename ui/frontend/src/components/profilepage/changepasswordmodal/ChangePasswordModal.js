@@ -8,6 +8,36 @@ const ChangePasswordModal = ({ show, handleClose, userId }) => {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [passwordStrength, setPasswordStrength] = useState('');
+    const [repeatedPassword, setRepeatedPassword] = useState(true);
+
+    const handlePassword = (event) => {
+        const password = event.target.value;
+        setNewPassword(password);
+        const strength = {
+            length: 0,
+            hasNumber: false,
+            hasLowerCase: false,
+            hasUpperCase: false
+        }
+
+        strength.length = password.length >= 8 ? 1 : 0;
+        strength.hasNumber = password.match(/[0-9]/) ? 1 : 0;
+        strength.hasLowerCase = password.match(/[a-z]/) ? 1 : 0;
+        strength.hasUpperCase = password.match(/[A-Z]/) ? 1 : 0;
+
+        if (strength.length + strength.hasNumber + strength.hasLowerCase + strength.hasUpperCase === 4) {
+            setPasswordStrength("Parola puternica");
+        } else if (strength.length === 0) {
+            setPasswordStrength("Parola prea scurta");
+        } else if (strength.hasNumber === 0) {
+            setPasswordStrength("Parola trebuie sa contina cel putin \n o cifra");
+        } else if (strength.hasUpperCase === 0) {
+            setPasswordStrength("Parola trebuie sa contina cel putin \n o litera mare");
+        } else {
+            setPasswordStrength("Parola trebuie sa contina cel putin \n o litera mica");
+        }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,6 +72,15 @@ const ChangePasswordModal = ({ show, handleClose, userId }) => {
         handleClose();
     };
 
+    const repeatPassword = (e) => {
+        setConfirmPassword(e.target.value);
+        if (e.target.value === newPassword) {
+            setRepeatedPassword(true);
+        } else {
+            setRepeatedPassword(false);
+        }
+    }
+
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -62,16 +101,22 @@ const ChangePasswordModal = ({ show, handleClose, userId }) => {
                         <Form.Control
                             type="password"
                             value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
+                            onChange={(e) => handlePassword(e)}
                         />
+                        {newPassword &&
+                            <Form.Text className="password-strength">{passwordStrength}</Form.Text>
+                        }
                     </Form.Group>
                     <Form.Group controlId="confirmPassword">
                         <Form.Label>Confirm New Password</Form.Label>
                         <Form.Control
                             type="password"
                             value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            onChange={(e) => repeatPassword(e)}
                         />
+                        {!repeatedPassword ?
+                            <Form.Text className="password-strength">Parolele nu coincid</Form.Text> : null
+                        }
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Change Password

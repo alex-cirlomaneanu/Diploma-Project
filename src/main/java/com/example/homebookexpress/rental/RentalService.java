@@ -87,5 +87,19 @@ public class RentalService {
     public List<Book> getRentalsByUserEmail(String userEmail) {
         return rentalRepository.getRentalsByUserEmail(userEmail);
     }
+
+    public Rental extendRental(RentRequest rentRequest) {
+        String bookTitle = rentRequest.getBookTitle();
+        String userEmail = rentRequest.getUserEmail();
+        Book book = bookRepository.getBookByTitle(bookTitle)
+                .orElseThrow(() -> new BookNotFoundException(bookTitle));
+        AppUser appUser = appUserRepository.getAppUserByEmail(userEmail)
+                .orElseThrow(() -> new BookNotFoundException(userEmail));
+        Rental rental = rentalRepository.getRentalByUserAndBookAndReturnedStatus(appUser, book, false)
+                .orElseThrow(() -> new RentalNotFound(userEmail, bookTitle));
+
+        rental.setReturnDate(rental.getReturnDate().plusDays(30));
+        return rentalRepository.save(rental);
+    }
 }
 

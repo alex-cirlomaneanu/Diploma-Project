@@ -47,6 +47,27 @@ const UserRentals = ({ show, handleClose, userId} ) => {
         }
     }
 
+    const handleExtension = async (rental)  => {
+        try {
+            const url = "http://localhost:8080/api/v1/rentals/extend-rental";
+            const response = await axios.post(
+                url,
+                {
+                    bookTitle: rental.title,
+                    userEmail: localStorage.getItem("userEmail"),
+                },
+                {
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                }
+            );
+            setIsOperationSuccessful(true);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
             <Modal show={show} onHide={handleClose} >
                 <Modal.Header closeButton>
@@ -78,12 +99,12 @@ const UserRentals = ({ show, handleClose, userId} ) => {
                                     ) : (
                                         <>
                                             <td>
-                                                <Button variant="danger" disabled>
+                                                <Button variant="outline-primary" onClick={() => handleExtension(rental)}>
                                                     Prelungeste
                                                 </Button>
                                             </td>
                                             <td>
-                                                <Button variant="success" onClick={() => handleReturn(rental)}>
+                                                <Button variant="outline-success" onClick={() => handleReturn(rental)}>
                                                     Returneaza
                                                 </Button>
                                             </td>

@@ -3,10 +3,25 @@ import {Modal, Button, Form} from "react-bootstrap";
 import "./EditProfileModal.css";
 import getDate from "../../../api/calendardate/calendardate";
 import editUserData from "../../../api/fetchdata/appuser/editUserData";
+import axios from "axios";
 
 const EditProfileModal = ({ show, handleClose, user }) => {
     const [formData, setFormData] = useState({});
     const [operationIsSuccessful, setOperationIsSuccessful] = useState(false);
+
+    const [isValid, setIsValid] = useState(true);
+
+    const handleBankAccount = (e) => {
+        const input = e.target.value;
+        const formattedInput = input.replace(/ /g, ''); // Elimină spațiile din numărul de card
+
+        handleChange(e);
+
+        // Verifică validitatea numărului de card
+        const regex = /^4\d{3}\s?\d{4}\s?\d{4}\s?\d{4}$/;
+        const isValidCardNumber = regex.test(formattedInput);
+        setIsValid(isValidCardNumber);
+    }
 
     useEffect(() => {
         if (!user) return;
@@ -16,6 +31,8 @@ const EditProfileModal = ({ show, handleClose, user }) => {
             lastname: user.lastname,
             email: user.email,
             phoneNumber: user.phoneNumber,
+            address: user.address,
+            bankAccount: user.bankAccount,
             birthDate: user.birthDate,
         });
 
@@ -89,6 +106,18 @@ const EditProfileModal = ({ show, handleClose, user }) => {
                             value={formData.birthDate}
                             onChange={handleChange}
                         />
+                    </Form.Group>
+
+                    <Form.Group controlId="bankAccount">
+                        <Form.Label>Număr de card</Form.Label>
+                        <br/>
+                        <Form.Control
+                            type="text"
+                            name="bankAccount"
+                            value={formData.bankAccount}
+                            onChange={handleBankAccount}
+                        />
+                        <p className={"card-number-validation"}>{isValid ? "Număr de card valid" : "Număr de card invalid"}</p>
                     </Form.Group>
 
                     {/* Add more fields as needed */}
