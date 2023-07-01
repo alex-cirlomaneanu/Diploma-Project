@@ -5,6 +5,7 @@ import getDate from "../../../api/calendardate/calendardate";
 import PaginationBar from "../../../components/general/pagination/Pagination";
 import axios from "axios";
 import DeleteConfirmationModal from "../../../components/adminmodals/DeleteConfirmationModal";
+import AddGenreModal from "../../../components/adminmodals/AddGenreModal";
 
 
 
@@ -18,6 +19,7 @@ const AllGenres = () => {
     const currentGenres = genres.slice(indexOfFirstGenre, indexOfLastGenre);
     const [showModal, setShowModal] = useState(false);
     const [genreToDelete, setGenreToDelete] = useState({});
+    const [showAddModal, setShowAddModal] = useState(false);
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -28,8 +30,23 @@ const AllGenres = () => {
         setGenreToDelete(genre);
     }
 
-    const handleConfirmDelete = () => {
-
+    const handleConfirmDelete = async () => {
+        try {
+            const url = `http://localhost:8080/api/v1/bookgenre/deletebookgenre?bookGenreName=${genreToDelete.genreName}`;
+            const response = await axios.delete(
+                url,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    }
+                });
+            console.log(response);
+            setShowModal(false);
+            setGenreToDelete(null);
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     const handleCancelDelete = () => {
@@ -37,9 +54,14 @@ const AllGenres = () => {
         setShowModal(false);
     }
 
+    const handleAdd = () => {
+        setShowAddModal(true);
+    }
+
     return (
         <div>
             <h1>Genuri</h1>
+            <Button variant="primary" onClick={() => handleAdd()}>Adaugă gen</Button>
             <Table striped bordered hover>
                 <thead>
                 <tr>
@@ -71,6 +93,10 @@ const AllGenres = () => {
             <DeleteConfirmationModal
                 show={showModal}
                 onDelete={handleConfirmDelete}
+                onCancel={handleCancelDelete}
+            />
+            <AddGenreModal
+                show={showAddModal}
                 onCancel={handleCancelDelete}
             />
         </div>

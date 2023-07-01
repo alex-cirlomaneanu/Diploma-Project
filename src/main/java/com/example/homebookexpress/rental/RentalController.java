@@ -74,4 +74,14 @@ public class RentalController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+
+    @GetMapping("/get-all-rentals")
+    @Secured(value = "ADMIN")
+    public ResponseEntity<?> getAllRentals() {
+        try {
+            return ResponseEntity.ok(rentalService.getAllRentals());
+        } catch (RentalNotFound e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 }

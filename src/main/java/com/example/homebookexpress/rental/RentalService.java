@@ -101,5 +101,9 @@ public class RentalService {
         rental.setReturnDate(rental.getReturnDate().plusDays(30));
         return rentalRepository.save(rental);
     }
+
+    public List<Rental> getAllRentals() {
+        return rentalRepository.findAll();
+    }
 }
 
