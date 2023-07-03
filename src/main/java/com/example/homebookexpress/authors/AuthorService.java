@@ -26,6 +26,12 @@ public class AuthorService {
     public void deleteAuthor(String authorName) {
         Author author = authorRepository.getAuthorByAuthorName(authorName)
                 .orElseThrow(() -> new AuthorNotFoundException(authorName));
+        List<Book> authorBooks = getAllBooksByAuthorName(authorName);
+        Author unkownAuthor = authorRepository.getAuthorByAuthorName("Necunoscut")
+                .orElseThrow(() -> new AuthorNotFoundException(authorName));
+        for (Book book : authorBooks) {
+            book.setAuthor(unkownAuthor);
+        }
         authorRepository.delete(author);
     }
 

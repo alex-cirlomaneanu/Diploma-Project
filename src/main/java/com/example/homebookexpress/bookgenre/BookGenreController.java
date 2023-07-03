@@ -20,8 +20,10 @@ public class BookGenreController {
 
     @PostMapping("/addbookgenre")
     @Secured(value = "ADMIN")
-    public void addBookGenre(String bookGenreName) {
-        bookGenreService.addBookGenre(bookGenreName);
+    public void addBookGenre(@RequestBody String bookGenreName) {
+        String bookGenreNameWithoutQuotes = bookGenreName.split(":")[1]
+                .replace("\"", "").replace("}", "");
+        bookGenreService.addBookGenre(bookGenreNameWithoutQuotes);
     }
 
     @GetMapping("/getallbooksbygenrename")

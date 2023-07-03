@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Button, Modal } from "react-bootstrap";
 
 const DeleteConfirmationModal = ({ show, onDelete, onCancel }) => {
@@ -7,13 +7,13 @@ const DeleteConfirmationModal = ({ show, onDelete, onCancel }) => {
             <Modal.Header closeButton>
                 <Modal.Title>Confirmation</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Are you sure you want to delete this book?</Modal.Body>
+            <Modal.Body>Stergeti cu siguranta acest obiect?</Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={onCancel}>
-                    Cancel
+                    Anuleaza
                 </Button>
                 <Button variant="danger" onClick={onDelete}>
-                    Delete
+                    Confirma
                 </Button>
             </Modal.Footer>
         </Modal>

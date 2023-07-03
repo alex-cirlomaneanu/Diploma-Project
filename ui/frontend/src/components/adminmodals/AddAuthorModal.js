@@ -3,17 +3,17 @@ import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 
-const AddGenreModal = ({ show, onCancel }) => {
+const AddAuthorModal = ({ show, onCancel }) => {
     const [formData, setFormData] = useState({});
     const [operationIsSuccessful, setOperationIsSuccessful] = useState(false);
 
     async function addGenreData(formData) {
         try {
-            const url = "http://localhost:8080/api/v1/bookgenre/addbookgenre";
+            const url = "http://localhost:8080/api/v1/authors/addauthor";
             const response = await axios.post(
                 url,
                 {
-                    genreName: formData.genreName
+                    authorName: formData.authorName
                 },
                 {
                     headers: {
@@ -28,15 +28,15 @@ const AddGenreModal = ({ show, onCancel }) => {
     }
 
     useEffect(() => {
-        setFormData(
-            {
-                genreName: ""
+            setFormData(
+                {
+                    authorName: ""
+                }
+            )
+            if (operationIsSuccessful) {
             }
-        )
-        if (operationIsSuccessful) {
         }
-    }
-    , [operationIsSuccessful]);
+        , [operationIsSuccessful]);
 
     const handleChange = (e) => {
         setFormData({
@@ -54,16 +54,16 @@ const AddGenreModal = ({ show, onCancel }) => {
     return (
         <Modal show={show} onHide={onCancel}>
             <Modal.Header closeButton>
-                  <Modal.Title>Adauga Gen</Modal.Title>
+                <Modal.Title>Adauga Autor</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="formGenreName">
-                        <Form.Label>Nume gen</Form.Label>
+                        <Form.Label>Nume complet autor</Form.Label>
                         <Form.Control
                             type="text"
-                            name={"genreName"}
-                            value={formData.genreName}
+                            name={"authorName"}
+                            value={formData.authorName}
                             onChange={handleChange}
                         />
                     </Form.Group>
@@ -81,4 +81,4 @@ const AddGenreModal = ({ show, onCancel }) => {
     );
 }
 
-export default AddGenreModal;
+export default AddAuthorModal;

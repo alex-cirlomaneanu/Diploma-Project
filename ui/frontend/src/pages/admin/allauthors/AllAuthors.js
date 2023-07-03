@@ -2,6 +2,9 @@ import React, {useState} from "react";
 import {Button, Table} from "react-bootstrap";
 import fetchAllAuthors from "../../../api/fetchdata/books/fetchAllAuthors";
 import PaginationBar from "../../../components/general/pagination/Pagination";
+import DeleteConfirmationModal from "../../../components/adminmodals/DeleteConfirmationModal";
+import axios from "axios";
+import AddAuthorModal from "../../../components/adminmodals/AddAuthorModal";
 
 const AllAuthors = () => {
     const authors = fetchAllAuthors();
@@ -12,19 +15,58 @@ const AllAuthors = () => {
     const indexOfFirstAuthor = indexOfLastAuthor - authorsPerPage;
     const currentAuthors = authors.slice(indexOfFirstAuthor, indexOfLastAuthor);
 
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [authorToDelete, setAuthorToDelete] = useState({});
+    const [showAddModal, setShowAddModal] = useState(false);
+
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
+    }
+
+    const handleDelete = (author) => {
+        setShowDeleteModal(true);
+        setAuthorToDelete(author);
+    }
+
+    const handleConfirmDelete = async () => {
+        try {
+            const url = `http://localhost:8080/api/v1/authors/deleteauthor?authorName=${authorToDelete.authorName}`;
+            const response = await axios.delete(
+                url,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    }
+                });
+            console.log(response);
+            setShowDeleteModal(false);
+            setAuthorToDelete(null);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const handleCancelDelete = () => {
+        setAuthorToDelete(null);
+        setShowDeleteModal(false);
+    }
+
+    const handleAdd = () => {
+        setShowAddModal(true);
     }
 
     return (
         <div className="container">
             <h1>Toti Autorii</h1>
+            <Button varaint="primary" onClick={() => handleAdd()}>Adauga autor</Button>
             <Table striped bordered hover>
                 <thead>
                 <tr>
                     <th>#</th>
                     <th>ID autor</th>
                     <th>Nume complet</th>
+                    <th>Acțiune</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,6 +75,9 @@ const AllAuthors = () => {
                         <td>{index + 1}</td>
                         <td>{author.authorId}</td>
                         <td>{author.authorName}</td>
+                        <td>
+                            <Button variant="danger" onClick={() => handleDelete(author)}>Șterge</Button>
+                        </td>
                     </tr>
                 ))}
                 </tbody>
@@ -43,6 +88,15 @@ const AllAuthors = () => {
                 currentPage={currentPage}
                 handlePageChange={handlePageChange}
             />
+            <DeleteConfirmationModal
+                show={showDeleteModal}
+                onDelete={handleConfirmDelete}
+                onCancel={handleCancelDelete}
+            />
+            <AddAuthorModal
+                show={showAddModal}
+                onCancel={handleCancelDelete}
+                />
         </div>
     )
 }

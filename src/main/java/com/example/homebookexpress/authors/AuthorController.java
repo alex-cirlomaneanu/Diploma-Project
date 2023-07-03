@@ -24,8 +24,10 @@ public class AuthorController {
 
     @PostMapping("/addauthor")
     @Secured(value = "ADMIN")
-    public void addAuthor(@RequestParam("authorName") String authorName) {
-        authorService.addAuthor(authorName);
+    public void addAuthor(@RequestBody String authorName) {
+        String authorNameTrimmed = authorName.split(":")[1]
+                .replace("\"", "").replace("}", "");
+        authorService.addAuthor(authorNameTrimmed);
     }
 
     @DeleteMapping("/deleteauthor")
