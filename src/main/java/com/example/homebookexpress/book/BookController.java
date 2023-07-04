@@ -20,7 +20,6 @@ import java.util.UUID;
 public class BookController {
     private final BookService bookService;
 
-
     @PostMapping("/addbook")
     @Secured(value = "ADMIN")
     public ResponseEntity<Book> addBook(

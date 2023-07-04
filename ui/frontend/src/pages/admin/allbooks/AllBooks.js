@@ -27,9 +27,9 @@ const AllBooks = () => {
     const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
 
     const [showEditModal, setShowEditModal] = useState(false);
-    const handleCloseEditModal = () => setShowEditModal(false);
-    const handleShowEditModal = () => setShowEditModal(true);
-    const [bookToEdit, setBookToEdit] = useState(null);
+    const [bookToEdit, setBookToEdit] = useState({});
+    const [author, setAuthor] = useState("");
+    const [genres, setGenres] = useState([]);
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [deleteBookId, setDeleteBookId] = useState(null);
@@ -67,12 +67,19 @@ const AllBooks = () => {
     }
 
     function handleEdit(book) {
-        handleShowEditModal();
+        setShowEditModal(true);
         setBookToEdit(book);
-        console.log("Edit book: ", bookToEdit);
+        setAuthor(book.author.authorName);
+        setGenres(book.bookGenres.map((genre) => genre.genreName));
     }
 
-    console.log(showEditModal);
+    const handleCloseEditModal = () => {
+        setShowEditModal(false);
+        setBookToEdit({});
+        setAuthor("");
+        setGenres([]);
+    }
+
     return (
         <div>
             <h1>Toate cărțile</h1>
@@ -85,6 +92,8 @@ const AllBooks = () => {
                 show={showEditModal}
                 book={bookToEdit}
                 handleClose={handleCloseEditModal}
+                author={author}
+                genres={genres}
             />
             <Button
                 variant="primary"

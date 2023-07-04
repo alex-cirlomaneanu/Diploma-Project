@@ -2,6 +2,7 @@ package com.example.homebookexpress.rental;
 
 import com.example.homebookexpress.appuser.AppUser;
 import com.example.homebookexpress.appuser.AppUserRepository;
+import com.example.homebookexpress.appuser.RentalProjection;
 import com.example.homebookexpress.book.Book;
 import com.example.homebookexpress.book.BookRepository;
 import com.example.homebookexpress.exception.BookAlreadyRentedException;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -102,8 +104,21 @@ public class RentalService {
         return rentalRepository.save(rental);
     }
 
-    public List<Rental> getAllRentals() {
-        return rentalRepository.findAll();
+    public List<AdminRentalDTO> getAllRentals() {
+        List<AdminRentalProjection> rentalProjections =  rentalRepository.getAllRentals();
+        List<AdminRentalDTO> adminRentalDTOS = new ArrayList<>();
+
+        for (AdminRentalProjection adminRentalProjection : rentalProjections) {
+            AdminRentalDTO adminRentalDTO = new AdminRentalDTO();
+            adminRentalDTO.setTitle(adminRentalProjection.getTitle());
+            adminRentalDTO.setUserEmail(adminRentalProjection.getEmail());
+            adminRentalDTO.setRentalDate(adminRentalProjection.getRentalDate());
+            adminRentalDTO.setReturnDate(adminRentalProjection.getReturnDate());
+            adminRentalDTO.setStatus(adminRentalProjection.getStatus());
+            adminRentalDTOS.add(adminRentalDTO);
+        }
+
+        return adminRentalDTOS;
     }
 }
 

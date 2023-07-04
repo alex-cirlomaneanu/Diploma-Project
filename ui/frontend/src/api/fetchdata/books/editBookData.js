@@ -4,6 +4,7 @@ const editBookData = (formData) => {
     console.log("Edit book data: ", formData);
     let response = {};
     try {
+        console.log("Edit book data: ", formData)
         const url =`http://localhost:8080/api/v1/book/updatebook`;
         response =
             axios.put(

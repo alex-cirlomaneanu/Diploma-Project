@@ -21,6 +21,7 @@ import Authors from "./pages/authors/Authors";
 import GenrePage from "./pages/genrepage/GenrePage";
 import AuthorPage from "./pages/authorpage/AuthorPage";
 import AllGenres from "./pages/admin/allgenres/AllGenres";
+import AllRentals from "./pages/admin/allrentals/AllRentals";
 
 
 function Logout() {
@@ -49,7 +50,7 @@ function App() {
                    <Route path="/admin/allbooks" element={<WebsiteLayout><AllBooks /></WebsiteLayout>} />
                    <Route path="/admin/allusers" element={<WebsiteLayout><AllUsers /></WebsiteLayout>} />
                    <Route path="/admin/allauthors" element={<WebsiteLayout><AllAuthors /></WebsiteLayout>} />
-                 <Route path="/admin/allrentals" element={<WebsiteLayout><h1>Împrumuturi</h1></WebsiteLayout>} />
+                 <Route path="/admin/allrentals" element={<WebsiteLayout><AllRentals /></WebsiteLayout>} />
                     <Route path="/admin/allgenres" element={<WebsiteLayout><AllGenres /></WebsiteLayout>} />
                    <Route path={'*'} element={<WebsiteLayout><h1>Page not found</h1></WebsiteLayout>} />
                </>

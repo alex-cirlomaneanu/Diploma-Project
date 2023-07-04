@@ -37,4 +37,17 @@ public interface RentalRepository extends JpaRepository<Rental, UUID> {
                     "AND u.email = ?1 "
     )
     List<Book> getRentalsByUserEmail(String userEmail);
+
+
+    @Query(value = """
+                SELECT b.title, r.rental_date as rentalDate,
+                r.return_date as returnDate, r.returned_status as status,
+                u.email
+                FROM homebook.rental r, homebook.app_users u, homebook.books b
+                WHERE r.user_id = u.user_id
+                AND r.book_id = b.book_id
+                ORDER BY r.return_date DESC, r.returned_status ASC
+            """,
+            nativeQuery = true)
+    List<AdminRentalProjection> getAllRentals();
 }
