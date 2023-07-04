@@ -75,7 +75,8 @@ const AllUsers = () => {
                 handleClose={handleCancelDelete}
             />
             <Table striped bordered hover>
-                <thead>
+
+                <tbody>
                 <tr>
                     <th>#</th>
                     <th>Nume</th>
@@ -87,8 +88,6 @@ const AllUsers = () => {
                     <th>Împrumuturi</th>
                     <th>Acțiuni</th>
                 </tr>
-                </thead>
-                <tbody>
                 {currentUsers.map((user, index) => (
                     <tr key={index}>
                         <td>{index + 1}</td>

@@ -4,10 +4,13 @@ import fetchAllAuthors from "../../../api/fetchdata/books/fetchAllAuthors";
 import PaginationBar from "../../../components/general/pagination/Pagination";
 import DeleteConfirmationModal from "../../../components/adminmodals/DeleteConfirmationModal";
 import axios from "axios";
-import AddAuthorModal from "../../../components/adminmodals/AddAuthorModal";
+import AddAuthorModal from "../../../components/adminmodals/allauthors/AddAuthorModal";
+import EditAuthorModal from "../../../components/adminmodals/allauthors/EditAuthorModal";
 
 const AllAuthors = () => {
-    const authors = fetchAllAuthors();
+    const authors1 = fetchAllAuthors();
+    const authors = authors1.sort((a, b) => a.authorName.localeCompare(b.authorName));
+
     const [currentPage, setCurrentPage] = useState(1);
     const [authorsPerPage] = useState(10);
 
@@ -18,6 +21,9 @@ const AllAuthors = () => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [authorToDelete, setAuthorToDelete] = useState({});
     const [showAddModal, setShowAddModal] = useState(false);
+
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [authorToEdit, setAuthorToEdit] = useState({});
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -56,20 +62,32 @@ const AllAuthors = () => {
         setShowAddModal(true);
     }
 
+    const handleCancelAdd = () => {
+        setShowAddModal(false);
+    }
+
+    function handleEdit(author) {
+        setShowEditModal(true);
+        setAuthorToEdit(author);
+    }
+
+    const handleCancelEdit = () => {
+        setShowEditModal(false);
+        setAuthorToEdit({});
+    }
+
     return (
         <div className="container">
             <h1>Toti Autorii</h1>
             <Button varaint="primary" onClick={() => handleAdd()}>Adauga autor</Button>
             <Table striped bordered hover>
-                <thead>
+                <tbody>
                 <tr>
                     <th>#</th>
                     <th>ID autor</th>
                     <th>Nume complet</th>
                     <th>Acțiune</th>
                 </tr>
-                </thead>
-                <tbody>
                 {currentAuthors.map((author, index) => (
                     <tr key={index}>
                         <td>{index + 1}</td>
@@ -77,6 +95,7 @@ const AllAuthors = () => {
                         <td>{author.authorName}</td>
                         <td>
                             <Button variant="danger" onClick={() => handleDelete(author)}>Șterge</Button>
+                            <Button variant="warning" onClick={() => handleEdit(author)}>Editează</Button>
                         </td>
                     </tr>
                 ))}
@@ -95,8 +114,13 @@ const AllAuthors = () => {
             />
             <AddAuthorModal
                 show={showAddModal}
-                onCancel={handleCancelDelete}
+                onCancel={handleCancelAdd}
                 />
+            <EditAuthorModal
+                show={showEditModal}
+                onCancel={handleCancelEdit}
+                author={authorToEdit}
+            />
         </div>
     )
 }

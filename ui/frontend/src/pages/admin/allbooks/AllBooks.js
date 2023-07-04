@@ -93,7 +93,7 @@ const AllBooks = () => {
                 Adauga carte
             </Button>
             <Table striped bordered hover>
-                <thead>
+                <tbody>
                 <tr>
                     <th>#</th>
                     <th>Titlu</th>
@@ -104,8 +104,6 @@ const AllBooks = () => {
                     <th>Imprumuturi</th>
                     <th>Acțiuni</th>
                 </tr>
-                </thead>
-                <tbody>
                 {currentBooks.map((book, index) => (
                     <tr key={index}>
                         <td>{book.bookId}</td>
