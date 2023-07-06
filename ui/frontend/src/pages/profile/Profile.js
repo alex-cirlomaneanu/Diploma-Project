@@ -63,16 +63,13 @@ function Profile() {
                 />
                 <h1>Profil</h1>
                 <br/>
-                {/*<h2>Informații personale</h2>*/}
                 <p>Prenume: {user.firstname}</p>
                 <p>Nume: {user.lastname}</p>
-                <p>Email: alexandru.ion@gmail.com</p>
+                <p>Email: {user.email}</p>
                 <p>Număr de telefon: {user.phoneNumber}</p>
                 <p>Data nașterii: {getDate(user.birthDate)}</p>
-                {/*<h1>Adresa</h1>*/}
-                <p>Adresă de livrare: Bucuresti, Splaiul Independetei, 290</p>
-                {/*<h2>Comenzi</h2>*/}
-                {/*<p>Comenzi: {user.orders}</p>*/}
+                <p>Adresă de livrare: {user.address}</p>
+                <p>Card bancar: {user.bankAccount}</p>
             </div>
             <div className={"book-history"}>
                 <h1>Istoric comenzi</h1>

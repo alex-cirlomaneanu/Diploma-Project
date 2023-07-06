@@ -12,7 +12,7 @@ import BookCard from "../../components/bookpage/bookcards/BookCards";
  * @constructor
  */
 const Books = () => {
-    const books = fetchBooks();
+    const books = fetchBooks().sort((a, b) => a.title.localeCompare(b.title));
     const authContext = useContext(AuthContext)
     const [currentPage, setCurrentPage] = useState(1);
     const [booksPerPage] = useState(12);

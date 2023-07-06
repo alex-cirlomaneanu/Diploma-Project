@@ -30,6 +30,11 @@ form input[type="password"] {
     margin-left: 20px;
 }
 
+form input[name="address"] {
+    width: 170px;
+    height: 50px;
+}
+
 form input[type="date"] {
     width: 170px;
     margin-bottom: 10px;

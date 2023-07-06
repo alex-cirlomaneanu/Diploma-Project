@@ -108,6 +108,17 @@ const EditProfileModal = ({ show, handleClose, user }) => {
                         />
                     </Form.Group>
 
+                    <Form.Group controlId="address">
+                        <Form.Label>Adresă</Form.Label>
+                        <br/>
+                        <Form.Control
+                            type="text"
+                            name="address"
+                            value={formData.address}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
+
                     <Form.Group controlId="bankAccount">
                         <Form.Label>Număr de card</Form.Label>
                         <br/>

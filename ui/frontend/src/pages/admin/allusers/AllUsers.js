@@ -82,8 +82,10 @@ const AllUsers = () => {
                     <th>Nume</th>
                     <th>Prenume</th>
                     <th>Email</th>
-                    <th>Parola</th>
+                    {/*<th>Parola</th>*/}
                     <th>Telefon</th>
+                    <th>Adresa</th>
+                    <th>Card</th>
                     <th>Data nașterii</th>
                     <th>Împrumuturi</th>
                     <th>Acțiuni</th>
@@ -94,8 +96,10 @@ const AllUsers = () => {
                         <td>{user.lastname}</td>
                         <td>{user.firstname}</td>
                         <td>{user.email}</td>
-                        <td>{user.password}</td>
+                        {/*<td>{user.password}</td>*/}
                         <td>{user.phoneNumber}</td>
+                        <td>{user.address}</td>
+                        <td>{user.bankAccount}</td>
                         <td>{getDate(user.birthDate)}</td>
                         <td>{user.rentals.length}</td>
                         <td>
